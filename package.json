@@ -1,7 +1,7 @@
 {
   "name": "prodexplora",
   "version": "1.0.0",
-  "description": "",
+  "description": "prodexplora - Connecting two dimensions",
   "main": "index.js",
   "scripts": {
     "dev": "turbo run dev",
