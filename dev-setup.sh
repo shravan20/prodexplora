@@ -1,3 +1,5 @@
+set -e
+
 npm i && 
 npm run prepare && 
 cd server && 
