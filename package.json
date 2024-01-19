@@ -5,7 +5,8 @@
   "main": "\"\"",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev-setup": "npm i && npm run prepare && cd server && npm install && cd .. && cd ui && npm install"
   },
   "author": "",
   "license": "MIT",
