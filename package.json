@@ -1,16 +1,24 @@
 {
   "name": "prodexplora",
   "version": "1.0.0",
-  "description": "prodexplora - Connecting two dimensions",
-  "main": "\"\"",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install",
-    "dev-setup": "npm i && npm run prepare && cd server && npm install && cd .. && cd ui && npm install"
+    "dev": "turbo run dev",
+    "test": "jest",
+    "build": "turbo run build",
+    "prod:build": "turbo run build",
+    "prod:start": "node apps/backend/dist/main",
+    "prepare": "husky install"
   },
+  "workspaces": [
+    "apps/*"
+  ],
+  "keywords": [],
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "devDependencies": {
-    "husky": "^8.0.0"
+    "turbo": "^1.11.3",
+    "husky": "^8.0.3"
   }
 }
