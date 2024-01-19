@@ -1,8 +1,8 @@
 {
-  "name": "server",
+  "name": "ui",
   "version": "1.0.0",
-  "description": "server for prodexplora",
-  "main": "app.js",
+  "description": "prodexplora client",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
