@@ -3,5 +3,5 @@
 
 cd server &&
 npm test && 
-echo "Backend Unit Tests successfully completed" || exit 1 
-&& cd ..
+echo "Backend Unit Tests successfully completed" || exit 1 && 
+cd ..
