@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-cd server && npm test && cd ..
-
-echo "Backend Unit Tests successfully completed"
+cd server && npm test
+npm test && echo "Backend Unit Tests successfully completed" || exit 1 && cd ..
