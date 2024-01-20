@@ -23,7 +23,10 @@
     "husky": "^8.0.0",
     "turbo": "^1.11.3"
   },
-  "pre-commit": [
-    "lint"
-  ]
+  "husky": {
+    "hooks": {
+      "pre-commit": "your-pre-commit-command",
+      "pre-push": "your-pre-push-command"
+    }
+  }
 }
