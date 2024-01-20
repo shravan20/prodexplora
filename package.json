@@ -9,9 +9,9 @@
     "build": "turbo run build",
     "prod:build": "turbo run build",
     "prod:start": "node apps/backend/dist/main",
-    "prepare": "husky install",
     "test:e2e": "echo \"Error: no test specified\" && exit 1",
-    "test:cov": "echo \"Error: no test specified\" && exit 1"
+    "test:cov": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "husky install"
   },
   "workspaces": [
     "apps/*"
@@ -20,7 +20,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "turbo": "^1.11.3",
-    "husky": "^8.0.3"
+    "husky": "^8.0.3",
+    "turbo": "^1.11.3"
   }
 }
