@@ -48,4 +48,4 @@ Any extra details that might help others understand and address your question.
 Feel free to engage in broader discussions related to the project, share insights, or connect with other community members. Let's collaborate and help each other!
 
 
-Thank you for being a part of the [ProdExplora] community!
+Thank you for being a part of the ProdExplora community!
