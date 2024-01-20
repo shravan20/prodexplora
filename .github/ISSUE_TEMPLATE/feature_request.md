@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-# Project Name Feature Request Template
+# ProdExplora Feature Request Template
 
 Thank you for contributing to [ProdExplora]! Before submitting a feature request, please ensure that you have reviewed our [CONTRIBUTING.md](CONTRIBUTING.md) guidelines.
 
