@@ -9,7 +9,7 @@ assignees: ''
 
 # ProdExplora Support and Questions
 
-Welcome to the support and questions section for [ProdExplora]! If you have any questions, need help, or want to discuss anything related to the project, you're in the right place.
+Welcome to the support and questions section for ProdExplora! If you have any questions, need help, or want to discuss anything related to the project, you're in the right place.
 
 ## How to Ask for Support
 
