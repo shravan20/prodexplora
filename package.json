@@ -20,7 +20,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "turbo": "^1.11.3",
-    "husky": "^8.0.3"
+    "autoprefixer": "^10.4.17",
+    "husky": "^8.0.3",
+    "postcss": "^8.4.33",
+    "turbo": "^1.11.3"
   }
 }
