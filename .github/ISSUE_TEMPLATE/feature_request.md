@@ -9,7 +9,7 @@ assignees: ''
 
 # ProdExplora Feature Request Template
 
-Thank you for contributing to [ProdExplora]! Before submitting a feature request, please ensure that you have reviewed our [CONTRIBUTING.md](CONTRIBUTING.md) guidelines.
+Thank you for contributing to [ProdExplora]! Before submitting a feature request, please ensure that you have reviewed our [CONTRIBUTING.md](../CONTRIBUTING.md) guidelines.
 
 ## Feature Request Template
 
