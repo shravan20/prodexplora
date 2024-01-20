@@ -5,12 +5,12 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
 @Module({
-  imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../..', 'ui', 'dist'),
-    }),
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+    imports: [
+        ServeStaticModule.forRoot({
+            rootPath: join(__dirname, '../..', 'ui', 'dist'),
+        }),
+    ],
+    controllers: [AppController],
+    providers: [AppService],
 })
 export class AppModule {}
