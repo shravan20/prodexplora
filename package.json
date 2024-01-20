@@ -10,9 +10,7 @@
     "prod:build": "turbo run build",
     "prod:start": "node apps/backend/dist/main",
     "test:e2e": "echo \"Error: no test specified\" && exit 1",
-    "test:cov": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "husky install",
-    "prepare": "husky install"
+    "test:cov": "echo \"Error: no test specified\" && exit 1"
   },
   "workspaces": [
     "apps/*"
