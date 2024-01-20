@@ -11,7 +11,8 @@
     "prod:start": "node apps/backend/dist/main",
     "test:e2e": "echo \"Error: no test specified\" && exit 1",
     "test:cov": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "test -e .husky || cp -r node_modules/husky .husky"
   },
   "workspaces": [
     "apps/*"
@@ -20,13 +21,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "husky": "^8.0.0",
+    "husky": "^8.0.3",
     "turbo": "^1.11.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "your-pre-commit-command",
-      "pre-push": "your-pre-push-command"
-    }
   }
 }
