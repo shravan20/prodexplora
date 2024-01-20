@@ -2,10 +2,25 @@
   "name": "prodexplora",
   "version": "1.0.0",
   "description": "prodexplora - Connecting two dimensions",
-  "main": "\"\"",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "turbo run dev",
+    "test": "jest",
+    "build": "turbo run build",
+    "prod:build": "turbo run build",
+    "prod:start": "node apps/backend/dist/main",
+    "prepare": "husky install",
+    "test:e2e": "echo \"Error: no test specified\" && exit 1",
+    "test:cov": "echo \"Error: no test specified\" && exit 1"
   },
+  "workspaces": [
+    "apps/*"
+  ],
+  "keywords": [],
   "author": "",
-  "license": "MIT"
+  "license": "ISC",
+  "devDependencies": {
+    "turbo": "^1.11.3",
+    "husky": "^8.0.3"
+  }
 }
