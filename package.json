@@ -22,5 +22,8 @@
   "devDependencies": {
     "husky": "^8.0.0",
     "turbo": "^1.11.3"
-  }
+  },
+  "pre-commit": [
+    "lint"
+  ]
 }
