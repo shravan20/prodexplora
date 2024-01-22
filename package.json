@@ -1,26 +1,30 @@
 {
-  "name": "prodexplora",
-  "version": "1.0.0",
-  "description": "prodexplora - Connecting two dimensions",
-  "main": "index.js",
-  "scripts": {
-    "dev": "turbo run dev",
-    "test": "jest",
-    "build": "turbo run build",
-    "prod:build": "turbo run build",
-    "prod:start": "node apps/backend/dist/main",
-    "test:e2e": "echo \"Error: no test specified\" && exit 1",
-    "test:cov": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky install"
-  },
-  "workspaces": [
-    "apps/*"
-  ],
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "husky": "^8.0.3",
-    "turbo": "^1.11.3"
-  }
+    "name": "prodexplora",
+    "version": "1.0.0",
+    "description": "prodexplora - Connecting two dimensions",
+    "main": "index.js",
+    "scripts": {
+        "dev": "turbo run dev",
+        "test": "jest",
+        "build": "turbo run build",
+        "prod:build": "turbo run build",
+        "prod:start": "node apps/backend/dist/main",
+        "test:e2e": "echo \"Error: no test specified\" && exit 1",
+        "test:cov": "echo \"Error: no test specified\" && exit 1",
+        "prepare": "husky install",
+        "commit": "commit"
+    },
+    "workspaces": [
+        "apps/*"
+    ],
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@commitlint/cli": "^18.5.0",
+        "@commitlint/config-conventional": "^18.5.0",
+        "@commitlint/prompt-cli": "^18.5.0",
+        "husky": "^8.0.3",
+        "turbo": "^1.11.3"
+    }
 }
