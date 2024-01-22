@@ -18,7 +18,7 @@ module.exports = {
      * Any rules defined here will override rules from @commitlint/config-conventional
      */
     rules: {
-        'type-enum': [2, 'always', ['foo']],
+        'type-enum': [2, 'always', ['feat', 'chores', 'build', 'ci', 'docs', 'feature', 'fix', 'refactor', 'test', 'style']],
     },
     /*
      * Array of functions that return true if commitlint should ignore the given message.
