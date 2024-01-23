@@ -1,10 +1,10 @@
 {
     "name": "api",
     "version": "0.0.1",
-    "description": "",
+    "description": "ProdExplora Service API",
     "author": "",
     "private": true,
-    "license": "UNLICENSED",
+    "license": "MIT",
     "scripts": {
         "dev": "nest start --watch --preserveWatchOutput",
         "prod:build": "turbo run build",

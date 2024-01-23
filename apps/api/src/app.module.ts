@@ -15,7 +15,7 @@ import { DatabaseModule } from './database/database.module';
         }),
         ServeStaticModule.forRoot({
             /**
-             * TOOO: Make this configurable
+             * TODO: Make this configurable
              */
             rootPath: join(__dirname, '../..', 'ui', 'dist'),
         }),
