@@ -4,6 +4,9 @@ import { AppService } from './modules/user/app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { DatabaseModule } from './database/database.module';
+
 
 @Module({
     imports: [
@@ -17,8 +20,9 @@ import { ConfigModule } from '@nestjs/config';
              */
             rootPath: join(__dirname, '../..', 'ui', 'dist'),
         }),
+        DatabaseModule
     ],
     controllers: [AppController],
     providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
