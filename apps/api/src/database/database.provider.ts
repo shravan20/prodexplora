@@ -9,15 +9,14 @@ export const databaseProviders = [
         useFactory: async () => {
             try {
                 await createConnection(process.env.MONGODB_DB_URL, {
-                    dbName: "test", // move it as part of connection string or env
+                    dbName: 'test', // move it as part of connection string or env
                     autoIndex: true,
-                    autoCreate: true
+                    autoCreate: true,
                 });
                 logger.log('Database connection established');
             } catch (error) {
                 logger.error('DB Connection Error', error);
             }
-
         },
     },
 ];

@@ -7,7 +7,6 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { DatabaseModule } from './database/database.module';
 
-
 @Module({
     imports: [
         ConfigModule.forRoot({
@@ -20,9 +19,9 @@ import { DatabaseModule } from './database/database.module';
              */
             rootPath: join(__dirname, '../..', 'ui', 'dist'),
         }),
-        DatabaseModule
+        DatabaseModule,
     ],
     controllers: [AppController],
     providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
