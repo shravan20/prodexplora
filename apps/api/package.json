@@ -29,11 +29,13 @@
         "@nestjs/mongoose": "^10.0.2",
         "@nestjs/platform-express": "^10.0.0",
         "@nestjs/serve-static": "^4.0.0",
+        "@nestjs/swagger": "^7.2.0",
         "@types/dotenv": "^8.2.0",
         "dotenv": "^16.3.2",
         "mongoose": "^8.1.0",
         "reflect-metadata": "^0.1.13",
-        "rxjs": "^7.8.1"
+        "rxjs": "^7.8.1",
+        "swagger-ui-express": "^5.0.0"
     },
     "devDependencies": {
         "@nestjs/cli": "^10.0.0",

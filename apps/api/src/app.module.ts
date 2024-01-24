@@ -6,6 +6,7 @@ import { join } from 'path';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { DatabaseModule } from './database/database.module';
+import { SwaggerSetupModule } from './docs/swagger.module';
 
 @Module({
     imports: [
@@ -20,8 +21,9 @@ import { DatabaseModule } from './database/database.module';
             rootPath: join(__dirname, '../..', 'ui', 'dist'),
         }),
         DatabaseModule,
+        SwaggerSetupModule
     ],
     controllers: [AppController],
     providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
