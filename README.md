@@ -1,4 +1,10 @@
-<p align="center">An app in progress to make a difference and connecting two dimension.</p>
+
+<p align="center">
+    <img width="15%" height="15%" src="./assets/logo.webp" style="margin: 5px; " alt="Logo">
+</p>
+<p align="center">
+    <span>An app in progress to make a difference and connecting two dimension.</span>
+</p>
 
 <!-- Badges  -->
 <div style="text-align: center;">
@@ -7,7 +13,7 @@
     <a href="https://prodexplora.com"><img src="https://img.shields.io/badge/Pricing-Free-brightgreen" alt="Pricing" style="margin: 5px;"></a>
     <a href="https://github.com/shravan20/prodexplora/issues"><img src="https://img.shields.io/badge/Help%20Wanted-Contribute-blue" style="margin: 5px;"></a>
     <a href="https://discord.gg/n3aSgaqpd7"><img src="https://img.shields.io/discord/1199114979773792266?logo=Discord" style="margin: 5px;" alt="Chat on Discord"></a>
-   <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" style="margin: 5px;" alt="Chat on Discord">
+    <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" style="margin: 5px;" alt="Chat on Discord">
 </div>
 <!-- End of Badges -->
 
