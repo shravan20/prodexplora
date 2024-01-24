@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './modules/user/app.controller';
-import { AppService } from './modules/user/app.service';
+import { AppController } from './modules/app-health/app.controller';
+import { AppService } from './modules/app-health/app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ConfigModule } from '@nestjs/config';
@@ -26,4 +26,4 @@ import { SwaggerSetupModule } from './docs/swagger.module';
     controllers: [AppController],
     providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
