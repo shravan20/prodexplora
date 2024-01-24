@@ -21,9 +21,9 @@ import { SwaggerSetupModule } from './docs/swagger.module';
             rootPath: join(__dirname, '../..', 'ui', 'dist'),
         }),
         DatabaseModule,
-        SwaggerSetupModule
+        SwaggerSetupModule,
     ],
     controllers: [AppController],
     providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
