@@ -1,13 +1,10 @@
-// src/swagger.module.ts
-import { Module } from '@nestjs/common';
+import { INestApplication, Module } from '@nestjs/common';
 import { SwaggerModule } from '@nestjs/swagger';
 import { swaggerOptions } from './swagger';
 
-import { Logger } from '@nestjs/common';
-
 @Module({})
 export class SwaggerSetupModule {
-    static setup(path: string, app: any) {
+    static setup(path: string, app: INestApplication) {
         const document = SwaggerModule.createDocument(app, swaggerOptions);
         SwaggerModule.setup(path, app, document);
     }

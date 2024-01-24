@@ -10,7 +10,8 @@ async function bootstrap(): Promise<void> {
     SwaggerSetupModule.setup('/docs', app);
 
     app.setGlobalPrefix('/api');
-    await app.listen(process.env.SERVER_PORT);
+
+    await app.listen(process.env.SERVER_PORT || 3000);
     console.log('Server running on:', process.env.SERVER_PORT || 3000);
 }
 bootstrap();
