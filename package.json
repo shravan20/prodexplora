@@ -11,15 +11,24 @@
         "prod:start": "node apps/backend/dist/main",
         "test:e2e": "echo \"Error: no test specified\" && exit 1",
         "test:cov": "echo \"Error: no test specified\" && exit 1",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "commit": "commit"
     },
     "workspaces": [
         "apps/*"
     ],
-    "keywords": [],
+    "keywords": [
+        "open-source",
+        "javascript",
+        "prodexplora"
+    ],
     "author": "",
-    "license": "ISC",
+    "license": "MIT",
     "devDependencies": {
+        "@commitlint/cli": "^18.5.0",
+        "@commitlint/config-conventional": "^18.5.0",
+        "@commitlint/prompt-cli": "^18.5.0",
+        "conventional-changelog-atom": "^4.0.0",
         "husky": "^8.0.3",
         "turbo": "^1.11.3"
     }
