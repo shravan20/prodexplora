@@ -7,14 +7,14 @@
 </p>
 
 <!-- Badges  -->
-<div style="text-align: center;">
+<p align="center">
     <img src="https://img.shields.io/badge/license-MIT-green?logo=dark-green" alt="MIT License" style="margin: 5px;" />
     <img src="https://img.shields.io/badge/PRs-Welcome-success" alt="PRs Welcome" style="margin: 5px;" />
     <a href="https://prodexplora.com"><img src="https://img.shields.io/badge/Pricing-Free-brightgreen" alt="Pricing" style="margin: 5px;"></a>
     <a href="https://github.com/shravan20/prodexplora/issues"><img src="https://img.shields.io/badge/Help%20Wanted-Contribute-blue" style="margin: 5px;"></a>
     <a href="https://discord.gg/n3aSgaqpd7"><img src="https://img.shields.io/discord/1199114979773792266?logo=Discord" style="margin: 5px;" alt="Chat on Discord"></a>
     <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" style="margin: 5px;" alt="Chat on Discord">
-</div>
+</p>
 <!-- End of Badges -->
 
 ## Installation
@@ -57,6 +57,6 @@ prodexplora is an MIT-licensed open source project. It can grow thanks to the sp
 
 prodexplora is [MIT licensed](LICENSE).
 
-<div style="text-align: center;">
+<p align="center">
     <img src="https://madewithlove.now.sh/in?heart=true&colorA=%23ff671f&colorB=%23046a38&text=the+Quantum+Realm+of+Open+Source" alt="Made with love with Open Source"/>
-</div>
+</p>
