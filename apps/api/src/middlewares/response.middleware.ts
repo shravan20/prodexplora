@@ -1,32 +1,27 @@
-import {
-    ExceptionFilter,
-    Catch,
-    ArgumentsHost,
-    HttpException,
-    Logger,
-} from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Injectable, NestInterceptor, ExecutionContext, CallHandler, HttpStatus } from '@nestjs/common';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-@Catch(HttpException)
-export class HttpExceptionFilter implements ExceptionFilter {
-    private readonly logger = new Logger(HttpExceptionFilter.name);
+@Injectable()
+export class ApiResponseEnvelopeInterceptor implements NestInterceptor {
+    intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
 
-    catch(exception: HttpException, host: ArgumentsHost) {
-        const ctx = host.switchToHttp();
-        const response = ctx.getResponse<Response>();
-        const request = ctx.getRequest<Request>();
-        const statusCode = exception.getStatus();
-        const message = exception.message || null;
+        const httpContext = context.switchToHttp();
+        const request = httpContext.getRequest();
+        const response = httpContext.getResponse();
+        const statusCode = response?.statusCode || HttpStatus.OK;
+        const route = request?.route?.path;
 
-        const body = {
-            statusCode,
-            message,
-            timestamp: new Date().toISOString(),
-            endpoint: request.url,
-        };
 
-        this.logger.warn(`${statusCode} ${message}`);
-
-        response.status(statusCode).json(body);
+        return next.handle().pipe(
+            map((data) => ({
+                status: true,
+                statusCode,
+                data,
+                message: 'Request successful',
+                timestamp: new Date().toISOString(),
+                endpoint: route,
+            })),
+        );
     }
 }

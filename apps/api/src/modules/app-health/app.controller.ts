@@ -1,7 +1,9 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, NotFoundException, UseFilters } from '@nestjs/common';
 import { AppService } from './app.service';
-import { ApiProperty, ApiTags } from '@nestjs/swagger';
+import { ApiNotFoundResponse, ApiUnprocessableEntityResponse, ApiProperty, ApiTags } from '@nestjs/swagger';
 import { ApiResponse } from '@nestjs/swagger';
+import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
+import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 
 class MyResponseDto {
     @ApiProperty({
@@ -13,18 +15,22 @@ class MyResponseDto {
 
 @ApiTags('Service Health Check')
 @Controller()
+@UseFilters(new HttpExceptionFilter())
+@ApiResponseEnvelope()
 export class AppController {
-    constructor(private readonly appService: AppService) {}
+    constructor(private readonly appService: AppService) { }
 
     @ApiResponse({
         status: 200,
         description: 'Returns a message indicating its health',
         type: MyResponseDto,
     })
-    @Get('health')
-    getHello(): { data: string } {
+    @ApiNotFoundResponse({ description: 'Post not found.' })
+    @ApiUnprocessableEntityResponse({ description: 'Post title already exists.' })
+    @Get('/health')
+    getHello(): { health: string } {
         return {
-            data: this.appService.getHello(),
+            health: this.appService.getHello(),
         };
     }
 }
