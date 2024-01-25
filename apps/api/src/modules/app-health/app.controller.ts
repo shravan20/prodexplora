@@ -15,7 +15,7 @@ class MyResponseDto {
         description: 'Says if server is alive or not',
         example: 'Alive or Dead xD!',
     })
-    data: string;
+    health: string;
 }
 
 @ApiTags('Service Health Check')
