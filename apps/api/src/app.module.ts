@@ -23,9 +23,12 @@ import { ApiResponseEnvelopeInterceptor } from './middlewares/response.middlewar
         SwaggerSetupModule,
     ],
     controllers: [AppController],
-    providers: [AppService, {
-        provide: APP_INTERCEPTOR,
-        useClass: ApiResponseEnvelopeInterceptor,
-    },],
+    providers: [
+        AppService,
+        {
+            provide: APP_INTERCEPTOR,
+            useClass: ApiResponseEnvelopeInterceptor,
+        },
+    ],
 })
-export class AppModule { }
+export class AppModule {}
