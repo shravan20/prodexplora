@@ -1,6 +1,6 @@
 
 <p align="center">
-    <img width="15%" height="15%" src="./assets/logo.webp" style="margin: 5px; " alt="Logo">
+    <img width="50%" height="50%" src="./assets/banner-temp.gif" style="margin: 5px; " alt="Logo">
 </p>
 <p align="center">
     <span>An app in progress to make a difference and connecting two dimension.</span>
