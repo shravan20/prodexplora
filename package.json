@@ -4,7 +4,7 @@
   "description": "prodexplora - Connecting two dimensions",
   "main": "index.js",
   "scripts": {
-    "dev": "turbo run dev",
+    "start": "turbo run dev",
     "test": "jest",
     "build": "turbo run build",
     "prod:build": "turbo run build",

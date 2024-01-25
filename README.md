@@ -32,7 +32,7 @@ npm install
 
 ```bash
 # development in watch mode
-$ npm run dev
+$ npm start
 
 # production mode
 $ npm run prod:start
