@@ -12,9 +12,11 @@ async function bootstrap(): Promise<void> {
 
     app.setGlobalPrefix('/api');
 
-    app.useGlobalPipes(new ValidationPipe({
-        disableErrorMessages: false,
-    }));
+    app.useGlobalPipes(
+        new ValidationPipe({
+            disableErrorMessages: false,
+        }),
+    );
 
     await app.listen(process.env.SERVER_PORT || 3000);
     console.log('Server running on:', process.env.SERVER_PORT || 3000);

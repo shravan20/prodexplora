@@ -1,4 +1,11 @@
-import { Controller, Get, Post, NotFoundException, UseFilters, Body } from '@nestjs/common';
+import {
+    Controller,
+    Get,
+    Post,
+    NotFoundException,
+    UseFilters,
+    Body,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import {
     ApiNotFoundResponse,
@@ -12,13 +19,12 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 import { MyResponseDto } from './dtos/health-response.dto';
 import { MyRequestDto } from './dtos/health-request.dto';
 
-
 @ApiTags('Service Health Check')
 @Controller()
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class AppController {
-    constructor(private readonly appService: AppService) { }
+    constructor(private readonly appService: AppService) {}
 
     @ApiResponse({
         status: 200,
@@ -51,6 +57,4 @@ export class AppController {
             health: `Hi ${request.name}` + this.appService.getHello(),
         };
     }
-
-
 }
