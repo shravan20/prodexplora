@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundException, UseFilters } from '@nestjs/common';
+import { Controller, Get, Post, NotFoundException, UseFilters, Body } from '@nestjs/common';
 import { AppService } from './app.service';
 import {
     ApiNotFoundResponse,
@@ -9,30 +9,25 @@ import {
 import { ApiResponse } from '@nestjs/swagger';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
+import { MyResponseDto } from './dtos/health-response.dto';
+import { MyRequestDto } from './dtos/health-request.dto';
 
-class MyResponseDto {
-    @ApiProperty({
-        description: 'Says if server is alive or not',
-        example: 'Alive or Dead xD!',
-    })
-    health: string;
-}
 
 @ApiTags('Service Health Check')
 @Controller()
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class AppController {
-    constructor(private readonly appService: AppService) {}
+    constructor(private readonly appService: AppService) { }
 
     @ApiResponse({
         status: 200,
         description: 'Returns a message indicating its health',
         type: MyResponseDto,
     })
-    @ApiNotFoundResponse({ description: 'Post not found.' })
+    @ApiNotFoundResponse({ description: 'World not found.' })
     @ApiUnprocessableEntityResponse({
-        description: 'Post title already exists.',
+        description: 'World not found.',
     })
     @Get('/health')
     getHello(): { health: string } {
@@ -40,4 +35,22 @@ export class AppController {
             health: this.appService.getHello(),
         };
     }
+
+    @ApiResponse({
+        status: 200,
+        description: 'Returns a message indicating its health with greetings',
+        type: MyResponseDto,
+    })
+    @ApiNotFoundResponse({ description: 'World not found.' })
+    @ApiUnprocessableEntityResponse({
+        description: 'World not found, with greetings.',
+    })
+    @Post('/health')
+    postHello(@Body() request: MyRequestDto): { health: string } {
+        return {
+            health: `Hi ${request.name}` + this.appService.getHello(),
+        };
+    }
+
+
 }
