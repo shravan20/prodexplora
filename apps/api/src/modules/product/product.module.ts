@@ -6,8 +6,12 @@ import { ProductRatingModule } from './product-rating/product-rating.module';
 import { ProductDiscussionModule } from './product-discussion/product-discussion.module';
 
 @Module({
-  controllers: [ProductController],
-  providers: [ProductService],
-  imports: [ProductUpvoteModule, ProductRatingModule, ProductDiscussionModule],
+    controllers: [ProductController],
+    providers: [ProductService],
+    imports: [
+        ProductUpvoteModule,
+        ProductRatingModule,
+        ProductDiscussionModule,
+    ],
 })
 export class ProductModule {}

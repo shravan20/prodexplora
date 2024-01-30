@@ -9,7 +9,6 @@ import { DatabaseModule } from './database/database.module';
 import { SwaggerSetupModule } from './docs/swagger.module';
 import { ApiResponseEnvelopeInterceptor } from './middlewares/response.middleware';
 
-
 @Module({
     imports: [
         ConfigModule.forRoot({
@@ -22,7 +21,6 @@ import { ApiResponseEnvelopeInterceptor } from './middlewares/response.middlewar
         }),
         DatabaseModule,
         SwaggerSetupModule,
-
     ],
     controllers: [AppController],
     providers: [
