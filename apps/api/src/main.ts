@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
 import { SwaggerSetupModule } from './docs/swagger.module';
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 
 async function bootstrap(): Promise<void> {
     dotenv.config();
@@ -11,6 +11,12 @@ async function bootstrap(): Promise<void> {
     SwaggerSetupModule.setup('/docs', app);
 
     app.setGlobalPrefix('/api');
+
+    app.enableVersioning({
+        type: VersioningType.URI,
+    });
+
+
 
     app.useGlobalPipes(
         new ValidationPipe({
