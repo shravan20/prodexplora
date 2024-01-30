@@ -20,7 +20,15 @@
         "test:watch": "jest --watch",
         "test:cov": "jest --coverage",
         "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-        "test:e2e": "jest --config ./test/jest-e2e.json"
+        "test:e2e": "jest --config ./test/jest-e2e.json",
+        "migrate:new": "npx prisma migrate dev --name init",
+        "migrate:undo": "npx prisma migrate reset",
+        "migrate:status": "npx prisma migrate status",
+        "migrate:update": "npx prisma migrate save --create-only",
+        "migrate:save": "npx prisma migrate save",
+        "migrate": "npx prisma migrate dev --name init",
+        "migrate:base": "npx prisma migrate dev --create-only --create-db --schema=./prisma/schema.prisma",
+        "migrate:deploy": "npx prisma migrate deploy"
     },
     "dependencies": {
         "@nestjs/common": "^10.0.0",

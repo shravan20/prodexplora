@@ -8,9 +8,11 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 // import { DatabaseModule } from './database/database.module';
 import { SwaggerSetupModule } from './docs/swagger.module';
 import { ApiResponseEnvelopeInterceptor } from './middlewares/response.middleware';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
     imports: [
+        DatabaseModule,
         ConfigModule.forRoot({
             isGlobal: true,
             envFilePath: join('.', '.env'),
@@ -30,11 +32,4 @@ import { ApiResponseEnvelopeInterceptor } from './middlewares/response.middlewar
         },
     ],
 })
-export class AppModule {
-    /**
-     *
-     */
-    constructor() {
-        console.log(__dirname);
-    }
-}
+export class AppModule { }

@@ -167,3 +167,4 @@ dist
 
 # Ignore all .env files
 **/.env
+.vscode
