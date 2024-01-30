@@ -3,7 +3,6 @@ import { PrismaClient } from '@prisma/client';
 
 @Injectable()
 export class DatabaseService extends PrismaClient implements OnModuleInit {
-
     private prisma: PrismaClient;
 
     async onModuleInit() {
@@ -26,6 +25,5 @@ export class DatabaseService extends PrismaClient implements OnModuleInit {
         } finally {
             // Make sure to disconnect from the database
         }
-
     }
 }
