@@ -31,11 +31,11 @@ export class AppController {
         };
     }
 
-    /*  @ApiResponse({
-         status: 200,
-         description: 'Returns a message indicating its health with greetings',
-         type: MyResponseDto,
-     }) */
+    @ApiResponse({
+        status: 200,
+        description: 'Returns a message indicating its health with greetings',
+        type: MyResponseDto,
+    })
     @ApiNotFoundResponse({ description: 'World not found.' })
     @ApiUnprocessableEntityResponse({
         description: 'World not found, with greetings.',
