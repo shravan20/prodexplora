@@ -1,4 +1,5 @@
 import { DocumentBuilder } from '@nestjs/swagger';
+import 'reflect-metadata';
 
 export const swaggerOptions = new DocumentBuilder()
     .setTitle('ProdExplora API')

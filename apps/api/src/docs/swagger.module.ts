@@ -4,7 +4,7 @@ import { swaggerOptions } from './swagger';
 
 @Module({})
 export class SwaggerSetupModule {
-    static setup(path: string, app: INestApplication) {
+    static setup(path: string, app: INestApplication): void {
         const document = SwaggerModule.createDocument(app, swaggerOptions);
         SwaggerModule.setup(path, app, document);
     }

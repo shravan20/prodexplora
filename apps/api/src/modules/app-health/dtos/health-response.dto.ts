@@ -5,5 +5,5 @@ export class MyResponseDto {
         description: 'Says if server is alive or not',
         example: 'Alive or Dead xD!',
     })
-    health: string;
+    status: string;
 }

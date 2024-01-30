@@ -1,22 +1,31 @@
-import { createConnection } from 'mongoose';
-import { Logger } from '@nestjs/common';
+// import { Connection, createConnection } from 'typeorm';
+// import { Logger } from '@nestjs/common';
 
-const logger = new Logger('DatabaseModule');
+// const logger = new Logger('DatabaseModule');
 
-export const databaseProviders = [
-    {
-        provide: 'DATABASE_CONNECTION',
-        useFactory: async () => {
-            try {
-                await createConnection(process.env.MONGODB_DB_URL, {
-                    dbName: 'test', // move it as part of connection string or env
-                    autoIndex: true,
-                    autoCreate: true,
-                });
-                logger.log('Database connection established');
-            } catch (error) {
-                logger.error('DB Connection Error', error);
-            }
-        },
-    },
-];
+// export const databaseProvider = {
+//     provide: 'DATABASE_CONNECTION',
+//     useFactory: async () => {
+//         try {
+
+//             return await createConnection({
+//                 type: process.env.DB_TYPE as any,
+//                 host: process.env.PG_HOST,
+//                 port: parseInt(process.env.PG_PORT),
+//                 username: process.env.PG_USER,
+//                 password: process.env.PG_PASSWORD,
+//                 database: process.env.PG_DB,
+//                 entities: [__dirname + '../entities/*.entity{.ts,.js}'], // Adjust the path as needed
+//                 synchronize: true,
+//             });
+//         } catch (error) {
+//             logger.error('DB Connection Error', error);
+//             if (error instanceof AggregateError) {
+//                 error.errors.forEach((err, index) => {
+//                     logger.error(`Error ${index + 1}:`, err);
+//                 });
+//             }
+//             throw error;
+//         }
+//     },
+// };
