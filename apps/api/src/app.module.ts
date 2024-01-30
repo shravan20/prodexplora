@@ -32,4 +32,4 @@ import { DatabaseModule } from './database/database.module';
         },
     ],
 })
-export class AppModule { }
+export class AppModule {}
