@@ -2,10 +2,18 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
 import { SwaggerSetupModule } from './docs/swagger.module';
-import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
+
+const logger = new Logger('DatabaseModule');
 
 async function bootstrap(): Promise<void> {
-    dotenv.config();
+    if (process.env.NODE_ENV === 'production') {
+        logger.log('Env variables loaded from .env.production');
+        dotenv.config({ path: '.env.production' });
+    } else {
+        dotenv.config(); // Defaults to loading .env for development
+    }
+
     const app = await NestFactory.create(AppModule);
 
     SwaggerSetupModule.setup('/docs', app);
