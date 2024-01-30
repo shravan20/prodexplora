@@ -16,8 +16,6 @@ async function bootstrap(): Promise<void> {
         type: VersioningType.URI,
     });
 
-
-
     app.useGlobalPipes(
         new ValidationPipe({
             disableErrorMessages: false,
