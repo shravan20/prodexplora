@@ -5,4 +5,8 @@ import { DatabaseService } from './database.service';
     providers: [DatabaseService],
     exports: [DatabaseService],
 })
-export class DatabaseModule {}
+export class DatabaseModule {
+    constructor(private readonly databaseService: DatabaseService) {
+        this.databaseService.checkConnection();
+    }
+}
