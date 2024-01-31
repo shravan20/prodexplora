@@ -22,10 +22,9 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductCategoryController {
-
     constructor(
         private readonly productCategoryService: ProductCategoryService,
-    ) { }
+    ) {}
 
     @Post('/products/:productId/product-categories/:id')
     create(@Body() createProductCategoryDto: CreateProductCategoryDto) {

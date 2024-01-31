@@ -22,7 +22,7 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class UserController {
-    constructor(private readonly userService: UserService) { }
+    constructor(private readonly userService: UserService) {}
 
     @Post('/users/:id')
     create(@Body() createUserDto: CreateUserDto) {

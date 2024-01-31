@@ -34,10 +34,24 @@ const modules = [
     SwaggerSetupModule,
 ];
 
-const controllers = [AppController, ProductController, ProductUpvoteController, ProductRatingController, ProductDiscussionController, ProductCategoryController, UserController];
+const controllers = [
+    AppController,
+    ProductController,
+    ProductUpvoteController,
+    ProductRatingController,
+    ProductDiscussionController,
+    ProductCategoryController,
+    UserController,
+];
 
 const providers = [
-    AppService, ProductService, ProductUpvoteService, ProductRatingService, ProductDiscussionService, ProductCategoryService, UserService,
+    AppService,
+    ProductService,
+    ProductUpvoteService,
+    ProductRatingService,
+    ProductDiscussionService,
+    ProductCategoryService,
+    UserService,
     {
         provide: APP_INTERCEPTOR,
         useClass: ApiResponseEnvelopeInterceptor,
@@ -49,4 +63,4 @@ const providers = [
     controllers: controllers,
     providers: providers,
 })
-export class AppModule { }
+export class AppModule {}

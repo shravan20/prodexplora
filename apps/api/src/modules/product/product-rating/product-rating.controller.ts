@@ -15,8 +15,6 @@ import { ApiTags } from '@nestjs/swagger';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 
-
-
 @ApiTags('Product Ratings Service API')
 @Controller({
     version: '1',
@@ -24,7 +22,7 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductRatingController {
-    constructor(private readonly productRatingService: ProductRatingService) { }
+    constructor(private readonly productRatingService: ProductRatingService) {}
 
     @Post('/products/:productId/product-ratings/:id')
     create(@Body() createProductRatingDto: CreateProductRatingDto) {

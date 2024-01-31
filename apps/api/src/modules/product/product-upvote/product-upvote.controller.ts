@@ -15,7 +15,6 @@ import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiTags } from '@nestjs/swagger';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 
-
 @ApiTags('Product Upvotes Service API')
 @Controller({
     version: '1',
@@ -23,7 +22,7 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductUpvoteController {
-    constructor(private readonly productUpvoteService: ProductUpvoteService) { }
+    constructor(private readonly productUpvoteService: ProductUpvoteService) {}
 
     @Post('/product/:productId/product-upvotes/:id')
     create(@Body() createProductUpvoteDto: CreateProductUpvoteDto) {

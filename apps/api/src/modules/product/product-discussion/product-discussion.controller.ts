@@ -15,7 +15,6 @@ import { ApiTags } from '@nestjs/swagger';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 
-
 @ApiTags('Product Discussions Service API')
 @Controller({
     version: '1',
@@ -25,7 +24,7 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 export class ProductDiscussionController {
     constructor(
         private readonly productDiscussionService: ProductDiscussionService,
-    ) { }
+    ) {}
 
     @Post('/products/:productId/product-discussions/:id')
     create(@Body() createProductDiscussionDto: CreateProductDiscussionDto) {
