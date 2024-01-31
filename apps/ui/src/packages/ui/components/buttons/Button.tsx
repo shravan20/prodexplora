@@ -129,7 +129,6 @@ export const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonPr
     tooltipOffset = 4,
     StartIcon,
     EndIcon,
-    shallow,
     // attributes propagated from `HTMLAnchorProps` or `HTMLButtonProps`
     ...passThroughProps
   } = props;
