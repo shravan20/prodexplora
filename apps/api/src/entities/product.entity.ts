@@ -24,7 +24,10 @@ export class Product extends CommonEntity {
     @Prop({ type: Types.ObjectId, ref: 'User', required: true })
     userId: Types.ObjectId;
 
-    @Prop({ enum: Object.values(LaunchStatus), default: LaunchStatus.PRELAUNCH })
+    @Prop({
+        enum: Object.values(LaunchStatus),
+        default: LaunchStatus.PRELAUNCH,
+    })
     status: LaunchStatus;
 
     @Prop({ default: false })
@@ -32,7 +35,6 @@ export class Product extends CommonEntity {
 
     @Prop({ type: [{ platform: String, link: String }] })
     externalLinks: { platform: string; link: string }[];
-
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

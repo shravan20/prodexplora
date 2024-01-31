@@ -1,6 +1,6 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Types } from "mongoose";
-import { CommonEntity } from "./common-entity";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Types } from 'mongoose';
+import { CommonEntity } from './common-entity';
 
 @Schema()
 export class ProductRating extends CommonEntity {
@@ -12,7 +12,6 @@ export class ProductRating extends CommonEntity {
 
     @Prop({ default: false })
     isArchived: boolean;
-
 }
 
 export const ProductRatingSchema = SchemaFactory.createForClass(ProductRating);

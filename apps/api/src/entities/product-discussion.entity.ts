@@ -1,10 +1,9 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Types } from "mongoose";
-import { CommonEntity } from "./common-entity";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Types } from 'mongoose';
+import { CommonEntity } from './common-entity';
 
 @Schema({ timestamps: true })
 export class ProductDiscussion extends CommonEntity {
-
     @Prop({ type: Types.ObjectId, ref: 'User', required: true })
     userId: Types.ObjectId;
 
@@ -19,7 +18,7 @@ export class ProductDiscussion extends CommonEntity {
 
     @Prop({ type: Types.ObjectId, ref: 'Comment' })
     replyTo: Types.ObjectId;
-
 }
 
-export const ProductDiscussionSchema = SchemaFactory.createForClass(ProductDiscussion);
+export const ProductDiscussionSchema =
+    SchemaFactory.createForClass(ProductDiscussion);

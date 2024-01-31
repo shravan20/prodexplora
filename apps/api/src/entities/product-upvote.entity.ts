@@ -1,5 +1,3 @@
-
-
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Types } from 'mongoose';
 import { CommonEntity } from './common-entity';
@@ -11,7 +9,6 @@ export enum UpvoteStatus {
 
 @Schema()
 export class ProductUpvote extends CommonEntity {
-
     @Prop({ enum: Object.values(UpvoteStatus), required: true })
     status: UpvoteStatus;
 
@@ -20,7 +17,6 @@ export class ProductUpvote extends CommonEntity {
 
     @Prop({ type: Types.ObjectId, ref: 'Product', required: true })
     productId: Types.ObjectId;
-
 }
 
 export const ProductUpvoteSchema = SchemaFactory.createForClass(ProductUpvote);

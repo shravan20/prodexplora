@@ -1,9 +1,8 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { CommonEntity } from "./common-entity";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { CommonEntity } from './common-entity';
 
 @Schema({ timestamps: true })
 export class ProductCategory extends CommonEntity {
-
     @Prop({ required: true })
     name: string;
 
@@ -11,4 +10,5 @@ export class ProductCategory extends CommonEntity {
     description: string;
 }
 
-export const ProductCategorySchema = SchemaFactory.createForClass(ProductCategory);
+export const ProductCategorySchema =
+    SchemaFactory.createForClass(ProductCategory);
