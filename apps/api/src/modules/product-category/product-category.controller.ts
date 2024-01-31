@@ -26,7 +26,7 @@ export class ProductCategoryController {
         private readonly productCategoryService: ProductCategoryService,
     ) {}
 
-    @Post('/products/:productId/product-categories/:id')
+    @Post('/products/:productId/product-categories')
     create(@Body() createProductCategoryDto: CreateProductCategoryDto) {
         return this.productCategoryService.create(createProductCategoryDto);
     }

@@ -24,9 +24,9 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 export class ProductDiscussionController {
     constructor(
         private readonly productDiscussionService: ProductDiscussionService,
-    ) {}
+    ) { }
 
-    @Post('/products/:productId/product-discussions/:id')
+    @Post('/products/:productId/product-discussions')
     create(@Body() createProductDiscussionDto: CreateProductDiscussionDto) {
         return this.productDiscussionService.create(createProductDiscussionDto);
     }

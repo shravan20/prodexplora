@@ -24,7 +24,7 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 export class ProductRatingController {
     constructor(private readonly productRatingService: ProductRatingService) {}
 
-    @Post('/products/:productId/product-ratings/:id')
+    @Post('/products/:productId/product-ratings')
     create(@Body() createProductRatingDto: CreateProductRatingDto) {
         return this.productRatingService.create(createProductRatingDto);
     }

@@ -24,7 +24,7 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 export class ProductUpvoteController {
     constructor(private readonly productUpvoteService: ProductUpvoteService) {}
 
-    @Post('/product/:productId/product-upvotes/:id')
+    @Post('/product/:productId/product-upvotes')
     create(@Body() createProductUpvoteDto: CreateProductUpvoteDto) {
         return this.productUpvoteService.create(createProductUpvoteDto);
     }
