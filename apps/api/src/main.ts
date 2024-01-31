@@ -18,10 +18,9 @@ function setInterceptors(app) {
     app.useGlobalPipes(
         new ValidationPipe({
             disableErrorMessages: false,
-        })
+        }),
     );
 }
-
 
 async function bootstrap(): Promise<void> {
     if (process.env.NODE_ENV === 'production') {
