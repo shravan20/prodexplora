@@ -15,14 +15,14 @@ import { ApiTags } from '@nestjs/swagger';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 
-@ApiTags('Product API')
+@ApiTags('Products Service API')
 @Controller({
     version: '1',
 })
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductController {
-    constructor(private readonly productService: ProductService) {}
+    constructor(private readonly productService: ProductService) { }
 
     @Post('/products')
     create(@Body() createProductDto: CreateProductDto) {
