@@ -3,8 +3,6 @@ import { CommonEntity } from './common-entity';
 import { Types } from 'mongoose';
 import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
 
-
-
 @Schema()
 export class Product extends CommonEntity {
     @Prop({ required: true })

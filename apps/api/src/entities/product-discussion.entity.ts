@@ -4,7 +4,6 @@ import { CommonEntity } from './common-entity';
 
 @Schema({ timestamps: true })
 export class ProductDiscussion extends CommonEntity {
-
     @Prop({ type: Types.ObjectId, ref: 'User', required: true })
     userId: Types.ObjectId;
 
