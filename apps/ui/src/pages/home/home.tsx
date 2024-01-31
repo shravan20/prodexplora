@@ -1,11 +1,12 @@
 import React from 'react';
+import Navigation from '../../components/navigation';
 
 const HomePage: React.FC = () => {
     return (
-        <div>
-            <h1>Hello, World!</h1>
+        <div className="gyan-container">
+            <Navigation />
         </div>
-    );
+    )
 };
 
 export default HomePage;
