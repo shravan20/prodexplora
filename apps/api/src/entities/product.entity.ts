@@ -1,11 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { CommonEntity } from './common-entity';
 import { Types } from 'mongoose';
+import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
 
-export enum LaunchStatus {
-    PRELAUNCH = 'PRELAUNCH',
-    LAUNCHED = 'LAUNCHED',
-}
+
 
 @Schema()
 export class Product extends CommonEntity {
@@ -25,10 +23,10 @@ export class Product extends CommonEntity {
     userId: Types.ObjectId;
 
     @Prop({
-        enum: Object.values(LaunchStatus),
-        default: LaunchStatus.PRELAUNCH,
+        enum: Object.values(ProductLaunchStatus),
+        default: ProductLaunchStatus.PRELAUNCH,
     })
-    status: LaunchStatus;
+    status: ProductLaunchStatus;
 
     @Prop({ default: false })
     isPublish: boolean;
