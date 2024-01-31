@@ -21,7 +21,7 @@ export class Product extends CommonEntity {
     @Prop({ type: [String] })
     technologies: string[];
 
-    @Prop({ type: Types.ObjectId, ref: 'User', required: true })
+    @Prop({ type: Types.ObjectId, ref: 'User' })
     userId: Types.ObjectId;
 
     @Prop({
