@@ -14,4 +14,4 @@ import { ProductDiscussionModule } from './product-discussion/product-discussion
         ProductDiscussionModule,
     ],
 })
-export class ProductModule { }
+export class ProductModule {}

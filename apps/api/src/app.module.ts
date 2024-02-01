@@ -33,12 +33,10 @@ const modules = [
     DatabaseModule,
     SwaggerSetupModule,
     ProductModule,
-    UserModule
+    UserModule,
 ];
 
-const controllers = [
-    AppController
-];
+const controllers = [AppController];
 
 const providers = [
     AppService,
@@ -53,4 +51,4 @@ const providers = [
     controllers: controllers,
     providers: providers,
 })
-export class AppModule { }
+export class AppModule {}
