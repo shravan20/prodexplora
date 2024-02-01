@@ -13,8 +13,6 @@ export class ProductRating extends CommonEntity {
     @Prop({ type: Number, min: 1, max: 10, required: true })
     rating: number;
 
-
-
     @Prop({ default: false })
     isArchived: boolean;
 }

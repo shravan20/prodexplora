@@ -3,4 +3,4 @@ import { CreateProductRatingRequestDto } from './create-request.dto';
 
 export class UpdateProductRatingRequestDto extends PartialType(
     CreateProductRatingRequestDto,
-) { }
+) {}

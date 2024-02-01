@@ -1,8 +1,7 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsMongoId, IsNotEmpty, IsString, Length } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsMongoId, IsNotEmpty, IsString, Length } from 'class-validator';
 
 export class CreateProductDiscussionDto {
-
     @ApiProperty({
         description: `Commentator's ID`,
         example: '507f1f77bcf86cd799439011',

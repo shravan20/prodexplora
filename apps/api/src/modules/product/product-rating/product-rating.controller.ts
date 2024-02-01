@@ -22,7 +22,7 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductRatingController {
-    constructor(private readonly productRatingService: ProductRatingService) { }
+    constructor(private readonly productRatingService: ProductRatingService) {}
 
     @Post('/products/:productId/product-ratings')
     create(@Body() createProductRatingDto: CreateProductRatingRequestDto) {

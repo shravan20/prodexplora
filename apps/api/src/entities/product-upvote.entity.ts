@@ -3,7 +3,6 @@ import { Types } from 'mongoose';
 import { CommonEntity } from './common-entity';
 import { ProductUpvoteStatus } from 'src/enums/product-upvote-status.enum';
 
-
 @Schema()
 export class ProductUpvote extends CommonEntity {
     @Prop({ enum: Object.values(ProductUpvoteStatus), required: true })

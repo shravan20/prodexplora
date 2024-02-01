@@ -24,7 +24,7 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 export class ProductCategoryController {
     constructor(
         private readonly productCategoryService: ProductCategoryService,
-    ) { }
+    ) {}
 
     @Post('/products/:productId/product-categories')
     create(@Body() createProductCategoryDto: CreateProductCategoryRequestDto) {
