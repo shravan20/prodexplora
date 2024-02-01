@@ -10,6 +10,11 @@ export class ProductRating extends CommonEntity {
     @Prop({ type: Types.ObjectId, ref: 'Product', required: true })
     productId: Types.ObjectId;
 
+    @Prop({ type: Number, min: 1, max: 10, required: true })
+    rating: number;
+
+
+
     @Prop({ default: false })
     isArchived: boolean;
 }

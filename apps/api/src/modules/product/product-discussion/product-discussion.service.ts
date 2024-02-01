@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProductDiscussionDto } from './dto/create-product-discussion.dto';
-import { UpdateProductDiscussionDto } from './dto/update-product-discussion.dto';
+import { CreateProductDiscussionDto } from './dto/create-request.dto';
+import { UpdateProductDiscussionDto } from './dto/update-request.dto';
 
 @Injectable()
 export class ProductDiscussionService {

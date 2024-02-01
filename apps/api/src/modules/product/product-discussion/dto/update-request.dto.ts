@@ -1,5 +1,5 @@
 import { PartialType } from '@nestjs/mapped-types';
-import { CreateProductDiscussionDto } from './create-product-discussion.dto';
+import { CreateProductDiscussionDto } from './create-request.dto';
 
 export class UpdateProductDiscussionDto extends PartialType(
     CreateProductDiscussionDto,

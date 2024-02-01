@@ -9,8 +9,8 @@ import {
     UseFilters,
 } from '@nestjs/common';
 import { ProductCategoryService } from './product-category.service';
-import { CreateProductCategoryDto } from './dto/create-product-category.dto';
-import { UpdateProductCategoryDto } from './dto/update-product-category.dto';
+import { CreateProductCategoryRequestDto } from './dto/create-request.dto';
+import { UpdateProductCategoryDto } from './dto/update-request.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
@@ -24,10 +24,10 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 export class ProductCategoryController {
     constructor(
         private readonly productCategoryService: ProductCategoryService,
-    ) {}
+    ) { }
 
     @Post('/products/:productId/product-categories')
-    create(@Body() createProductCategoryDto: CreateProductCategoryDto) {
+    create(@Body() createProductCategoryDto: CreateProductCategoryRequestDto) {
         return this.productCategoryService.create(createProductCategoryDto);
     }
 

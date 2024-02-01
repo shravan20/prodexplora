@@ -9,8 +9,8 @@ import {
     UseFilters,
 } from '@nestjs/common';
 import { ProductRatingService } from './product-rating.service';
-import { CreateProductRatingDto } from './dto/create-product-rating.dto';
-import { UpdateProductRatingDto } from './dto/update-product-rating.dto';
+import { CreateProductRatingRequestDto } from './dto/create-request.dto';
+import { UpdateProductRatingRequestDto } from './dto/update-request.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
@@ -22,10 +22,10 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductRatingController {
-    constructor(private readonly productRatingService: ProductRatingService) {}
+    constructor(private readonly productRatingService: ProductRatingService) { }
 
     @Post('/products/:productId/product-ratings')
-    create(@Body() createProductRatingDto: CreateProductRatingDto) {
+    create(@Body() createProductRatingDto: CreateProductRatingRequestDto) {
         return this.productRatingService.create(createProductRatingDto);
     }
 
@@ -42,7 +42,7 @@ export class ProductRatingController {
     @Patch('/products/:productId/product-ratings/:id')
     update(
         @Param('id') id: string,
-        @Body() updateProductRatingDto: UpdateProductRatingDto,
+        @Body() updateProductRatingDto: UpdateProductRatingRequestDto,
     ) {
         return this.productRatingService.update(+id, updateProductRatingDto);
     }

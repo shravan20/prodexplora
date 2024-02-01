@@ -9,8 +9,8 @@ import {
     UseFilters,
 } from '@nestjs/common';
 import { ProductUpvoteService } from './product-upvote.service';
-import { CreateProductUpvoteDto } from './dto/create-product-upvote.dto';
-import { UpdateProductUpvoteDto } from './dto/update-product-upvote.dto';
+import { CreateProductUpvoteRequestDto } from './dto/create-request.dto';
+import { UpdateProductUpvoteRequestDto } from './dto/update-request.dto';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiTags } from '@nestjs/swagger';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
@@ -25,7 +25,7 @@ export class ProductUpvoteController {
     constructor(private readonly productUpvoteService: ProductUpvoteService) {}
 
     @Post('/product/:productId/product-upvotes')
-    create(@Body() createProductUpvoteDto: CreateProductUpvoteDto) {
+    create(@Body() createProductUpvoteDto: CreateProductUpvoteRequestDto) {
         return this.productUpvoteService.create(createProductUpvoteDto);
     }
 
@@ -42,7 +42,7 @@ export class ProductUpvoteController {
     @Patch('/product/:productId/product-upvotes/:id')
     update(
         @Param('id') id: string,
-        @Body() updateProductUpvoteDto: UpdateProductUpvoteDto,
+        @Body() updateProductUpvoteDto: UpdateProductUpvoteRequestDto,
     ) {
         return this.productUpvoteService.update(+id, updateProductUpvoteDto);
     }

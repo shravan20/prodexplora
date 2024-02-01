@@ -9,8 +9,8 @@ import {
     UseFilters,
 } from '@nestjs/common';
 import { ProductDiscussionService } from './product-discussion.service';
-import { CreateProductDiscussionDto } from './dto/create-product-discussion.dto';
-import { UpdateProductDiscussionDto } from './dto/update-product-discussion.dto';
+import { CreateProductDiscussionDto } from './dto/create-request.dto';
+import { UpdateProductDiscussionDto } from './dto/update-request.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
