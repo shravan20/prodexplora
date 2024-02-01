@@ -9,9 +9,9 @@ import {
     UseFilters,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { CreateProductRequestDto } from './dto/create-product.dto';
+import { UpdateProductRequestDto } from './dto/update-product.dto';
+import { ApiBadRequestResponse, ApiNotFoundResponse, ApiOkResponse, ApiResponse, ApiTags, ApiUnprocessableEntityResponse } from '@nestjs/swagger';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 
@@ -22,33 +22,62 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductController {
-    constructor(private readonly productService: ProductService) {}
+    constructor(private readonly productService: ProductService) { }
 
+    @ApiOkResponse({
+        type: CreateProductRequestDto,
+    })
+    @ApiNotFoundResponse({
+        description: 'API path not found/invalid'
+    })
+    @ApiUnprocessableEntityResponse({
+        description: 'Product cannot be created.',
+    })
+    @ApiBadRequestResponse({
+        description: 'Bad Request due to validation error.',
+    })
     @Post('/products')
-    create(@Body() createProductDto: CreateProductDto) {
-        return this.productService.create(createProductDto);
+    create(@Body() createProductDto: CreateProductRequestDto): CreateProductRequestDto {
+        this.productService.create(createProductDto);
+        return new CreateProductRequestDto()
     }
 
+    @ApiOkResponse({
+        type: [CreateProductRequestDto],
+    })
+    @ApiNotFoundResponse({
+        description: 'API path not found/invalid'
+    })
+    @ApiUnprocessableEntityResponse({
+        description: 'Product cannot be created.',
+    })
+    @ApiBadRequestResponse({
+        description: 'Bad Request due to validation error.',
+    })
     @Get('/products')
-    findAll() {
-        return this.productService.findAll();
+    findAll(): CreateProductRequestDto[] {
+        this.productService.findAll();
+        return []
     }
 
     @Get('/products/:id')
-    findOne(@Param('id') id: string) {
-        return this.productService.findOne(+id);
+    findOne(@Param('id') id: string): CreateProductRequestDto {
+        this.productService.findOne(+id);
+        return new CreateProductRequestDto()
     }
 
     @Patch('/products/:id')
     update(
         @Param('id') id: string,
-        @Body() updateProductDto: UpdateProductDto,
-    ) {
-        return this.productService.update(+id, updateProductDto);
+        @Body() updateProductDto: UpdateProductRequestDto,
+    ): UpdateProductRequestDto {
+        this.productService.update(+id, updateProductDto);
+        return {}
     }
 
     @Delete('/products/:id')
-    remove(@Param('id') id: string) {
-        return this.productService.remove(+id);
+    remove(@Param('id') id: string): CreateProductRequestDto {
+        this.productService.remove(+id);
+        return new CreateProductRequestDto()
     }
 }
