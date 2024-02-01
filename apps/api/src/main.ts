@@ -9,6 +9,8 @@ const logger = new Logger('DatabaseModule');
 function setInterceptors(app) {
     SwaggerSetupModule.setup('/docs', app);
 
+    app.enableCors();
+
     app.setGlobalPrefix('/api');
 
     app.enableVersioning({
