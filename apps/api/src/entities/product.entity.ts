@@ -18,7 +18,7 @@ export class Product extends CommonEntity {
     technologies: string[];
 
     @Prop({ type: Types.ObjectId, ref: 'User' })
-    userId: Types.ObjectId;
+    createdBy: Types.ObjectId;
 
     @Prop({
         enum: Object.values(ProductLaunchStatus),

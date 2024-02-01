@@ -4,6 +4,7 @@ import {
     IsArray,
     IsBoolean,
     IsEnum,
+    IsMongoId,
     IsOptional,
     IsString,
     ValidateNested,
@@ -45,7 +46,8 @@ export class CreateProductRequestDto {
 
     @ApiProperty()
     @IsString()
-    userId: string;
+    @IsMongoId()
+    createdBy: string;
 
     @ApiProperty()
     @IsEnum(ProductLaunchStatus)
