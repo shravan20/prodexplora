@@ -7,7 +7,7 @@ import { Model } from 'mongoose';
 export class UserRepository {
     constructor(
         @InjectModel(User.name) private readonly userModel: Model<User>,
-    ) { }
+    ) {}
 
     async findAll(): Promise<User[]> {
         return await this.userModel.find().exec();
@@ -23,7 +23,9 @@ export class UserRepository {
     }
 
     async update(id: string, user: User): Promise<User> {
-        return await this.userModel.findByIdAndUpdate(id, user, { new: true }).exec();
+        return await this.userModel
+            .findByIdAndUpdate(id, user, { new: true })
+            .exec();
     }
 
     async delete(id: string): Promise<User> {
