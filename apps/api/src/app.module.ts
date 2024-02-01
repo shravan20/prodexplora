@@ -21,6 +21,9 @@ import { UserService } from './modules/user/user.service';
 import { ProductCategoryController } from './modules/product-category/product-category.controller';
 import { ProductCategoryService } from './modules/product-category/product-category.service';
 
+/**
+ * TODO: Move Controllers from Product Modules separately
+ */
 const modules = [
     ConfigModule.forRoot({
         isGlobal: true,
@@ -63,4 +66,4 @@ const providers = [
     controllers: controllers,
     providers: providers,
 })
-export class AppModule {}
+export class AppModule { }
