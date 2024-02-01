@@ -11,7 +11,14 @@ import {
 import { ProductService } from './product.service';
 import { CreateProductRequestDto } from './dto/create-product.dto';
 import { UpdateProductRequestDto } from './dto/update-product.dto';
-import { ApiBadRequestResponse, ApiNotFoundResponse, ApiOkResponse, ApiResponse, ApiTags, ApiUnprocessableEntityResponse } from '@nestjs/swagger';
+import {
+    ApiBadRequestResponse,
+    ApiNotFoundResponse,
+    ApiOkResponse,
+    ApiResponse,
+    ApiTags,
+    ApiUnprocessableEntityResponse,
+} from '@nestjs/swagger';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 
@@ -22,13 +29,13 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductController {
-    constructor(private readonly productService: ProductService) { }
+    constructor(private readonly productService: ProductService) {}
 
     @ApiOkResponse({
         type: CreateProductRequestDto,
     })
     @ApiNotFoundResponse({
-        description: 'API path not found/invalid'
+        description: 'API path not found/invalid',
     })
     @ApiUnprocessableEntityResponse({
         description: 'Product cannot be created.',
@@ -37,16 +44,18 @@ export class ProductController {
         description: 'Bad Request due to validation error.',
     })
     @Post('/products')
-    create(@Body() createProductDto: CreateProductRequestDto): CreateProductRequestDto {
+    create(
+        @Body() createProductDto: CreateProductRequestDto,
+    ): CreateProductRequestDto {
         this.productService.create(createProductDto);
-        return new CreateProductRequestDto()
+        return new CreateProductRequestDto();
     }
 
     @ApiOkResponse({
         type: [CreateProductRequestDto],
     })
     @ApiNotFoundResponse({
-        description: 'API path not found/invalid'
+        description: 'API path not found/invalid',
     })
     @ApiUnprocessableEntityResponse({
         description: 'Product cannot be created.',
@@ -57,13 +66,13 @@ export class ProductController {
     @Get('/products')
     findAll(): CreateProductRequestDto[] {
         this.productService.findAll();
-        return []
+        return [];
     }
 
     @Get('/products/:id')
     findOne(@Param('id') id: string): CreateProductRequestDto {
         this.productService.findOne(+id);
-        return new CreateProductRequestDto()
+        return new CreateProductRequestDto();
     }
 
     @Patch('/products/:id')
@@ -72,12 +81,12 @@ export class ProductController {
         @Body() updateProductDto: UpdateProductRequestDto,
     ): UpdateProductRequestDto {
         this.productService.update(+id, updateProductDto);
-        return {}
+        return {};
     }
 
     @Delete('/products/:id')
     remove(@Param('id') id: string): CreateProductRequestDto {
         this.productService.remove(+id);
-        return new CreateProductRequestDto()
+        return new CreateProductRequestDto();
     }
 }

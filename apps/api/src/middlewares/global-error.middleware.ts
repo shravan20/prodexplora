@@ -21,9 +21,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
         const message = validationMessage.message?.length
             ? [...validationMessage.message]
             : [
-                exception.message ||
-                'Something really went wrong, reach out to the server builder or try again',
-            ];
+                  exception.message ||
+                      'Something really went wrong, reach out to the server builder or try again',
+              ];
 
         const body: any = {
             status: false,
