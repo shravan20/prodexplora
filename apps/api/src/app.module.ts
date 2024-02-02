@@ -1,20 +1,13 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './modules/app-health/app.controller';
-import { AppService } from './modules/app-health/app.service';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
 import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { DatabaseModule } from './database/database.module';
 import { SwaggerSetupModule } from './docs/swagger.module';
 import { ApiResponseEnvelopeInterceptor } from './middlewares/response.middleware';
-import { ProductService } from './modules/product/product.service';
-import { ProductUpvoteService } from './modules/product/product-upvote/product-upvote.service';
-import { ProductRatingService } from './modules/product/product-rating/product-rating.service';
-import { ProductDiscussionService } from './modules/product/product-discussion/product-discussion.service';
-import { UserService } from './modules/user/user.service';
-import { ProductCategoryController } from './modules/product-category/product-category.controller';
-import { ProductCategoryService } from './modules/product-category/product-category.service';
+import { AppController } from './modules/app-health/app.controller';
+import { AppService } from './modules/app-health/app.service';
 import { ProductModule } from './modules/product/product.module';
 import { UserModule } from './modules/user/user.module';
 
@@ -30,8 +23,8 @@ const modules = [
         //  TODO: Make this configurable
         rootPath: join(__dirname, '../..', 'ui', 'dist'),
     }),
-    DatabaseModule,
     SwaggerSetupModule,
+    DatabaseModule,
     ProductModule,
     UserModule,
 ];
@@ -51,4 +44,4 @@ const providers = [
     controllers: controllers,
     providers: providers,
 })
-export class AppModule {}
+export class AppModule { }

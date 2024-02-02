@@ -1,8 +1,8 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import * as dotenv from 'dotenv';
-import { SwaggerSetupModule } from './docs/swagger.module';
 import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import * as dotenv from 'dotenv';
+import { AppModule } from './app.module';
+import { SwaggerSetupModule } from './docs/swagger.module';
 
 const logger = new Logger('DatabaseModule');
 

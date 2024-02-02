@@ -3,7 +3,6 @@ import { Document, Types } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class CommonEntity extends Document {
-
     @Prop({ type: Types.ObjectId })
     createdBy: Types.ObjectId;
 

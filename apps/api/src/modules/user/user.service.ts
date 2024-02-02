@@ -7,20 +7,17 @@ import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
-
-    constructor(private readonly userRepository: UserRepository) { }
-
+    constructor(private readonly userRepository: UserRepository) {}
 
     async signIn(createAuthDto: AuthRequestDto) {
         return 'This action adds a new auth';
     }
 
     async create(createUserDto: CreateUserDto) {
-
-        let emailQuery = {
-            email: createUserDto.email
-        }
-        let user: User = await this.userRepository.findOne(emailQuery);
+        const emailQuery = {
+            email: createUserDto.email,
+        };
+        const user: User = await this.userRepository.findOne(emailQuery);
 
         if (user) {
             return user;

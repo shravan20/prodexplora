@@ -1,5 +1,5 @@
 import { Prop, SchemaFactory } from '@nestjs/mongoose';
-import { Types, model } from 'mongoose';
+import { Types } from 'mongoose';
 import { CommonEntity } from './common-entity';
 
 interface OpenIdProvider {
@@ -28,4 +28,3 @@ export class User extends CommonEntity {
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
-export const UserModel = model('User', UserSchema);
