@@ -5,7 +5,7 @@ import { Button } from '../../packages/ui/components/buttons/Button';
 
 const HomeBanner: React.FC = () => {
     return (
-        <div className="h-[280px] bg-primary-gradient w-full rounded-md relative z-50">
+        <div className="h-[280px] bg-primary-gradient w-[988px] m-auto rounded-md relative z-50">
             <div className="p-8 flex flex-col gap-5 h-full justify-center z-20 relative">
                 <div className="flex flex-col gap-2">
                 <motion.div className="text-5xl leading-tight text-white relative" initial={{opacity: 0, bottom: -10}} animate={{opacity: 1, bottom: 0}}>

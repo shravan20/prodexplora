@@ -7,8 +7,7 @@ import { GiArrowCursor } from 'react-icons/gi';
 
 const Navigation: React.FC = () => {
     return (
-        <div>
-            <div className="h-50 w-full bg-primary border-b-info border-b-[1px] absolute top-0 p-4 pt-2 pb-2 backdrop-blur-sm">
+            <div className="h-50 w-full bg-primary border-b-primary-lighter border-b-[1px] fixed top-0 p-4 pt-2 pb-2 backdrop-blur-sm z-50">
                 <div className="w-[1200px] m-auto z-50 relative flex flex-row justify-between h-full items-center">
                     <div className="flex flex-row gap-5 items-center">
                         <img src="/logo.svg" width="55" height="55" />
@@ -48,7 +47,6 @@ const Navigation: React.FC = () => {
                 </div>
                 <img src="/gradient.svg" className="absolute top-0 left-0 w-[550px] h-[500px] z-20" />
             </div>
-        </div>
     )
 }
 

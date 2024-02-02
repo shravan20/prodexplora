@@ -6,7 +6,7 @@ type Props = {
 
 const Wrapper: React.FC = (props: Props) => {
     return (
-        <div className="pt-20 h-screen w-[1200px] m-auto">
+        <div className="pt-20 h-full w-[1200px] m-auto z-20 relative">
             {props.children}
         </div>
     )

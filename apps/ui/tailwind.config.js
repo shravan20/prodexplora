@@ -8,7 +8,7 @@ export default {
       secondary: '#7B61EF',
       white: '#fff',
       black: '#232325',
-      info: '#4A4A4D'
+      info: '#737373'
     },
     backgroundImage: {
       'glass-gradient':
