@@ -1,19 +1,20 @@
 import {
-    Controller,
-    Get,
-    Post,
     Body,
-    Patch,
-    Param,
+    Controller,
     Delete,
+    Get,
+    Param,
+    Patch,
+    Post,
     UseFilters,
 } from '@nestjs/common';
-import { UserService } from './user.service';
+import { ApiTags } from '@nestjs/swagger';
+import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
+import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
+import { AuthRequestDto } from './dto/auth-request.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
-import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
+import { UserService } from './user.service';
 
 @ApiTags('User Service API')
 @Controller({
@@ -47,5 +48,10 @@ export class UserController {
     @Delete('/users/:id')
     remove(@Param('id') id: string) {
         return this.userService.remove(+id);
+    }
+
+    @Post('/users/open-id-auth')
+    signIn(@Body() createAuthDto: AuthRequestDto) {
+        return this.userService.signIn(createAuthDto);
     }
 }

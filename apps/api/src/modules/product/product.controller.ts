@@ -9,13 +9,12 @@ import {
     UseFilters,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { CreateProductRequestDto } from './dto/create-product.dto';
-import { UpdateProductRequestDto } from './dto/update-product.dto';
+import { CreateProductRequestDto } from './dto/create-request.dto';
+import { UpdateProductRequestDto } from './dto/update-request.dto';
 import {
     ApiBadRequestResponse,
     ApiNotFoundResponse,
     ApiOkResponse,
-    ApiResponse,
     ApiTags,
     ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
