@@ -1,2 +1,1 @@
-
-export class AuthResponseDto { }
+export class AuthResponseDto {}

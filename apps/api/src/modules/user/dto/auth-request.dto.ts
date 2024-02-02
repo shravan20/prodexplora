@@ -9,7 +9,6 @@ import {
 } from 'class-validator';
 
 export class OpenIdProvider {
-
     @ApiProperty({
         example: 'opensource@prodexplora.com',
     })
@@ -26,7 +25,6 @@ export class OpenIdProvider {
 }
 
 export class AuthRequestDto {
-
     @ApiProperty()
     authProvider: OpenIdProvider[];
 
@@ -52,7 +50,6 @@ export class AuthRequestDto {
     @ApiProperty()
     @IsString()
     lastName: string;
-
 
     @ApiProperty()
     @IsOptional()

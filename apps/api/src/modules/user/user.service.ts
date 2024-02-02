@@ -8,64 +8,63 @@ import { UserRequest } from './interface/user-request.interface';
 import { UserRepository } from './user.repository';
 @Injectable()
 export class UserService {
-    constructor(private readonly jwtService: JwtService, private readonly userRepository: UserRepository) { }
+    constructor(
+        private readonly jwtService: JwtService,
+        private readonly userRepository: UserRepository,
+    ) {}
 
     async signIn(createAuthDto: AuthRequestDto) {
+        const data = await this.create(createAuthDto);
+        const user: User = data.user;
 
-        let data = await this.create(createAuthDto);
-        let user: User = data.user;
-
-        let payload = {
-            'uid': user._id,
-            'email': user.email
+        const payload = {
+            uid: user._id,
+            email: user.email,
         };
 
         /**
          * TODO: Make it all env configured and move it all the jwt.service/util
          */
-        let options: JwtSignOptions = {
+        const options: JwtSignOptions = {
             expiresIn: '60s',
             algorithm: 'HS256',
             header: { alg: 'HS256', typ: 'JWT' },
             encoding: 'base64',
-            secret: process.env.JWT_SECRET
+            secret: process.env.JWT_SECRET,
         };
 
-        let accessToken = await this.jwtService.sign(payload, options);
+        const accessToken = await this.jwtService.sign(payload, options);
 
         options.expiresIn = '120s';
 
-        let refreshToken = await this.jwtService.sign(payload, options);
+        const refreshToken = await this.jwtService.sign(payload, options);
 
         return {
-            'accessToken': accessToken,
-            'refreshToken': refreshToken,
-            'user': user
+            accessToken: accessToken,
+            refreshToken: refreshToken,
+            user: user,
         };
-
     }
 
     async create(createUserDto: CreateUserDto): Promise<UserRequest> {
-
-        let emailQuery = {
+        const emailQuery = {
             email: createUserDto.email,
         };
 
         let user: User = await this.userRepository.findOne(emailQuery);
 
         if (user) {
-
             return {
                 user,
-                'existingUser': true
+                existingUser: true,
             };
         }
         user = await this.userRepository.create(createUserDto);
 
         return {
             user,
-            'existingUser': false
-        }
+            existingUser: false,
+        };
     }
 
     findAll() {

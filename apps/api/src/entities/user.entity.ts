@@ -5,13 +5,11 @@ import { IOpenIdProvider } from './interfaces/openid-provider.interface';
 
 @Schema({ timestamps: true })
 export class User extends CommonEntity {
-
     @Prop({ required: true, unique: true })
     username: string;
 
     @Prop({ required: true, unique: true })
     email: string;
-
 
     @Prop()
     firstName: string;

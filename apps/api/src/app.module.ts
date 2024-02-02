@@ -23,8 +23,7 @@ const modules = [
     SwaggerSetupModule,
     ProductModule,
     UserModule,
-    MongooseModule.forRoot(process.env.MONGODB_DB_URL)
-
+    MongooseModule.forRoot(process.env.MONGODB_DB_URL),
 ];
 
 const controllers = [AppController];
@@ -42,4 +41,4 @@ const providers = [
     controllers: controllers,
     providers: providers,
 })
-export class AppModule { }
+export class AppModule {}

@@ -7,7 +7,6 @@ export const databaseProviders = [
         provide: 'DATABASE_CONNECTION',
         useFactory: async () => {
             try {
-
                 /* const uri = process.env.MONGODB_DB_URL;
 
                 if (!uri) {

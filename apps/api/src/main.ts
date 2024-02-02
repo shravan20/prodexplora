@@ -31,7 +31,6 @@ async function bootstrap(): Promise<void> {
     } else {
         logger.log('Env variables loaded from .env');
         dotenv.config(); // Defaults to loading .env for development
-
     }
 
     const app = await NestFactory.create(AppModule, { abortOnError: false });

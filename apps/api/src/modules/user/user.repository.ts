@@ -8,7 +8,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 export class UserRepository {
     constructor(
         @InjectModel(entity.name) private readonly userModel: Model<entity>,
-    ) { }
+    ) {}
 
     async findAll(): Promise<entity[]> {
         return await this.userModel.find().exec();
@@ -23,8 +23,7 @@ export class UserRepository {
     }
 
     async create(createUserDto: CreateUserDto): Promise<entity> {
-
-        let user = this.toEntity(createUserDto);
+        const user = this.toEntity(createUserDto);
         return await this.userModel.create(user);
     }
 
@@ -36,7 +35,7 @@ export class UserRepository {
             profilePicture: createUserDto.profilePicture,
             bio: createUserDto.bio,
             username: createUserDto.email.split('@')[0],
-            linkedAccounts: createUserDto.authProvider
+            linkedAccounts: createUserDto.authProvider,
         });
     }
 
