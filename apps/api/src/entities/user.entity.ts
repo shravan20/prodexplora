@@ -1,11 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Types } from 'mongoose';
 import { CommonEntity } from './common-entity';
-
-interface OAuthProvider {
-    provider: string;
-    id: string;
-}
+import { IOpenIdProvider } from './interfaces/openid-provider.interface';
 
 @Schema({ timestamps: true })
 export class User extends CommonEntity {
@@ -16,16 +12,22 @@ export class User extends CommonEntity {
     email: string;
 
     @Prop()
-    profilePicture: string;
+    firstName: string;
 
     @Prop()
+    lastName: string;
+
+    @Prop({ required: false })
+    profilePicture: string;
+
+    @Prop({ required: false })
     bio: string;
 
-    @Prop({ type: [Types.ObjectId] })
+    @Prop({ type: [Types.ObjectId], required: false })
     productFollowing: Types.ObjectId[];
 
     @Prop({ default: [] })
-    linkedAccounts: OAuthProvider[];
+    loginProvider: IOpenIdProvider[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

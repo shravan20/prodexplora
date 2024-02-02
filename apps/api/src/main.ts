@@ -1,13 +1,15 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import * as dotenv from 'dotenv';
-import { SwaggerSetupModule } from './docs/swagger.module';
 import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import * as dotenv from 'dotenv';
+import { AppModule } from './app.module';
+import { SwaggerSetupModule } from './docs/swagger.module';
 
 const logger = new Logger('DatabaseModule');
 
 function setInterceptors(app) {
     SwaggerSetupModule.setup('/docs', app);
+
+    app.enableCors();
 
     app.setGlobalPrefix('/api');
 
@@ -27,10 +29,11 @@ async function bootstrap(): Promise<void> {
         logger.log('Env variables loaded from .env.production');
         dotenv.config({ path: '.env.production' });
     } else {
+        logger.log('Env variables loaded from .env');
         dotenv.config(); // Defaults to loading .env for development
     }
 
-    const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(AppModule, { abortOnError: false });
 
     setInterceptors(app);
 

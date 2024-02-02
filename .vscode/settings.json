@@ -1,5 +1,8 @@
 {
-    "cSpell.words": [
-        "prodexplora"
-    ]
+    "cSpell.words": ["prodexplora"],
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "editor.autoIndent": "full"
 }
