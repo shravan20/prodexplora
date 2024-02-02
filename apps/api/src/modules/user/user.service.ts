@@ -1,11 +1,32 @@
+import { User } from '@entities/user.entity';
 import { Injectable } from '@nestjs/common';
+import { AuthRequestDto } from './dto/auth-request.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
-    create(createUserDto: CreateUserDto) {
-        return 'This action adds a new user';
+
+    constructor(private readonly userRepository: UserRepository) { }
+
+
+    async signIn(createAuthDto: AuthRequestDto) {
+        return 'This action adds a new auth';
+    }
+
+    async create(createUserDto: CreateUserDto) {
+
+        let emailQuery = {
+            email: createUserDto.email
+        }
+        let user: User = await this.userRepository.findOne(emailQuery);
+
+        if (user) {
+            return user;
+        }
+
+        return await this.userRepository.create(createUserDto);
     }
 
     findAll() {
