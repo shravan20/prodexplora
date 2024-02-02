@@ -9,6 +9,7 @@ import {
 } from 'class-validator';
 
 export class OpenIdProvider {
+
     @ApiProperty({
         example: 'opensource@prodexplora.com',
     })
@@ -17,7 +18,7 @@ export class OpenIdProvider {
     identifier: string;
 
     @ApiProperty({
-        example: 'GOOGLE / GITHUB',
+        example: 'GOOGLE or GITHUB',
     })
     @IsNotEmpty()
     @IsString()
@@ -25,8 +26,9 @@ export class OpenIdProvider {
 }
 
 export class AuthRequestDto {
+
     @ApiProperty()
-    loginProvider: OpenIdProvider;
+    authProvider: OpenIdProvider[];
 
     @ApiProperty()
     @IsNotEmpty()
@@ -42,6 +44,15 @@ export class AuthRequestDto {
     @IsOptional()
     @IsUrl()
     profilePicture: string;
+
+    @ApiProperty()
+    @IsString()
+    firstName: string;
+
+    @ApiProperty()
+    @IsString()
+    lastName: string;
+
 
     @ApiProperty()
     @IsOptional()

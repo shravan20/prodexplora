@@ -29,10 +29,12 @@ async function bootstrap(): Promise<void> {
         logger.log('Env variables loaded from .env.production');
         dotenv.config({ path: '.env.production' });
     } else {
+        logger.log('Env variables loaded from .env');
         dotenv.config(); // Defaults to loading .env for development
+
     }
 
-    const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(AppModule, { abortOnError: false });
 
     setInterceptors(app);
 
