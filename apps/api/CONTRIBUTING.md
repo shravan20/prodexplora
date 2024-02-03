@@ -31,7 +31,7 @@ Let us first understand the tech stack used for the development of backend for P
     </a>
     <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer" style="text-decoration: none; color: inherit; text-align: center; width: 25%; padding: 8px;">
         <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="postgresql" width="40" height="40" style="display: block; margin: 0 auto;"/>
-        <br>PostgreSQL
+        <br>MongoDB
     </a>
 </p>
 
