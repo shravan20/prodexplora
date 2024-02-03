@@ -19,7 +19,9 @@ export class LoggingInterceptor implements NestInterceptor {
         }
 
         const response = httpContext.getResponse();
-        const requestLogFormat = `${method} ${url}: ${response.statusCode}`;
+        const statusCode = response.statusCode || 'unknown';
+
+        const requestLogFormat = `${method} ${url}: ${statusCode}`;
 
         return next.handle().pipe(
             tap(() => {
