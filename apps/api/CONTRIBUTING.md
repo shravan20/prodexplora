@@ -4,7 +4,7 @@
 
 Let us first understand the tech stack used for the development of backend for ProdExplora.
 
-<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;" align="center">
   <tr>
     <th style="text-align: center; padding: 10px; border: 1px solid #ddd; background-color: #f2f2f2;">
       <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" style="text-decoration: none; color: inherit;">JavaScript</a>
