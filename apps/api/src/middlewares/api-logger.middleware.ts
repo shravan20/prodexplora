@@ -24,7 +24,7 @@ export class LoggingInterceptor implements NestInterceptor {
         return next.handle().pipe(
             tap(() => {
                 Logger.debug(requestLogFormat);
-            })
+            }),
         );
     }
 }
