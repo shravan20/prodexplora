@@ -34,7 +34,8 @@ const providers = [
     {
         provide: APP_INTERCEPTOR,
         useClass: ApiResponseEnvelopeInterceptor,
-    }, {
+    },
+    {
         provide: APP_INTERCEPTOR,
         useClass: LoggingInterceptor,
     },
@@ -45,4 +46,4 @@ const providers = [
     controllers: controllers,
     providers: providers,
 })
-export class AppModule { }
+export class AppModule {}
