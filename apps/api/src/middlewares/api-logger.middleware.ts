@@ -14,7 +14,7 @@ export class LoggingInterceptor implements NestInterceptor {
         const request = httpContext.getRequest();
         const { method, url, query } = request;
 
-        if (query.logBody) {
+        if (process.env.NODE_ENV == 'development' && query.logBody) {
             Logger.debug(request.body);
         }
 
