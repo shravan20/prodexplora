@@ -18,12 +18,13 @@ export class LoggingInterceptor implements NestInterceptor {
             Logger.debug(request.body);
         }
 
+        const response = httpContext.getResponse();
+        const requestLogFormat = `${method} ${url}: ${response.statusCode}`;
+
         return next.handle().pipe(
             tap(() => {
-                const response = httpContext.getResponse();
-                const requestLogFormat = `${method} ${url}: ${method} ${response.statusCode}`;
-                Logger.log(requestLogFormat);
-            }),
+                Logger.debug(requestLogFormat);
+            })
         );
     }
 }
