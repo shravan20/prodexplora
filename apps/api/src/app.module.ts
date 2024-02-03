@@ -1,3 +1,4 @@
+import { LoggingInterceptor } from '@middlewares/api-logger.middleware';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
@@ -33,6 +34,10 @@ const providers = [
     {
         provide: APP_INTERCEPTOR,
         useClass: ApiResponseEnvelopeInterceptor,
+    },
+    {
+        provide: APP_INTERCEPTOR,
+        useClass: LoggingInterceptor,
     },
 ];
 
