@@ -2,7 +2,7 @@
 
 - ### Backend Stack
 
-Let us first understand the tech stack used for the development of backend for ProdExplora.
+Let's take a look at the technology stack used to build ProdExplora's backend.
 
 <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;" align="center">
   <tr>
