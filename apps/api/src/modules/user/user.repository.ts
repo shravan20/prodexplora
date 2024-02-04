@@ -35,13 +35,23 @@ export class UserRepository {
             profilePicture: createUserDto.profilePicture,
             bio: createUserDto.bio,
             username: createUserDto.email.split('@')[0],
-            linkedAccounts: createUserDto.authProvider,
+            loginProvider: createUserDto.authProvider,
         });
     }
 
-    async update(id: string, user: entity): Promise<entity> {
+    async findByIdAndUpdate(id: string, user: entity): Promise<entity> {
         return await this.userModel
             .findByIdAndUpdate(id, user, { new: true })
+            .exec();
+    }
+
+    async findOneAndUpdate(
+        query: any = {},
+        update: any = {},
+        options: any = {},
+    ): Promise<entity> {
+        return await this.userModel
+            .findOneAndUpdate(query, update, { new: true, ...options })
             .exec();
     }
 

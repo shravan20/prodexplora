@@ -14,7 +14,8 @@ export class UserService {
     ) {}
 
     async signIn(createAuthDto: AuthRequestDto) {
-        const data = await this.create(createAuthDto);
+        const data = await this.createIfNotExists(createAuthDto);
+
         const user: User = data.user;
 
         const payload = {
@@ -26,18 +27,21 @@ export class UserService {
          * TODO: Make it all env configured and move it all the jwt.service/util
          */
         const options: JwtSignOptions = {
-            expiresIn: '60s',
             algorithm: 'HS256',
-            header: { alg: 'HS256', typ: 'JWT' },
-            encoding: 'base64',
-            secret: process.env.JWT_SECRET,
+            secret: process.env.JWT_SECRET_KEY,
         };
 
-        const accessToken = await this.jwtService.sign(payload, options);
+        const accessToken = await this.generateJwtToken(payload, {
+            ...options,
+            expiresIn: process.env.JWT_EXPIRATION_TIME,
+            secret: process.env.JWT_SECRET_KEY,
+        });
 
-        options.expiresIn = '120s';
-
-        const refreshToken = await this.jwtService.sign(payload, options);
+        const refreshToken = await this.generateJwtToken(payload, {
+            ...options,
+            expiresIn: process.env.JWT_REFRESH_EXPIRATION_TIME,
+            secret: process.env.JWT_REFRESH_SECRET_KEY,
+        });
 
         return {
             accessToken: accessToken,
@@ -46,25 +50,48 @@ export class UserService {
         };
     }
 
-    async create(createUserDto: CreateUserDto): Promise<UserRequest> {
+    private async generateJwtToken(
+        payload: { uid: any; email: string },
+        options: JwtSignOptions,
+    ) {
+        return await this.jwtService.sign(payload, options);
+    }
+
+    async createIfNotExists(
+        createUserDto: CreateUserDto,
+    ): Promise<UserRequest> {
         const emailQuery = {
             email: createUserDto.email,
         };
 
-        let user: User = await this.userRepository.findOne(emailQuery);
+        const update = {
+            $addToSet: {
+                loginProvider: createUserDto.authProvider[0],
+            },
+        };
+        console.log(emailQuery, update);
+        let user: User = await this.userRepository.findOneAndUpdate(
+            emailQuery,
+            update,
+        );
+        console.log(user);
 
         if (user) {
             return {
                 user,
-                existingUser: true,
+                previouslyRegistered: true,
             };
         }
-        user = await this.userRepository.create(createUserDto);
+        user = await this.create(createUserDto);
 
         return {
             user,
-            existingUser: false,
+            previouslyRegistered: false,
         };
+    }
+
+    private async create(createUserDto: CreateUserDto) {
+        return await this.userRepository.create(createUserDto);
     }
 
     findAll() {
