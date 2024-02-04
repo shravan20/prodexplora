@@ -24,9 +24,9 @@ async function setInterceptors(app: INestApplication) {
     });
 
     // Enable Mongoose query logging
-    if (process.env.MONGO_DEBUG) {
+    if (parseInt(process.env.MONGO_DEBUG) === 1) {
         Logger.debug('Query Logs in DEBUG mode');
-        mongoose.set('debug', parseInt(process.env.MONGO_DEBUG) === 1);
+        mongoose.set('debug', true);
     }
 
     app.useGlobalPipes(
