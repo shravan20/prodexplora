@@ -17,7 +17,7 @@ const modules = [
     ConfigModule.forRoot({
         isGlobal: true,
         envFilePath: [join('.', '.env'), join('.', '.env.production')],
-        cache: process.env.ENABLE_CONFIG_CACHING === '1'
+        cache: process.env.ENABLE_CONFIG_CACHING === '1',
     }),
     ServeStaticModule.forRoot({
         //  TODO: Make this configurable
@@ -49,4 +49,4 @@ const providers = [
     controllers: controllers,
     providers: providers,
 })
-export class AppModule { }
+export class AppModule {}
