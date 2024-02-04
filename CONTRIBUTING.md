@@ -5,19 +5,26 @@ Welcome to ProdExplora! We appreciate your interest in contributing to our proje
 To contribute, please follow the guidelines outlined below.
 
 #### Getting Started
-  - **Fork the repository:** Click on the "Fork" button at the top right corner of this repository to create your copy.
-  
-  - **Clone your fork:** Clone the repository to your local machine using `git clone https://github.com/your-username/ProdExplora.git`.
-  
-  - **Create a new branch:** Create a new branch for your contribution using `git checkout -b feature/your-feature` for features or `git checkout -b bugfix/your-bugfix` for bug fixes.
-  
-  - **Make changes:** Make your changes to the code or documentation.
-  
-  - **Commit your changes:** Commit your changes with a descriptive commit message using `git commit -m "Your message here"`.
-  
-  - **Push to your branch:** Push your changes to your fork on GitHub with `git push origin feature/your-feature`.
-  
-  - **Submit a pull request:** Open a pull request (PR) from your fork to the main repository. Provide a clear title and description for your changes.
+
+- **Fork the repository:** Click on the "Fork" button at the top right corner of this repository to create your copy.
+
+- **Clone your fork:** Clone the repository to your local machine using `git clone https://github.com/your-username/ProdExplora.git`.
+
+- **Create a new branch:** Create a new branch for your contribution using `git checkout -b feature/your-feature` for features or `git checkout -b bugfix/your-bugfix` for bug fixes.
+
+- **Make changes:** Make your changes to the code or documentation.
+
+- **Commit your changes:** Commit your changes with a descriptive commit message using `git commit -m "Your message here"`.
+
+- **Push to your branch:** Push your changes to your fork on GitHub with `git push origin feature/your-feature`.
+
+- **Submit a pull request:** Open a pull request (PR) from your fork to the main repository. Provide a clear title and description for your changes.
+
+#### What Git Strategy are we following?
+
+![Github Flow](./assets/Github-WorkFlow.png)
+
+We follow strategy called **GitHub Flow**. To understand in detail; refer to the [blog](https://www.alexhyett.com/git-flow-github-flow/#what-is-github-flow)
 
 #### Code Style and Guidelines
 
@@ -37,6 +44,6 @@ All contributions will be reviewed by project maintainers. Feedback and updates 
 
 Please follow our [Code of Conduct](CODE_OF_CONDUCT.md) in all interactions with the project.
 
-#### Thank You!
+#### Thank You
 
 Thank you for contributing to [ProdExplora]! Your efforts help make this project better for everyone.
