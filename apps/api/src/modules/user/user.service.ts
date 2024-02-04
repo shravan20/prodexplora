@@ -11,7 +11,7 @@ export class UserService {
     constructor(
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
-    ) {}
+    ) { }
 
     async signIn(createAuthDto: AuthRequestDto) {
         const data = await this.createIfNotExists(createAuthDto);
@@ -27,24 +27,31 @@ export class UserService {
          * TODO: Make it all env configured and move it all the jwt.service/util
          */
         const options: JwtSignOptions = {
-            expiresIn: '60s',
             algorithm: 'HS256',
-            header: { alg: 'HS256', typ: 'JWT' },
-            encoding: 'base64',
             secret: process.env.JWT_SECRET_KEY,
         };
 
-        const accessToken = await this.jwtService.sign(payload, options);
+        const accessToken = await this.generateJwtToken(payload, {
+            ...options,
+            expiresIn: process.env.JWT_EXPIRATION_TIME,
+            secret: process.env.JWT_SECRET_KEY
+        });
 
-        options.expiresIn = '120s';
-
-        const refreshToken = await this.jwtService.sign(payload, options);
+        const refreshToken = await this.generateJwtToken(payload, {
+            ...options,
+            expiresIn: process.env.JWT_REFRESH_EXPIRATION_TIME,
+            secret: process.env.JWT_REFRESH_SECRET_KEY
+        });
 
         return {
             accessToken: accessToken,
             refreshToken: refreshToken,
             user: user,
         };
+    }
+
+    private async generateJwtToken(payload: { uid: any; email: string; }, options: JwtSignOptions) {
+        return await this.jwtService.sign(payload, options);
     }
 
     async createIfNotExists(
