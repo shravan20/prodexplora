@@ -13,7 +13,7 @@ export class UserService {
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
         private configService: ConfigService,
-    ) {}
+    ) { }
 
     async signIn(createAuthDto: AuthRequestDto) {
         const data = await this.createIfNotExists(createAuthDto);
@@ -71,12 +71,11 @@ export class UserService {
                 loginProvider: createUserDto.authProvider[0],
             },
         };
-        console.log(emailQuery, update);
+
         let user: User = await this.userRepository.findOneAndUpdate(
             emailQuery,
             update,
         );
-        console.log(user);
 
         if (user) {
             return {

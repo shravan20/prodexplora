@@ -25,8 +25,8 @@ async function setInterceptors(app: INestApplication) {
 
     // Enable Mongoose query logging
     if (process.env.MONGO_DEBUG) {
-        Logger.debug('Query Logs in DEBUG mode  ');
-        mongoose.set('debug', true);
+        Logger.debug('Query Logs in DEBUG mode');
+        mongoose.set('debug', parseInt(process.env.MONGO_DEBUG) === 1);
     }
 
     app.useGlobalPipes(
