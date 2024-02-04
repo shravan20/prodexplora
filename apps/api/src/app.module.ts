@@ -1,3 +1,4 @@
+import { SecretsManagerModule } from '@configs/secret-manager.module';
 import { LoggingInterceptor } from '@middlewares/api-logger.middleware';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -22,6 +23,7 @@ const modules = [
         rootPath: join(__dirname, '../..', 'ui', 'dist'),
     }),
     SwaggerSetupModule,
+    SecretsManagerModule,
     ProductModule,
     UserModule,
     MongooseModule.forRoot(process.env.MONGODB_DB_URL),
@@ -46,4 +48,4 @@ const providers = [
     controllers: controllers,
     providers: providers,
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,5 +1,6 @@
 import { User } from '@entities/user.entity';
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
 import { AuthRequestDto } from './dto/auth-request.dto';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -11,9 +12,11 @@ export class UserService {
     constructor(
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
-    ) {}
+        private configService: ConfigService
+    ) { }
 
     async signIn(createAuthDto: AuthRequestDto) {
+
         const data = await this.createIfNotExists(createAuthDto);
 
         const user: User = data.user;
