@@ -12,11 +12,10 @@ export class UserService {
     constructor(
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
-        private configService: ConfigService
-    ) { }
+        private configService: ConfigService,
+    ) {}
 
     async signIn(createAuthDto: AuthRequestDto) {
-
         const data = await this.createIfNotExists(createAuthDto);
 
         const user: User = data.user;
