@@ -1,12 +1,18 @@
-import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
+import {
+    INestApplication,
+    Logger,
+    ValidationPipe,
+    VersioningType,
+} from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as dotenv from 'dotenv';
+import * as mongoose from 'mongoose';
 import { AppModule } from './app.module';
 import { SwaggerSetupModule } from './docs/swagger.module';
 
 const logger = new Logger('DatabaseModule');
 
-function setInterceptors(app) {
+async function setInterceptors(app: INestApplication) {
     SwaggerSetupModule.setup('/docs', app);
 
     app.enableCors();
@@ -16,6 +22,12 @@ function setInterceptors(app) {
     app.enableVersioning({
         type: VersioningType.URI,
     });
+
+    // Enable Mongoose query logging
+    if (process.env.MONGO_DEBUG) {
+        Logger.debug('Query Logs in DEBUG mode  ');
+        mongoose.set('debug', true);
+    }
 
     app.useGlobalPipes(
         new ValidationPipe({
@@ -33,9 +45,11 @@ async function bootstrap(): Promise<void> {
         dotenv.config(); // Defaults to loading .env for development
     }
 
-    const app = await NestFactory.create(AppModule, { abortOnError: false });
+    const app: INestApplication = await NestFactory.create(AppModule, {
+        abortOnError: false,
+    });
 
-    setInterceptors(app);
+    await setInterceptors(app);
 
     await app.listen(process.env.SERVER_PORT || 3000);
     console.log('Server running on:', process.env.SERVER_PORT || 3000);

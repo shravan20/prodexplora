@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 import {
     IsEmail,
     IsNotEmpty,
@@ -26,6 +27,7 @@ export class OpenIdProvider {
 
 export class AuthRequestDto {
     @ApiProperty()
+    @Type(() => OpenIdProvider)
     authProvider: OpenIdProvider[];
 
     @ApiProperty()
