@@ -9,7 +9,7 @@ import { UserService } from './user.service';
 @Module({
     imports: [
         JwtModule.register({
-            secret: process.env.JWT_SECRET,
+            secret: process.env.JWT_SECRET_KEY,
             signOptions: { expiresIn: '60s' },
         }),
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
@@ -18,4 +18,4 @@ import { UserService } from './user.service';
     providers: [UserRepository, UserService],
     exports: [JwtModule],
 })
-export class UserModule {}
+export class UserModule { }

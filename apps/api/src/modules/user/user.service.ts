@@ -11,10 +11,12 @@ export class UserService {
     constructor(
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
-    ) {}
+    ) { }
 
     async signIn(createAuthDto: AuthRequestDto) {
-        const data = await this.create(createAuthDto);
+
+        const data = await this.createIfNotExists(createAuthDto);
+
         const user: User = data.user;
 
         const payload = {
@@ -30,7 +32,7 @@ export class UserService {
             algorithm: 'HS256',
             header: { alg: 'HS256', typ: 'JWT' },
             encoding: 'base64',
-            secret: process.env.JWT_SECRET,
+            secret: process.env.JWT_SECRET_KEY,
         };
 
         const accessToken = await this.jwtService.sign(payload, options);
@@ -46,25 +48,37 @@ export class UserService {
         };
     }
 
-    async create(createUserDto: CreateUserDto): Promise<UserRequest> {
-        const emailQuery = {
-            email: createUserDto.email,
+    async createIfNotExists(createUserDto: CreateUserDto): Promise<UserRequest> {
+
+        let emailQuery = {
+            email: createUserDto.email
         };
 
-        let user: User = await this.userRepository.findOne(emailQuery);
+        let update = {
+            $addToSet: {
+                loginProvider: createUserDto.authProvider[0]
+            }
+        };
+        console.log(emailQuery, update);
+        let user: User = await this.userRepository.findOneAndUpdate(emailQuery, update);
+        console.log(user);
 
         if (user) {
             return {
                 user,
-                existingUser: true,
+                previouslyRegistered: true,
             };
         }
-        user = await this.userRepository.create(createUserDto);
+        user = await this.create(createUserDto);
 
         return {
             user,
-            existingUser: false,
+            previouslyRegistered: false,
         };
+    }
+
+    private async create(createUserDto: CreateUserDto) {
+        return await this.userRepository.create(createUserDto);
     }
 
     findAll() {

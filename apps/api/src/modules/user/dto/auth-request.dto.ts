@@ -1,4 +1,8 @@
+import { BaseAdaptor } from '@entities/adaptors/base.adaptor';
+import { IOpenIdProvider } from '@entities/interfaces/openid-provider.interface';
+import { User } from '@entities/user.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 import {
     IsEmail,
     IsNotEmpty,
@@ -8,7 +12,7 @@ import {
     Length,
 } from 'class-validator';
 
-export class OpenIdProvider {
+export class OpenIdProvider extends BaseAdaptor<OpenIdProvider, IOpenIdProvider> {
     @ApiProperty({
         example: 'opensource@prodexplora.com',
     })
@@ -24,8 +28,9 @@ export class OpenIdProvider {
     provider: string;
 }
 
-export class AuthRequestDto {
+export class AuthRequestDto extends BaseAdaptor<AuthRequestDto, User> {
     @ApiProperty()
+    @Type(() => OpenIdProvider)
     authProvider: OpenIdProvider[];
 
     @ApiProperty()
@@ -55,4 +60,5 @@ export class AuthRequestDto {
     @IsOptional()
     @Length(10, 200)
     bio: string;
+
 }
