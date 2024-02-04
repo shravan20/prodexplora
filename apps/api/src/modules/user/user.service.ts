@@ -11,10 +11,9 @@ export class UserService {
     constructor(
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
-    ) { }
+    ) {}
 
     async signIn(createAuthDto: AuthRequestDto) {
-
         const data = await this.createIfNotExists(createAuthDto);
 
         const user: User = data.user;
@@ -48,19 +47,23 @@ export class UserService {
         };
     }
 
-    async createIfNotExists(createUserDto: CreateUserDto): Promise<UserRequest> {
-
-        let emailQuery = {
-            email: createUserDto.email
+    async createIfNotExists(
+        createUserDto: CreateUserDto,
+    ): Promise<UserRequest> {
+        const emailQuery = {
+            email: createUserDto.email,
         };
 
-        let update = {
+        const update = {
             $addToSet: {
-                loginProvider: createUserDto.authProvider[0]
-            }
+                loginProvider: createUserDto.authProvider[0],
+            },
         };
         console.log(emailQuery, update);
-        let user: User = await this.userRepository.findOneAndUpdate(emailQuery, update);
+        let user: User = await this.userRepository.findOneAndUpdate(
+            emailQuery,
+            update,
+        );
         console.log(user);
 
         if (user) {

@@ -1,4 +1,9 @@
-import { INestApplication, Logger, ValidationPipe, VersioningType } from '@nestjs/common';
+import {
+    INestApplication,
+    Logger,
+    ValidationPipe,
+    VersioningType,
+} from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as dotenv from 'dotenv';
 import * as mongoose from 'mongoose';
@@ -40,7 +45,9 @@ async function bootstrap(): Promise<void> {
         dotenv.config(); // Defaults to loading .env for development
     }
 
-    const app: INestApplication = await NestFactory.create(AppModule, { abortOnError: false });
+    const app: INestApplication = await NestFactory.create(AppModule, {
+        abortOnError: false,
+    });
 
     await setInterceptors(app);
 

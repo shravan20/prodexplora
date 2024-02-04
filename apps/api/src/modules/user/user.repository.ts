@@ -8,7 +8,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 export class UserRepository {
     constructor(
         @InjectModel(entity.name) private readonly userModel: Model<entity>,
-    ) { }
+    ) {}
 
     async findAll(): Promise<entity[]> {
         return await this.userModel.find().exec();
@@ -45,8 +45,11 @@ export class UserRepository {
             .exec();
     }
 
-    async findOneAndUpdate(query: any = {}, update: any = {}, options: any = {}): Promise<entity> {
-
+    async findOneAndUpdate(
+        query: any = {},
+        update: any = {},
+        options: any = {},
+    ): Promise<entity> {
         return await this.userModel
             .findOneAndUpdate(query, update, { new: true, ...options })
             .exec();
