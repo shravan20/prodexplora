@@ -18,6 +18,7 @@
             "@configs/*": ["src/configs/*"],
             "@modules/*": ["src/modules/*"],
             "@utils/*": ["src/utils/*"],
+            "@constants/*": ["src/constants/*"],
         },
         "incremental": true,
         "skipLibCheck": true,

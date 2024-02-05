@@ -1,3 +1,4 @@
+import { SecretManagerModule } from '@configs/secret-manager.module';
 import { User, UserSchema } from '@entities/user.entity';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
@@ -13,6 +14,7 @@ import { UserService } from './user.service';
             signOptions: { expiresIn: '60s' },
         }),
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+        SecretManagerModule,
     ],
     controllers: [UserController],
     providers: [UserRepository, UserService],

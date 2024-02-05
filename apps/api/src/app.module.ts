@@ -1,3 +1,4 @@
+import { SecretManagerModule } from '@configs/secret-manager.module';
 import { LoggingInterceptor } from '@middlewares/api-logger.middleware';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -16,6 +17,7 @@ const modules = [
     ConfigModule.forRoot({
         isGlobal: true,
         envFilePath: [join('.', '.env'), join('.', '.env.production')],
+        cache: process.env.ENABLE_CONFIG_CACHING === '1',
     }),
     ServeStaticModule.forRoot({
         //  TODO: Make this configurable
@@ -24,6 +26,7 @@ const modules = [
     SwaggerSetupModule,
     ProductModule,
     UserModule,
+    SecretManagerModule,
     MongooseModule.forRoot(process.env.MONGODB_DB_URL),
 ];
 

@@ -1,9 +1,17 @@
+import { SecretManagerService } from '@configs/secret-manager.service';
+import {
+    JWT_EXPIRATION_TIME,
+    JWT_REFRESH_EXPIRATION_TIME,
+    JWT_REFRESH_SECRET_KEY,
+    JWT_SECRET_KEY,
+} from '@constants/env-keys.constant';
 import { User } from '@entities/user.entity';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
 import { AuthRequestDto } from './dto/auth-request.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserResponseDto } from './dto/user-response.dto';
 import { UserRequest } from './interface/user-request.interface';
 import { UserRepository } from './user.repository';
 @Injectable()
@@ -11,6 +19,7 @@ export class UserService {
     constructor(
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
+        private configService: SecretManagerService,
     ) {}
 
     async signIn(createAuthDto: AuthRequestDto) {
@@ -28,19 +37,20 @@ export class UserService {
          */
         const options: JwtSignOptions = {
             algorithm: 'HS256',
-            secret: process.env.JWT_SECRET_KEY,
+            secret: this.configService.getSecret(JWT_SECRET_KEY),
         };
 
         const accessToken = await this.generateJwtToken(payload, {
             ...options,
-            expiresIn: process.env.JWT_EXPIRATION_TIME,
-            secret: process.env.JWT_SECRET_KEY,
+            expiresIn: this.configService.getSecret(JWT_EXPIRATION_TIME),
         });
 
         const refreshToken = await this.generateJwtToken(payload, {
             ...options,
-            expiresIn: process.env.JWT_REFRESH_EXPIRATION_TIME,
-            secret: process.env.JWT_REFRESH_SECRET_KEY,
+            expiresIn: this.configService.getSecret(
+                JWT_REFRESH_EXPIRATION_TIME,
+            ),
+            secret: this.configService.getSecret(JWT_REFRESH_SECRET_KEY),
         });
 
         return {
@@ -69,12 +79,11 @@ export class UserService {
                 loginProvider: createUserDto.authProvider[0],
             },
         };
-        console.log(emailQuery, update);
+
         let user: User = await this.userRepository.findOneAndUpdate(
             emailQuery,
             update,
         );
-        console.log(user);
 
         if (user) {
             return {
@@ -98,15 +107,19 @@ export class UserService {
         return `This action returns all user`;
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} user`;
+    async getById(id: string): Promise<UserResponseDto> {
+        const user = await this.userRepository.findById(id);
+        if (!user) {
+            throw new NotFoundException(`Resource with id=${id} not found`);
+        }
+        return UserResponseDto.from(user);
     }
 
-    update(id: number, updateUserDto: UpdateUserDto) {
+    update(id: string, updateUserDto: UpdateUserDto) {
         return `This action updates a #${id} user`;
     }
 
-    remove(id: number) {
+    remove(id: string) {
         return `This action removes a #${id} user`;
     }
 }
