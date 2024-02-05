@@ -19,7 +19,7 @@ export class UserService {
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
         private configService: SecretManagerService,
-    ) { }
+    ) {}
 
     async signIn(createAuthDto: AuthRequestDto) {
         const data = await this.createIfNotExists(createAuthDto);
@@ -46,7 +46,9 @@ export class UserService {
 
         const refreshToken = await this.generateJwtToken(payload, {
             ...options,
-            expiresIn: this.configService.getSecret(JWT_REFRESH_EXPIRATION_TIME),
+            expiresIn: this.configService.getSecret(
+                JWT_REFRESH_EXPIRATION_TIME,
+            ),
             secret: this.configService.getSecret(JWT_REFRESH_SECRET_KEY),
         });
 

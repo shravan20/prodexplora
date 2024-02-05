@@ -5,4 +5,4 @@ import { SecretManagerService } from './secret-manager.service';
     providers: [SecretManagerService],
     exports: [SecretManagerService],
 })
-export class SecretManagerModule { }
+export class SecretManagerModule {}
