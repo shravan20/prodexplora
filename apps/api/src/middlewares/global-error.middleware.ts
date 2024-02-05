@@ -1,29 +1,42 @@
 import {
-    ExceptionFilter,
-    Catch,
     ArgumentsHost,
+    Catch,
+    ExceptionFilter,
     HttpException,
+    HttpStatus,
     Logger,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 
-@Catch(HttpException)
+@Catch(Error, HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
     private readonly logger = new Logger(HttpExceptionFilter.name);
 
-    catch(exception: HttpException, host: ArgumentsHost) {
+    catch(exception: Error | HttpException, host: ArgumentsHost) {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse<Response>();
         const request = ctx.getRequest<Request>();
-        const statusCode = exception.getStatus();
 
-        const validationMessage: any = exception.getResponse();
-        const message = validationMessage.message?.length
-            ? [...validationMessage.message]
-            : [
-                  exception.message ||
-                      'Something really went wrong, reach out to the server builder or try again',
-              ];
+        const unknownErrorMessage =
+            'Something really went wrong, reach out to the server builder or try again';
+        let statusCode: number;
+        let message: any[];
+
+        if (exception instanceof HttpException) {
+            statusCode = exception.getStatus();
+            const validationMessage: any = exception.getResponse();
+            message = validationMessage.message?.length
+                ? [...validationMessage.message]
+                : [exception.message || unknownErrorMessage];
+        } else {
+            statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
+            message = [exception.message || unknownErrorMessage];
+
+            // Log stack trace in development environment
+            if (process.env.NODE_ENV === 'development' && exception.stack) {
+                this.logger.error(exception.stack);
+            }
+        }
 
         const body: any = {
             status: false,

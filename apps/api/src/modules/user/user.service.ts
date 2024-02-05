@@ -1,5 +1,12 @@
+import {
+    JWT_EXPIRATION_TIME,
+    JWT_REFRESH_EXPIRATION_TIME,
+    JWT_REFRESH_SECRET_KEY,
+    JWT_SECRET_KEY,
+} from '@constants/env-keys.constant';
 import { User } from '@entities/user.entity';
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
 import { AuthRequestDto } from './dto/auth-request.dto';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -11,6 +18,7 @@ export class UserService {
     constructor(
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
+        private configService: ConfigService,
     ) {}
 
     async signIn(createAuthDto: AuthRequestDto) {
@@ -28,19 +36,18 @@ export class UserService {
          */
         const options: JwtSignOptions = {
             algorithm: 'HS256',
-            secret: process.env.JWT_SECRET_KEY,
+            secret: this.configService.get(JWT_SECRET_KEY),
         };
 
         const accessToken = await this.generateJwtToken(payload, {
             ...options,
-            expiresIn: process.env.JWT_EXPIRATION_TIME,
-            secret: process.env.JWT_SECRET_KEY,
+            expiresIn: this.configService.get(JWT_EXPIRATION_TIME),
         });
 
         const refreshToken = await this.generateJwtToken(payload, {
             ...options,
-            expiresIn: process.env.JWT_REFRESH_EXPIRATION_TIME,
-            secret: process.env.JWT_REFRESH_SECRET_KEY,
+            expiresIn: this.configService.get(JWT_REFRESH_EXPIRATION_TIME),
+            secret: this.configService.get(JWT_REFRESH_SECRET_KEY),
         });
 
         return {
@@ -69,12 +76,11 @@ export class UserService {
                 loginProvider: createUserDto.authProvider[0],
             },
         };
-        console.log(emailQuery, update);
+
         let user: User = await this.userRepository.findOneAndUpdate(
             emailQuery,
             update,
         );
-        console.log(user);
 
         if (user) {
             return {
