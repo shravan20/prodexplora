@@ -9,7 +9,7 @@ export function CatchError<T>(
         try {
             return await originalMethod.apply(this, args);
         } catch (error) {
-            throw [error];
+            throw error;
         }
     };
 
