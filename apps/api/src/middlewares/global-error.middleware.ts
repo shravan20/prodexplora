@@ -17,6 +17,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         const response = ctx.getResponse<Response>();
         const request = ctx.getRequest<Request>();
 
+        const unknownErrorMessage = 'Something really went wrong, reach out to the server builder or try again';
         let statusCode: number;
         let message: any[];
 
@@ -26,14 +27,12 @@ export class HttpExceptionFilter implements ExceptionFilter {
             message = validationMessage.message?.length
                 ? [...validationMessage.message]
                 : [
-                      exception.message ||
-                          'Something really went wrong, reach out to the server builder or try again',
-                  ];
+                    exception.message || unknownErrorMessage,
+                ];
         } else {
             statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
             message = [
-                exception.message ||
-                    'Something really went wrong, reach out to the server builder or try again',
+                exception.message || unknownErrorMessage,
             ];
 
             // Log stack trace in development environment
