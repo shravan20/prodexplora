@@ -1,6 +1,6 @@
 import { User } from '@entities/user.entity';
 
-export interface UserRequest {
+export interface IUserRequest {
     previouslyRegistered: boolean;
     user: User;
 }

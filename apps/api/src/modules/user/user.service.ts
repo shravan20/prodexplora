@@ -12,7 +12,7 @@ import { AuthRequestDto } from './dto/auth-request.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
-import { UserRequest } from './interface/user-request.interface';
+import { IUserRequest } from './interface/user-request.interface';
 import { UserRepository } from './user.repository';
 @Injectable()
 export class UserService {
@@ -20,7 +20,7 @@ export class UserService {
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
         private configService: SecretManagerService,
-    ) {}
+    ) { }
 
     async signIn(createAuthDto: AuthRequestDto) {
         const data = await this.createIfNotExists(createAuthDto);
@@ -69,7 +69,7 @@ export class UserService {
 
     async createIfNotExists(
         createUserDto: CreateUserDto,
-    ): Promise<UserRequest> {
+    ): Promise<IUserRequest> {
         const emailQuery = {
             email: createUserDto.email,
         };
