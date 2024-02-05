@@ -6,6 +6,7 @@ export interface ISecretsManager {
 
 export class BaseSecretManager implements ISecretsManager {
     constructor(protected readonly configService: ConfigService) {}
+
     getSecret<T>(key: string): T | null {
         if (!key) {
             throw new Error("Didn't got the key");
