@@ -26,14 +26,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
             message = validationMessage.message?.length
                 ? [...validationMessage.message]
                 : [
-                    exception.message ||
-                    'Something really went wrong, reach out to the server builder or try again',
-                ];
+                      exception.message ||
+                          'Something really went wrong, reach out to the server builder or try again',
+                  ];
         } else {
             statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
             message = [
                 exception.message ||
-                'Something really went wrong, reach out to the server builder or try again',
+                    'Something really went wrong, reach out to the server builder or try again',
             ];
 
             // Log stack trace in development environment
