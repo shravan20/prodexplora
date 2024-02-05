@@ -13,7 +13,7 @@ export class UserService {
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
         private configService: ConfigService,
-    ) {}
+    ) { }
 
     async signIn(createAuthDto: AuthRequestDto) {
         const data = await this.createIfNotExists(createAuthDto);
@@ -32,8 +32,6 @@ export class UserService {
             algorithm: 'HS256',
             secret: this.configService.get('JWT_SECRET_KEY'),
         };
-
-        console.log();
 
         const accessToken = await this.generateJwtToken(payload, {
             ...options,
