@@ -1,9 +1,8 @@
-import { User } from "@entities/user.entity";
-import { ApiProperty } from "@nestjs/swagger";
-import { OpenIdProvider } from "./auth-request.dto";
+import { User } from '@entities/user.entity';
+import { ApiProperty } from '@nestjs/swagger';
+import { OpenIdProvider } from './auth-request.dto';
 
 export class UserResponseDto {
-
     @ApiProperty()
     readonly id: string;
 
@@ -40,11 +39,13 @@ export class UserResponseDto {
         this.lastName = user.lastName;
         this.bio = user.bio;
         this.authProvider = user.loginProvider;
-        this.productFollowing = user.productFollowing.length > 0 ? user.productFollowing.map(v => v.toString()) : []
+        this.productFollowing =
+            user.productFollowing.length > 0
+                ? user.productFollowing.map((v) => v.toString())
+                : [];
     }
 
     static from(user: User): UserResponseDto {
         return new UserResponseDto(user);
     }
-
 }

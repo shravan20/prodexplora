@@ -54,6 +54,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
     }
 
     private appendMessage(validationMessage: any): any[] {
-        return Array.isArray(validationMessage.message) ? [...validationMessage.message] : [validationMessage.message];
+        return Array.isArray(validationMessage.message)
+            ? [...validationMessage.message]
+            : [validationMessage.message];
     }
 }

@@ -33,7 +33,7 @@ async function setInterceptors(app: INestApplication) {
 
     app.useGlobalPipes(
         new ValidationPipe({
-            disableErrorMessages: false
+            disableErrorMessages: false,
         }),
     );
 }
