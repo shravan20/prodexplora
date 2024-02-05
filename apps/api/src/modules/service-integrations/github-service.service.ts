@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Octokit } from '@octokit/rest';
-import { IServiceIntegration } from './interfaces/common-integration.interface';
+import IServiceIntegration from './interfaces/common-integration.interface';
 
 @Injectable()
 export class GitHubService implements IServiceIntegration {
@@ -9,5 +9,7 @@ export class GitHubService implements IServiceIntegration {
     constructor() {
         this.octokit = new Octokit();
     }
-
+    get() {
+        throw new Error('Method not implemented.');
+    }
 }

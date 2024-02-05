@@ -1,8 +1,6 @@
-
 import { Injectable } from '@nestjs/common';
 import { GitHubService } from './github-service.service';
 import { IServiceIntegration } from './interfaces/common-integration.interface';
-
 
 @Injectable()
 export class CommonIntegrationFactory {

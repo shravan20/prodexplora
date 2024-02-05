@@ -2,8 +2,9 @@ import { Module } from '@nestjs/common';
 import { CommonIntegrationFactory } from './common-integration.factory';
 import { GitHubService } from './github-service.service';
 
+
 const servicesMap = {
-    github: GitHubService
+    github: GitHubService,
 };
 
 @Module({
@@ -13,15 +14,14 @@ const servicesMap = {
         ...Object.values(servicesMap),
         CommonIntegrationFactory,
         {
-            provide: IServiceIntegration,
             useFactory: (factory: CommonIntegrationFactory) => {
                 const platform = process.env.CODE_HOSTING_PLATFORM || 'github';
                 const service = factory.getService(platform);
                 return new servicesMap[platform](service);
             },
-            inject: [CommonIntegrationFactory],
+            inject: [IServiceIntegration],
         },
     ],
-    exports: [CommonIntegrationFactory]
+    exports: [CommonIntegrationFactory],
 })
 export class CommonIntegrationModule { }
