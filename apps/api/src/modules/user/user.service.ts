@@ -6,12 +6,12 @@ import {
     JWT_SECRET_KEY,
 } from '@constants/env-keys.constant';
 import { User } from '@entities/user.entity';
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
 import { AuthRequestDto } from './dto/auth-request.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserResponseDto } from './dto/user-response.dto';
 import { UserRequest } from './interface/user-request.interface';
 import { UserRepository } from './user.repository';
 @Injectable()
@@ -20,7 +20,7 @@ export class UserService {
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
         private configService: SecretManagerService,
-    ) {}
+    ) { }
 
     async signIn(createAuthDto: AuthRequestDto) {
         const data = await this.createIfNotExists(createAuthDto);
@@ -107,15 +107,20 @@ export class UserService {
         return `This action returns all user`;
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} user`;
+    async getById(id: string): Promise<UserResponseDto> {
+        let user = await this.userRepository.findById(id);
+        if (!user) {
+            throw new NotFoundException(`Resource with id=${id} not found`);
+        }
+        return UserResponseDto.from(user);
+
     }
 
-    update(id: number, updateUserDto: UpdateUserDto) {
+    update(id: string, updateUserDto: UpdateUserDto) {
         return `This action updates a #${id} user`;
     }
 
-    remove(id: number) {
+    remove(id: string) {
         return `This action removes a #${id} user`;
     }
 }

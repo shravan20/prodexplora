@@ -8,7 +8,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 export class UserRepository {
     constructor(
         @InjectModel(entity.name) private readonly userModel: Model<entity>,
-    ) {}
+    ) { }
 
     async findAll(): Promise<entity[]> {
         return await this.userModel.find().exec();

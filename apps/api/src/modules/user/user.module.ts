@@ -14,10 +14,10 @@ import { UserService } from './user.service';
             signOptions: { expiresIn: '60s' },
         }),
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-        SecretManagerModule,
+        SecretManagerModule
     ],
     controllers: [UserController],
     providers: [UserRepository, UserService],
     exports: [JwtModule],
 })
-export class UserModule {}
+export class UserModule { }

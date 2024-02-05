@@ -1,3 +1,4 @@
+import { HttpExceptionFilter } from '@middlewares/global-error.middleware';
 import {
     INestApplication,
     Logger,
@@ -28,9 +29,11 @@ async function setInterceptors(app: INestApplication) {
         mongoose.set('debug', true);
     }
 
+    app.useGlobalFilters(new HttpExceptionFilter());
+
     app.useGlobalPipes(
         new ValidationPipe({
-            disableErrorMessages: false,
+            disableErrorMessages: false
         }),
     );
 }
