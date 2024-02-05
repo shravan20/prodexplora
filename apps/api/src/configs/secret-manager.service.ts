@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { BaseSecretManager } from './base/base-secret-manager.service';
 
 @Injectable()
-export class SecretsManagerService extends BaseSecretManager {
+export class SecretManagerService extends BaseSecretManager {
     constructor(protected readonly configService: ConfigService) {
         super(configService);
     }
