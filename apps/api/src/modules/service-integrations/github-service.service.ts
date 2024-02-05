@@ -9,7 +9,4 @@ export class GitHubService implements IServiceIntegration {
     constructor() {
         this.octokit = new Octokit();
     }
-    get() {
-        throw new Error('Method not implemented.');
-    }
 }
