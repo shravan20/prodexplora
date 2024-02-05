@@ -13,7 +13,7 @@ export class UserService {
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
         private configService: ConfigService,
-    ) {}
+    ) { }
 
     async signIn(createAuthDto: AuthRequestDto) {
         const data = await this.createIfNotExists(createAuthDto);
@@ -30,19 +30,20 @@ export class UserService {
          */
         const options: JwtSignOptions = {
             algorithm: 'HS256',
-            secret: process.env.JWT_SECRET_KEY,
+            secret: this.configService.get('JWT_SECRET_KEY'),
         };
+
+        console.log()
 
         const accessToken = await this.generateJwtToken(payload, {
             ...options,
-            expiresIn: process.env.JWT_EXPIRATION_TIME,
-            secret: process.env.JWT_SECRET_KEY,
+            expiresIn: this.configService.get('JWT_EXPIRATION_TIME'),
         });
 
         const refreshToken = await this.generateJwtToken(payload, {
             ...options,
-            expiresIn: process.env.JWT_REFRESH_EXPIRATION_TIME,
-            secret: process.env.JWT_REFRESH_SECRET_KEY,
+            expiresIn: this.configService.get('JWT_REFRESH_EXPIRATION_TIME'),
+            secret: this.configService.get('JWT_REFRESH_SECRET_KEY'),
         });
 
         return {
