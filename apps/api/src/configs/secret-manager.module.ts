@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { SecretsManagerService } from './secret-manager.service';
+import { SecretManagerService } from './secret-manager.service';
 
 @Module({
-    providers: [SecretsManagerService],
-    exports: [SecretsManagerService],
+    providers: [SecretManagerService],
+    exports: [SecretManagerService],
 })
-export class SecretsManagerModule {}
+export class SecretManagerModule {}

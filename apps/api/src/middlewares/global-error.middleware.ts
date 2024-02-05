@@ -25,8 +25,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
         if (exception instanceof HttpException) {
             statusCode = exception.getStatus();
             const validationMessage: any = exception.getResponse();
+
             message = validationMessage.message?.length
-                ? [...validationMessage.message]
+                ? this.appendMessage(validationMessage)
                 : [exception.message || unknownErrorMessage];
         } else {
             statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
@@ -50,5 +51,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
         this.logger.warn(`${statusCode} ${message}`);
 
         response.status(statusCode).json(body);
+    }
+
+    private appendMessage(validationMessage: any): any[] {
+        return Array.isArray(validationMessage.message)
+            ? [...validationMessage.message]
+            : [validationMessage.message];
     }
 }

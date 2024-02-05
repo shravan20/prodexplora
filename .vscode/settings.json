@@ -4,9 +4,6 @@
         "source.organizeImports": "explicit"
     },
     "editor.formatOnSave": true,
-    "[javascript]": {
-        "editor.formatOnSave": false
-    },
     "editor.colorDecorators": true,
     "search.exclude": {
         "**/node_modules": true,
