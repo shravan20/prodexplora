@@ -5,11 +5,13 @@ export interface ISecretsManager {
 }
 
 export class BaseSecretManager implements ISecretsManager {
-    constructor(protected readonly configService: ConfigService) { }
+    constructor(protected readonly configService: ConfigService) {}
 
     getSecret<T>(key: string): T | null {
         if (!key) {
-            throw new Error(`Secret key ${key} is required but was not provided.`);
+            throw new Error(
+                `Secret key ${key} is required but was not provided.`,
+            );
         }
         const value = this.configService.get(key);
         if (value) {
