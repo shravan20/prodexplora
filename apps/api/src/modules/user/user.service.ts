@@ -1,3 +1,4 @@
+import { JWT_EXPIRATION_TIME, JWT_REFRESH_EXPIRATION_TIME, JWT_REFRESH_SECRET_KEY, JWT_SECRET_KEY } from '@constants/env-keys.constant';
 import { User } from '@entities/user.entity';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -13,9 +14,11 @@ export class UserService {
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
         private configService: ConfigService,
-    ) {}
+    ) { }
+
 
     async signIn(createAuthDto: AuthRequestDto) {
+
         const data = await this.createIfNotExists(createAuthDto);
 
         const user: User = data.user;
@@ -30,18 +33,18 @@ export class UserService {
          */
         const options: JwtSignOptions = {
             algorithm: 'HS256',
-            secret: this.configService.get('JWT_SECRET_KEY'),
+            secret: this.configService.get(JWT_SECRET_KEY),
         };
 
         const accessToken = await this.generateJwtToken(payload, {
             ...options,
-            expiresIn: this.configService.get('JWT_EXPIRATION_TIME'),
+            expiresIn: this.configService.get(JWT_EXPIRATION_TIME),
         });
 
         const refreshToken = await this.generateJwtToken(payload, {
             ...options,
-            expiresIn: this.configService.get('JWT_REFRESH_EXPIRATION_TIME'),
-            secret: this.configService.get('JWT_REFRESH_SECRET_KEY'),
+            expiresIn: this.configService.get(JWT_REFRESH_EXPIRATION_TIME),
+            secret: this.configService.get(JWT_REFRESH_SECRET_KEY),
         });
 
         return {

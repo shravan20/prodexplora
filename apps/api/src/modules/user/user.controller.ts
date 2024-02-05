@@ -6,7 +6,7 @@ import {
     Param,
     Patch,
     Post,
-    UseFilters,
+    UseFilters
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
@@ -23,7 +23,7 @@ import { UserService } from './user.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class UserController {
-    constructor(private readonly userService: UserService) {}
+    constructor(private readonly userService: UserService) { }
 
     @Post('/users')
     create(@Body() createUserDto: CreateUserDto) {
@@ -49,6 +49,7 @@ export class UserController {
     remove(@Param('id') id: string) {
         return this.userService.remove(+id);
     }
+
 
     @Post('/users/open-id-auth')
     signIn(@Body() createAuthDto: AuthRequestDto) {
