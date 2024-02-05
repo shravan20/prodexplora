@@ -1,4 +1,9 @@
-import { JWT_EXPIRATION_TIME, JWT_REFRESH_EXPIRATION_TIME, JWT_REFRESH_SECRET_KEY, JWT_SECRET_KEY } from '@constants/env-keys.constant';
+import {
+    JWT_EXPIRATION_TIME,
+    JWT_REFRESH_EXPIRATION_TIME,
+    JWT_REFRESH_SECRET_KEY,
+    JWT_SECRET_KEY,
+} from '@constants/env-keys.constant';
 import { User } from '@entities/user.entity';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -14,11 +19,9 @@ export class UserService {
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
         private configService: ConfigService,
-    ) { }
-
+    ) {}
 
     async signIn(createAuthDto: AuthRequestDto) {
-
         const data = await this.createIfNotExists(createAuthDto);
 
         const user: User = data.user;

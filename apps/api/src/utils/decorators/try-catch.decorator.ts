@@ -1,4 +1,8 @@
-export function CatchError<T>(_target: T, _propertyKey: string, descriptor: PropertyDescriptor) {
+export function CatchError<T>(
+    _target: T,
+    _propertyKey: string,
+    descriptor: PropertyDescriptor,
+) {
     const originalMethod = descriptor.value;
 
     descriptor.value = async function (...args: any[]) {

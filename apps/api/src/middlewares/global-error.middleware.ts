@@ -25,10 +25,16 @@ export class HttpExceptionFilter implements ExceptionFilter {
             const validationMessage: any = exception.getResponse();
             message = validationMessage.message?.length
                 ? [...validationMessage.message]
-                : [exception.message || 'Something really went wrong, reach out to the server builder or try again'];
+                : [
+                      exception.message ||
+                          'Something really went wrong, reach out to the server builder or try again',
+                  ];
         } else {
             statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-            message = [exception.message || 'Something really went wrong, reach out to the server builder or try again'];
+            message = [
+                exception.message ||
+                    'Something really went wrong, reach out to the server builder or try again',
+            ];
         }
 
         const body: any = {
