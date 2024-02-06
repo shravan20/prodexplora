@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-# ProdExplora Support and Questions
+<!--# ProdExplora Support and Questions
 
 Welcome to the support and questions section for ProdExplora! If you have any questions, need help, or want to discuss anything related to the project, you're in the right place.
 
@@ -24,6 +24,8 @@ Before asking a question, please consider the following:
 ## Asking a Question
 
 If you couldn't find an answer in existing issues or documentation, feel free to ask your question. Follow this template to provide helpful context:
+
+--> 
 
 ### Question/Issue
 A clear and concise description of your question or issue.
