@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateProductCategoryRequestDto {
     @ApiProperty({
@@ -18,4 +18,13 @@ export class CreateProductCategoryRequestDto {
     @IsNotEmpty()
     @IsString()
     description: string;
+
+    @ApiProperty({
+        description: `URL component that designates a particular section`,
+        example:
+            'category/developer-tools',
+    })
+    @IsOptional()
+    @IsString()
+    slug: string;
 }
