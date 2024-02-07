@@ -21,8 +21,7 @@ export class CreateProductCategoryRequestDto {
 
     @ApiProperty({
         description: `URL component that designates a particular section`,
-        example:
-            'category/developer-tools',
+        example: 'category/developer-tools',
     })
     @IsOptional()
     @IsString()
