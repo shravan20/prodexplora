@@ -1,4 +1,6 @@
 /**
  * Note: Expose methods required for Services: [Github, GitLab , others]
  */
-export default interface IServiceIntegration {}
+export default interface IServiceIntegration {
+    get(): Promise<any>;
+}

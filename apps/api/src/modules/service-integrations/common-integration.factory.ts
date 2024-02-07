@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnsupportedMediaTypeException } from '@nestjs/common';
 import { GitHubService } from './github-service.service';
-import { IServiceIntegration } from './interfaces/common-integration.interface';
+import IServiceIntegration from './interfaces/common-integration.interface';
 
 @Injectable()
 export class CommonIntegrationFactory {
@@ -9,7 +9,7 @@ export class CommonIntegrationFactory {
             case 'GITHUB':
                 return new GitHubService();
             default:
-                throw new Error(`Unsupported platform: ${platform}`);
+                throw new UnsupportedMediaTypeException(`Unsupported platform: ${platform}`);
         }
     }
 }

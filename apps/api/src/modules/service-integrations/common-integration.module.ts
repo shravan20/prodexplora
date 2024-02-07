@@ -1,26 +1,15 @@
 import { Module } from '@nestjs/common';
+import { CommonIntegrationController } from './common-integration.controller';
 import { CommonIntegrationFactory } from './common-integration.factory';
 import { GitHubService } from './github-service.service';
 
-const servicesMap = {
-    github: GitHubService,
-};
+
+const services = [GitHubService];
+
 
 @Module({
-    imports: [],
-    controllers: [],
-    providers: [
-        ...Object.values(servicesMap),
-        CommonIntegrationFactory,
-        {
-            useFactory: (factory: CommonIntegrationFactory) => {
-                const platform = process.env.CODE_HOSTING_PLATFORM || 'github';
-                const service = factory.getService(platform);
-                return new servicesMap[platform](service);
-            },
-            inject: [IServiceIntegration],
-        },
-    ],
-    exports: [CommonIntegrationFactory],
+    providers: [CommonIntegrationFactory, ...services],
+    exports: [CommonIntegrationFactory, ...services],
+    controllers: [CommonIntegrationController],
 })
-export class CommonIntegrationModule {}
+export class CommonIntegrationModule { }
