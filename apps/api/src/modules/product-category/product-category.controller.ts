@@ -25,11 +25,15 @@ import { ProductCategoryService } from './product-category.service';
 export class ProductCategoryController {
     constructor(
         private readonly productCategoryService: ProductCategoryService,
-    ) { }
+    ) {}
 
     @Post('/product-categories')
-    async create(@Body() createProductCategoryDtos: CreateCategoryRequestDto[]) {
-        return await this.productCategoryService.create(createProductCategoryDtos);
+    async create(
+        @Body() createProductCategoryDtos: CreateCategoryRequestDto[],
+    ) {
+        return await this.productCategoryService.create(
+            createProductCategoryDtos,
+        );
     }
 
     @Get('/product-categories')
@@ -47,7 +51,10 @@ export class ProductCategoryController {
         @Param() { id }: ObjectIdDto,
         @Body() updateProductCategoryDto: UpdateProductCategoryDto,
     ) {
-        return await this.productCategoryService.update(id, updateProductCategoryDto);
+        return await this.productCategoryService.update(
+            id,
+            updateProductCategoryDto,
+        );
     }
 
     @Delete('/product-categories/:id')
