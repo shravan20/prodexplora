@@ -1,21 +1,21 @@
 import {
-    Controller,
-    Get,
-    Post,
     Body,
-    Patch,
-    Param,
+    Controller,
     Delete,
+    Get,
+    Param,
+    Patch,
+    Post,
     UseFilters,
 } from '@nestjs/common';
-import { ProductUpvoteService } from './product-upvote.service';
-import { CreateProductUpvoteRequestDto } from './dto/create-request.dto';
-import { UpdateProductUpvoteRequestDto } from './dto/update-request.dto';
-import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiTags } from '@nestjs/swagger';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
+import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
+import { CreateProductUpvoteRequestDto } from './dto/create-request.dto';
+import { UpdateProductUpvoteRequestDto } from './dto/update-request.dto';
+import { ProductUpvoteService } from './product-upvote.service';
 
-@ApiTags('Product Upvotes Service API')
+@ApiTags('Product Upvote Service')
 @Controller({
     version: '1',
 })
