@@ -1,19 +1,19 @@
 import {
-    Controller,
-    Get,
-    Post,
     Body,
-    Patch,
-    Param,
+    Controller,
     Delete,
+    Get,
+    Param,
+    Patch,
+    Post,
     UseFilters,
 } from '@nestjs/common';
-import { ProductCategoryService } from './product-category.service';
-import { CreateProductCategoryRequestDto } from './dto/create-request.dto';
-import { UpdateProductCategoryDto } from './dto/update-request.dto';
 import { ApiTags } from '@nestjs/swagger';
-import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
+import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
+import { CreateCategoryRequestDto } from './dto/create-category-request.dto';
+import { UpdateProductCategoryDto } from './dto/update-request.dto';
+import { ProductCategoryService } from './product-category.service';
 
 @ApiTags('Categories Service API')
 @Controller({
@@ -24,19 +24,19 @@ import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelop
 export class ProductCategoryController {
     constructor(
         private readonly productCategoryService: ProductCategoryService,
-    ) {}
+    ) { }
 
-    @Post('/products/:productId/product-categories')
-    create(@Body() createProductCategoryDto: CreateProductCategoryRequestDto) {
+    @Post('/product-categories')
+    create(@Body() createProductCategoryDto: CreateCategoryRequestDto) {
         return this.productCategoryService.create(createProductCategoryDto);
     }
 
-    @Get('/products/:productId/product-categories/:id')
+    @Get('/product-categories/:id')
     findAll() {
         return this.productCategoryService.findAll();
     }
 
-    @Get('/products/:productId/product-categories/:id')
+    @Get('/product-categories/:id')
     findOne(@Param('id') id: string) {
         return this.productCategoryService.findOne(+id);
     }
@@ -52,7 +52,7 @@ export class ProductCategoryController {
         );
     }
 
-    @Delete('/products/:productId/product-categories/:id')
+    @Delete('/product-categories/:id')
     remove(@Param('id') id: string) {
         return this.productCategoryService.remove(+id);
     }

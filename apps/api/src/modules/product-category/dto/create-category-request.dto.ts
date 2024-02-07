@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class CreateProductCategoryRequestDto {
+export class CreateCategoryRequestDto {
     @ApiProperty({
         description: `Category Name under which a Product comes into`,
         example: 'Developer tools',
