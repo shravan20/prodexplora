@@ -1,8 +1,7 @@
-import { ProductCategory } from "@entities/product-category.entity";
-import { ApiProperty } from "@nestjs/swagger";
+import { ProductCategory } from '@entities/product-category.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CategoryResponseDto {
-
     @ApiProperty()
     id: string;
 
@@ -25,5 +24,4 @@ export class CategoryResponseDto {
     static from(category: ProductCategory): CategoryResponseDto {
         return new CategoryResponseDto(category);
     }
-
 }

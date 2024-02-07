@@ -28,13 +28,13 @@ export class ProductCategoryController {
     ) { }
 
     @Post('/product-categories')
-    create(@Body() createProductCategoryDtos: CreateCategoryRequestDto[]) {
-        return this.productCategoryService.create(createProductCategoryDtos);
+    async create(@Body() createProductCategoryDtos: CreateCategoryRequestDto[]) {
+        return await this.productCategoryService.create(createProductCategoryDtos);
     }
 
     @Get('/product-categories')
-    findAll() {
-        return this.productCategoryService.findAll();
+    async findAll() {
+        return await this.productCategoryService.findAll();
     }
 
     @Get('/product-categories/:id')
@@ -43,18 +43,15 @@ export class ProductCategoryController {
     }
 
     @Patch('/product-categories/:id')
-    update(
+    async update(
         @Param() { id }: ObjectIdDto,
         @Body() updateProductCategoryDto: UpdateProductCategoryDto,
     ) {
-        return this.productCategoryService.update(
-            id,
-            updateProductCategoryDto,
-        );
+        return await this.productCategoryService.update(id, updateProductCategoryDto);
     }
 
     @Delete('/product-categories/:id')
-    remove(@Param() { id }: ObjectIdDto) {
-        return this.productCategoryService.remove(id);
+    async remove(@Param() { id }: ObjectIdDto) {
+        return await this.productCategoryService.remove(id);
     }
 }

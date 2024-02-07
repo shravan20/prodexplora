@@ -6,22 +6,22 @@ import { ProductCategoryRepository } from './product-category.repository';
 
 @Injectable()
 export class ProductCategoryService {
+    constructor(private readonly repository: ProductCategoryRepository) { }
 
-    constructor(private readonly repository: ProductCategoryRepository) {
-    }
-
-    async create(dtos: CreateCategoryRequestDto[]): Promise<CategoryResponseDto[]> {
-        let categories = await this.repository.create(dtos);
-        return categories.map(category => CategoryResponseDto.from(category));
+    async create(
+        dtos: CreateCategoryRequestDto[],
+    ): Promise<CategoryResponseDto[]> {
+        const categories = await this.repository.create(dtos);
+        return categories.map((category) => CategoryResponseDto.from(category));
     }
 
     async findAll(): Promise<CategoryResponseDto[]> {
-        let categories = await this.repository.findAll();
-        return categories.map(category => CategoryResponseDto.from(category));
+        const categories = await this.repository.findAll();
+        return categories.map((category) => CategoryResponseDto.from(category));
     }
 
     async findById(id: string): Promise<CategoryResponseDto> {
-        let category = await this.repository.findById(id);
+        const category = await this.repository.findById(id);
         if (!category) {
             throw new NotFoundException(`Resource with id=${id} not found`);
         }
@@ -33,7 +33,7 @@ export class ProductCategoryService {
     }
 
     async remove(id: string): Promise<CategoryResponseDto> {
-        let archivedCategory = await this.repository.deleteById(id);
+        const archivedCategory = await this.repository.deleteById(id);
         if (!archivedCategory) {
             throw new NotFoundException(`Resource with id=${id} not found`);
         }
