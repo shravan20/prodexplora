@@ -6,7 +6,7 @@ import { ProductCategoryRepository } from './product-category.repository';
 
 @Injectable()
 export class ProductCategoryService {
-    constructor(private readonly repository: ProductCategoryRepository) {}
+    constructor(private readonly repository: ProductCategoryRepository) { }
 
     async create(
         dtos: CreateCategoryRequestDto[],

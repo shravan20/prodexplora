@@ -1,16 +1,13 @@
 import {
-    Controller,
-    Get,
-    Post,
     Body,
-    Patch,
-    Param,
+    Controller,
     Delete,
+    Get,
+    Param,
+    Patch,
+    Post,
     UseFilters,
 } from '@nestjs/common';
-import { ProductService } from './product.service';
-import { CreateProductRequestDto } from './dto/create-request.dto';
-import { UpdateProductRequestDto } from './dto/update-request.dto';
 import {
     ApiBadRequestResponse,
     ApiNotFoundResponse,
@@ -18,17 +15,20 @@ import {
     ApiTags,
     ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
-import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
+import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
+import { CreateProductRequestDto } from './dto/create-request.dto';
+import { UpdateProductRequestDto } from './dto/update-request.dto';
+import { ProductService } from './product.service';
 
-@ApiTags('Products Service API')
+@ApiTags('Product Service')
 @Controller({
     version: '1',
 })
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductController {
-    constructor(private readonly productService: ProductService) {}
+    constructor(private readonly productService: ProductService) { }
 
     @ApiOkResponse({
         type: CreateProductRequestDto,

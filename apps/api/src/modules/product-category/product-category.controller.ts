@@ -16,7 +16,7 @@ import { CreateCategoryRequestDto } from './dto/category-request.dto';
 import { UpdateProductCategoryDto } from './dto/update-request.dto';
 import { ProductCategoryService } from './product-category.service';
 
-@ApiTags('Categories Service API')
+@ApiTags('Categories Service')
 @Controller({
     version: '1',
 })
@@ -25,7 +25,7 @@ import { ProductCategoryService } from './product-category.service';
 export class ProductCategoryController {
     constructor(
         private readonly productCategoryService: ProductCategoryService,
-    ) {}
+    ) { }
 
     @Post('/product-categories')
     async create(

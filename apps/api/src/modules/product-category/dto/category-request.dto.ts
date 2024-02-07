@@ -22,8 +22,9 @@ export class CreateCategoryRequestDto {
     @ApiProperty({
         description: `URL component that designates a particular section`,
         example: 'category/developer-tools',
+        required: false,
     })
     @IsOptional()
     @IsString()
-    slug: string;
+    slug?: string;
 }

@@ -18,14 +18,14 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
 import { UserService } from './user.service';
 
-@ApiTags('User Service API')
+@ApiTags('User Service')
 @Controller({
     version: '1',
 })
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class UserController {
-    constructor(private readonly userService: UserService) {}
+    constructor(private readonly userService: UserService) { }
 
     @Post('/users')
     create(@Body() createUserDto: CreateUserDto) {

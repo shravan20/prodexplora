@@ -1,28 +1,28 @@
 import {
-    Controller,
-    Get,
-    Post,
     Body,
-    Patch,
-    Param,
+    Controller,
     Delete,
+    Get,
+    Param,
+    Patch,
+    Post,
     UseFilters,
 } from '@nestjs/common';
-import { ProductRatingService } from './product-rating.service';
+import { ApiTags } from '@nestjs/swagger';
+import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
+import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { CreateProductRatingRequestDto } from './dto/create-request.dto';
 import { UpdateProductRatingRequestDto } from './dto/update-request.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
-import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
+import { ProductRatingService } from './product-rating.service';
 
-@ApiTags('Product Ratings Service API')
+@ApiTags('Product Rating Service')
 @Controller({
     version: '1',
 })
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductRatingController {
-    constructor(private readonly productRatingService: ProductRatingService) {}
+    constructor(private readonly productRatingService: ProductRatingService) { }
 
     @Post('/products/:productId/product-ratings')
     create(@Body() createProductRatingDto: CreateProductRatingRequestDto) {
