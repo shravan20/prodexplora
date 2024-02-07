@@ -1,4 +1,4 @@
-import { User as entity } from '@entities/user.entity';
+import { User as UserEntity } from '@entities/user.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -7,22 +7,22 @@ import { CreateUserDto } from './dto/create-user.dto';
 @Injectable()
 export class UserRepository {
     constructor(
-        @InjectModel(entity.name) private readonly userModel: Model<entity>,
-    ) {}
+        @InjectModel(UserEntity.name) private readonly userModel: Model<UserEntity>,
+    ) { }
 
-    async findAll(): Promise<entity[]> {
+    async findAll(): Promise<UserEntity[]> {
         return await this.userModel.find().exec();
     }
 
-    async findOne(query: any = {}, view: any = {}): Promise<entity> {
+    async findOne(query: any = {}, view: any = {}): Promise<UserEntity> {
         return await this.userModel.findOne(query, view).exec();
     }
 
-    async findById(id: string): Promise<entity> {
+    async findById(id: string): Promise<UserEntity> {
         return await this.userModel.findById(id).exec();
     }
 
-    async create(createUserDto: CreateUserDto): Promise<entity> {
+    async create(createUserDto: CreateUserDto): Promise<UserEntity> {
         const user = this.toEntity(createUserDto);
         return await this.userModel.create(user);
     }
@@ -39,7 +39,7 @@ export class UserRepository {
         });
     }
 
-    async findByIdAndUpdate(id: string, user: entity): Promise<entity> {
+    async findByIdAndUpdate(id: string, user: UserEntity): Promise<UserEntity> {
         return await this.userModel
             .findByIdAndUpdate(id, user, { new: true })
             .exec();
@@ -49,13 +49,13 @@ export class UserRepository {
         query: any = {},
         update: any = {},
         options: any = {},
-    ): Promise<entity> {
+    ): Promise<UserEntity> {
         return await this.userModel
             .findOneAndUpdate(query, update, { new: true, ...options })
             .exec();
     }
 
-    async delete(id: string): Promise<entity> {
+    async delete(id: string): Promise<UserEntity> {
         return await this.userModel.findByIdAndDelete(id).exec();
     }
 }
