@@ -6,7 +6,7 @@ export class ProductRepository {
     constructor(
         @InjectModel(ProductCategoryEntity.name)
         private readonly model: Model<ProductCategoryEntity>,
-    ) { }
+    ) {}
 
     async create(dtos: [any]): Promise<ProductCategoryEntity[]> {
         const categories: ProductCategoryEntity[] = this.toEntity(dtos);
@@ -30,19 +30,27 @@ export class ProductRepository {
     /**
      * TODO: Add pagination support for all findAll queries
      */
-    async findAll(query: any, projection: any): Promise<ProductCategoryEntity[]> {
+    async findAll(
+        query: any,
+        projection: any,
+    ): Promise<ProductCategoryEntity[]> {
         return await this.model.find(query, projection).exec();
     }
 
-
-    async findByIdAndUpdate(categoryId: string, categoryData: Partial<ProductCategoryEntity>): Promise<ProductCategoryEntity | null> {
-        return await this.model.findByIdAndUpdate(categoryId, categoryData, { new: true }).exec();
+    async findByIdAndUpdate(
+        categoryId: string,
+        categoryData: Partial<ProductCategoryEntity>,
+    ): Promise<ProductCategoryEntity | null> {
+        return await this.model
+            .findByIdAndUpdate(categoryId, categoryData, { new: true })
+            .exec();
     }
 
-    async deleteById(categoryId: string): Promise<ProductCategoryEntity | null> {
+    async deleteById(
+        categoryId: string,
+    ): Promise<ProductCategoryEntity | null> {
         return await this.findByIdAndUpdate(categoryId, {
             isArchived: true,
         });
     }
-
 }
