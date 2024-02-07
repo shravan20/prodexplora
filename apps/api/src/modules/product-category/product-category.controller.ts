@@ -8,7 +8,7 @@ import {
     Post,
     UseFilters,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { ObjectIdDto } from '@utils/validations/object-id.validation';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
@@ -28,6 +28,7 @@ export class ProductCategoryController {
     ) { }
 
     @Post('/product-categories')
+    @ApiBody({ type: [CreateCategoryRequestDto] })
     async create(
         @Body() createProductCategoryDtos: CreateCategoryRequestDto[],
     ) {

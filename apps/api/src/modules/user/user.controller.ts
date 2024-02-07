@@ -25,7 +25,7 @@ import { UserService } from './user.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class UserController {
-    constructor(private readonly userService: UserService) { }
+    constructor(private readonly userService: UserService) {}
 
     @Post('/users')
     create(@Body() createUserDto: CreateUserDto) {

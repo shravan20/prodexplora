@@ -31,8 +31,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
         } else {
             if (exception.name === 'ValidationError') {
                 statusCode = HttpStatus.BAD_REQUEST;
-                let messages = exception.message.split(':')[0];
-                message = [messages || unknownErrorMessage]
+                const messages = exception.message.split(':')[0];
+                message = [messages || unknownErrorMessage];
             } else {
                 statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
                 message = [exception.message || unknownErrorMessage];

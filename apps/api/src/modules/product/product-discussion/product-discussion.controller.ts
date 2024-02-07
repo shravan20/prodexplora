@@ -24,7 +24,7 @@ import { ProductDiscussionService } from './product-discussion.service';
 export class ProductDiscussionController {
     constructor(
         private readonly productDiscussionService: ProductDiscussionService,
-    ) { }
+    ) {}
 
     @Post('/products/:productId/product-discussions')
     create(@Body() createProductDiscussionDto: CreateProductDiscussionDto) {

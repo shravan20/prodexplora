@@ -1,15 +1,9 @@
-import {
-    Body,
-    Controller,
-    Get,
-    Post,
-    UseFilters
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, UseFilters } from '@nestjs/common';
 import {
     ApiNotFoundResponse,
     ApiResponse,
     ApiTags,
-    ApiUnprocessableEntityResponse
+    ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
@@ -24,7 +18,7 @@ import { MyResponseDto } from './dtos/health-response.dto';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class AppController {
-    constructor(private readonly appService: AppService) { }
+    constructor(private readonly appService: AppService) {}
 
     @ApiResponse({
         status: 200,

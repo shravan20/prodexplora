@@ -22,7 +22,7 @@ import { ProductUpvoteService } from './product-upvote.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductUpvoteController {
-    constructor(private readonly productUpvoteService: ProductUpvoteService) { }
+    constructor(private readonly productUpvoteService: ProductUpvoteService) {}
 
     @Post('/product/:productId/product-upvotes')
     create(@Body() createProductUpvoteDto: CreateProductUpvoteRequestDto) {
