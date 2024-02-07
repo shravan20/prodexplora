@@ -11,8 +11,6 @@ export class ProductCategory extends CommonEntity {
 
     @Prop()
     slug: string;
-
-
 }
 
 export const ProductCategorySchema =
