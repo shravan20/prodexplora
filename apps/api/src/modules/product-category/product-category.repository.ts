@@ -5,17 +5,17 @@ import { Model } from 'mongoose';
 export class ProductRepository {
     constructor(
         @InjectModel(ProductCategoryEntity.name)
-        private readonly productCategoryModel: Model<ProductCategoryEntity>,
-    ) {}
+        private readonly model: Model<ProductCategoryEntity>,
+    ) { }
 
     async create(dtos: [any]): Promise<ProductCategoryEntity[]> {
         const categories: ProductCategoryEntity[] = this.toEntity(dtos);
-        return await this.productCategoryModel.create(categories);
+        return await this.model.create(categories);
     }
 
     private toEntity(dtos: any): ProductCategoryEntity[] {
         return dtos.map((dto) => {
-            return new this.productCategoryModel({
+            return new this.model({
                 name: dto.name,
                 description: dto.description,
                 slug: dto.slug,

@@ -8,28 +8,28 @@ import { CreateUserDto } from './dto/create-user.dto';
 export class UserRepository {
     constructor(
         @InjectModel(UserEntity.name)
-        private readonly userModel: Model<UserEntity>,
-    ) {}
+        private readonly model: Model<UserEntity>,
+    ) { }
 
     async findAll(): Promise<UserEntity[]> {
-        return await this.userModel.find().exec();
+        return await this.model.find().exec();
     }
 
     async findOne(query: any = {}, view: any = {}): Promise<UserEntity> {
-        return await this.userModel.findOne(query, view).exec();
+        return await this.model.findOne(query, view).exec();
     }
 
     async findById(id: string): Promise<UserEntity> {
-        return await this.userModel.findById(id).exec();
+        return await this.model.findById(id).exec();
     }
 
     async create(createUserDto: CreateUserDto): Promise<UserEntity> {
         const user = this.toEntity(createUserDto);
-        return await this.userModel.create(user);
+        return await this.model.create(user);
     }
 
     private toEntity(createUserDto: CreateUserDto) {
-        return new this.userModel({
+        return new this.model({
             firstName: createUserDto.firstName,
             lastName: createUserDto.lastName,
             email: createUserDto.email,
@@ -41,7 +41,7 @@ export class UserRepository {
     }
 
     async findByIdAndUpdate(id: string, user: UserEntity): Promise<UserEntity> {
-        return await this.userModel
+        return await this.model
             .findByIdAndUpdate(id, user, { new: true })
             .exec();
     }
@@ -51,12 +51,12 @@ export class UserRepository {
         update: any = {},
         options: any = {},
     ): Promise<UserEntity> {
-        return await this.userModel
+        return await this.model
             .findOneAndUpdate(query, update, { new: true, ...options })
             .exec();
     }
 
     async delete(id: string): Promise<UserEntity> {
-        return await this.userModel.findByIdAndDelete(id).exec();
+        return await this.model.findByIdAndDelete(id).exec();
     }
 }
