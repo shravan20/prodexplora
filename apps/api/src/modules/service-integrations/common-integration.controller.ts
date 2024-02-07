@@ -11,8 +11,7 @@ import { CommonIntegrationFactory } from './common-integration.factory';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class CommonIntegrationController {
-
-    constructor(private readonly factory: CommonIntegrationFactory) { }
+    constructor(private readonly factory: CommonIntegrationFactory) {}
 
     @Get('/service')
     async get() {

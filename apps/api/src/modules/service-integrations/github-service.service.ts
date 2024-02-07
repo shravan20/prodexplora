@@ -4,13 +4,11 @@ import { Octokit } from 'octokit';
 import { createAppAuth } from '@octokit/auth-app';
 import IServiceIntegration from './interfaces/common-integration.interface';
 
-
 @Injectable()
 export class GitHubService implements IServiceIntegration {
     private readonly octokit: Octokit;
 
     constructor() {
-
         const CACHE = {};
 
         this.octokit = new Octokit({
@@ -29,17 +27,17 @@ export class GitHubService implements IServiceIntegration {
                         CACHE[key] = value;
                     },
                 },
-            }
+            },
         });
     }
     async get(): Promise<any> {
         try {
-            const slug = await this.octokit.request("GET /users");
-            console.log("authenticated as %s", slug);
+            const slug = await this.octokit.request('GET /users');
+            console.log('authenticated as %s', slug);
 
-            return await this.octokit.request("GET /");
+            return await this.octokit.request('GET /');
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 }

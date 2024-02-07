@@ -9,7 +9,9 @@ export class CommonIntegrationFactory {
             case 'GITHUB':
                 return new GitHubService();
             default:
-                throw new UnsupportedMediaTypeException(`Unsupported platform: ${platform}`);
+                throw new UnsupportedMediaTypeException(
+                    `Unsupported platform: ${platform}`,
+                );
         }
     }
 }
