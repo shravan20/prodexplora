@@ -24,7 +24,7 @@ import { ProductCategoryService } from './product-category.service';
 export class ProductCategoryController {
     constructor(
         private readonly productCategoryService: ProductCategoryService,
-    ) { }
+    ) {}
 
     @Post('/product-categories')
     create(@Body() createProductCategoryDto: CreateCategoryRequestDto) {
