@@ -9,7 +9,7 @@ export class UserRepository {
     constructor(
         @InjectModel(UserEntity.name)
         private readonly model: Model<UserEntity>,
-    ) {}
+    ) { }
 
     async findAll(): Promise<UserEntity[]> {
         return await this.model.find().exec();
@@ -56,7 +56,9 @@ export class UserRepository {
             .exec();
     }
 
-    async delete(id: string): Promise<UserEntity> {
-        return await this.model.findByIdAndDelete(id).exec();
+    async deleteById(id: string): Promise<UserEntity> {
+        return await this.model.findByIdAndUpdate(id, {
+            isArchived: true,
+        }).exec()
     }
 }
