@@ -9,9 +9,10 @@ import {
     UseFilters,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { ObjectIdDto } from '@utils/validations/object-id.validation';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
-import { CreateCategoryRequestDto } from './dto/create-category-request.dto';
+import { CreateCategoryRequestDto } from './dto/category-request.dto';
 import { UpdateProductCategoryDto } from './dto/update-request.dto';
 import { ProductCategoryService } from './product-category.service';
 
@@ -24,36 +25,36 @@ import { ProductCategoryService } from './product-category.service';
 export class ProductCategoryController {
     constructor(
         private readonly productCategoryService: ProductCategoryService,
-    ) {}
+    ) { }
 
     @Post('/product-categories')
-    create(@Body() createProductCategoryDto: CreateCategoryRequestDto) {
-        return this.productCategoryService.create(createProductCategoryDto);
+    create(@Body() createProductCategoryDtos: CreateCategoryRequestDto[]) {
+        return this.productCategoryService.create(createProductCategoryDtos);
     }
 
-    @Get('/product-categories/:id')
+    @Get('/product-categories')
     findAll() {
         return this.productCategoryService.findAll();
     }
 
     @Get('/product-categories/:id')
-    findOne(@Param('id') id: string) {
-        return this.productCategoryService.findOne(+id);
+    findOne(@Param() { id }: ObjectIdDto) {
+        return this.productCategoryService.findById(id);
     }
 
-    @Patch('/products/:productId/product-categories/:id')
+    @Patch('/product-categories/:id')
     update(
-        @Param('id') id: string,
+        @Param() { id }: ObjectIdDto,
         @Body() updateProductCategoryDto: UpdateProductCategoryDto,
     ) {
         return this.productCategoryService.update(
-            +id,
+            id,
             updateProductCategoryDto,
         );
     }
 
     @Delete('/product-categories/:id')
-    remove(@Param('id') id: string) {
-        return this.productCategoryService.remove(+id);
+    remove(@Param() { id }: ObjectIdDto) {
+        return this.productCategoryService.remove(id);
     }
 }

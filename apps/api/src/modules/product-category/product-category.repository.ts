@@ -1,14 +1,15 @@
 import { ProductCategory as ProductCategoryEntity } from '@entities/product-category.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { CreateCategoryRequestDto } from './dto/category-request.dto';
 
-export class ProductRepository {
+export class ProductCategoryRepository {
     constructor(
         @InjectModel(ProductCategoryEntity.name)
         private readonly model: Model<ProductCategoryEntity>,
-    ) {}
+    ) { }
 
-    async create(dtos: [any]): Promise<ProductCategoryEntity[]> {
+    async create(dtos: CreateCategoryRequestDto[]): Promise<ProductCategoryEntity[]> {
         const categories: ProductCategoryEntity[] = this.toEntity(dtos);
         return await this.model.create(categories);
     }
@@ -31,8 +32,8 @@ export class ProductRepository {
      * TODO: Add pagination support for all findAll queries
      */
     async findAll(
-        query: any,
-        projection: any,
+        query: any = {},
+        projection: any = {},
     ): Promise<ProductCategoryEntity[]> {
         return await this.model.find(query, projection).exec();
     }

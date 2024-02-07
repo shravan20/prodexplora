@@ -1,26 +1,42 @@
-import { Injectable } from '@nestjs/common';
-import { CreateCategoryRequestDto } from './dto/create-category-request.dto';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateCategoryRequestDto } from './dto/category-request.dto';
+import { CategoryResponseDto } from './dto/category-response.dto';
 import { UpdateProductCategoryDto } from './dto/update-request.dto';
+import { ProductCategoryRepository } from './product-category.repository';
 
 @Injectable()
 export class ProductCategoryService {
-    create(createProductCategoryDto: CreateCategoryRequestDto) {
-        return 'This action adds a new productCategory';
+
+    constructor(private readonly repository: ProductCategoryRepository) {
     }
 
-    findAll() {
-        return `This action returns all productCategory`;
+    async create(dtos: CreateCategoryRequestDto[]): Promise<CategoryResponseDto[]> {
+        let categories = await this.repository.create(dtos);
+        return categories.map(category => CategoryResponseDto.from(category));
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} productCategory`;
+    async findAll(): Promise<CategoryResponseDto[]> {
+        let categories = await this.repository.findAll();
+        return categories.map(category => CategoryResponseDto.from(category));
     }
 
-    update(id: number, updateProductCategoryDto: UpdateProductCategoryDto) {
+    async findById(id: string): Promise<CategoryResponseDto> {
+        let category = await this.repository.findById(id);
+        if (!category) {
+            throw new NotFoundException(`Resource with id=${id} not found`);
+        }
+        return CategoryResponseDto.from(category);
+    }
+
+    update(id: string, updateProductCategoryDto: UpdateProductCategoryDto) {
         return `This action updates a #${id} productCategory`;
     }
 
-    remove(id: number) {
-        return `This action removes a #${id} productCategory`;
+    async remove(id: string): Promise<CategoryResponseDto> {
+        let archivedCategory = await this.repository.deleteById(id);
+        if (!archivedCategory) {
+            throw new NotFoundException(`Resource with id=${id} not found`);
+        }
+        return CategoryResponseDto.from(archivedCategory);
     }
 }
