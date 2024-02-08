@@ -7,11 +7,13 @@ assignees: ''
 
 ---
 
+<!--
 # ProdExplora Feature Request Template
 
 Thank you for contributing to ProdExplora! Before submitting a feature request, please ensure that you have reviewed our [CONTRIBUTING.md](../CONTRIBUTING.md) guidelines.
+-->
 
-## Feature Request Template
+<!-- ## Feature Request Template -->
 
 ### Feature Description
 A clear and concise description of the new feature you are proposing.
@@ -31,5 +33,8 @@ List any dependencies or related features that this new feature may rely on.
 ### Additional Context
 Any extra details or context that might help in understanding the feature request.
 
+
+<!--
 ### Thank you for contributing to ProdExplora!
 Your input is valuable in shaping the future of our project.
+-->

@@ -11,14 +11,18 @@ npm run build
 echo -e "${GREEN}Build is complete${NC}"
 
 
-cd apps/ui/ && 
+cd apps/ui/ &&
 npm run lint
-echo -e "${GREEN}Linter validation complete for the main project${NC}"
+echo -e "${GREEN}Linter validation complete for the ui # production build mode
+$ npm run prod:build${NC}"
 
-cd ../ && cd api/ && 
+cd ../ && cd api/ &&
 npm run lint
-echo -e "${GREEN}Linter validation complete for the ui submodule${NC}"
+echo -e "${GREEN}Linter validation complete for the api submodule${NC}"
 
 
 echo -e "${GREEN}Pre-commit checks completed successfully.${NC}"
+
+# Include E2E tests and unit tests
+
 exit 0
