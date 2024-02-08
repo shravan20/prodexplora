@@ -1,5 +1,7 @@
 {
-    "cSpell.words": ["prodexplora"],
+    "cSpell.words": [
+        "prodexplora"
+    ],
     "editor.codeActionsOnSave": {
         "source.organizeImports": "explicit"
     },

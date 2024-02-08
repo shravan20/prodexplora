@@ -12,14 +12,10 @@ type InferredVariantProps = VariantProps<typeof buttonClasses>;
 
 export type ButtonColor = NonNullable<InferredVariantProps["color"]>;
 export type ButtonBaseProps = {
-  /** Action that happens when the button is clicked */
   onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
-  /**Left aligned icon*/
   StartIcon?: SVGComponent | React.ElementType;
-  /**Right aligned icon */
   EndIcon?: SVGComponent;
   shallow?: boolean;
-  /**Tool tip used when icon size is set to small */
   tooltip?: string;
   tooltipSide?: "top" | "right" | "bottom" | "left";
   tooltipOffset?: number;
@@ -49,7 +45,7 @@ export const buttonClasses = cva(
         primary:
           "bg-secondary hover:bg-brand-emphasis focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-brand-default text-brand disabled:bg-brand-subtle disabled:text-brand-subtle disabled:opacity-40 disabled:hover:bg-brand-subtle disabled:hover:text-brand-default disabled:hover:opacity-40",
         secondary:
-          "text-emphasis border border-default bg-default hover:bg-muted hover:border-emphasis focus-visible:bg-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-empthasis disabled:border-subtle disabled:bg-opacity-30 disabled:text-muted disabled:hover:bg-opacity-30 disabled:hover:text-muted disabled:hover:border-subtle disabled:hover:bg-default",
+          "text-emphasis border border-default bg-default hover:bg-muted hover:border-emphasis focus-visible:bg-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-empthasis disabled:border-subtle disabled:bg-opacity-30 disabled:text-muted disabled:hover:bg-opacity-30 disabled:hover:text-muted disabled:hover:border-subtle",
         minimal:
           "text-emphasis hover:bg-subtle focus-visible:bg-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-empthasis disabled:border-subtle disabled:bg-opacity-30 disabled:text-muted disabled:hover:bg-transparent disabled:hover:text-muted disabled:hover:border-subtle",
         fun:
@@ -135,11 +131,11 @@ export const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonPr
     // attributes propagated from `HTMLAnchorProps` or `HTMLButtonProps`
     ...passThroughProps
   } = props;
-  // Buttons are **always** disabled if we're in a `loading` state
+
   const disabled = props.disabled || loading;
-  // If pass an `href`-attr is passed it's `<a>`, otherwise it's a `<button />`
-  const isLink = typeof props.href !== "undefined";
-  const elementType = isLink ? "a" : "button";
+  const isLink = 'href' in props;
+  const elementType = isLink ? 'a' : 'button';
+
   const element = React.createElement(
     elementType,
     {
@@ -148,12 +144,12 @@ export const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonPr
       type: !isLink ? type : undefined,
       ref: forwardedRef,
       className: classNames(buttonClasses({ color, size, loading, variant }), props.className),
-      // if we click a disabled button, we prevent going through the click handler
       onClick: disabled
         ? (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
           e.preventDefault();
         }
         : props.onClick,
+      href: isLink ? props.href : undefined, // Only set href if it's a link
     },
     <>
       {StartIcon && (
@@ -214,11 +210,7 @@ export const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonPr
     </>
   );
 
-  return props.href ? (
-    <a data-testid="link-component" href={props.href}>
-      {element}
-    </a>
-  ) : (
+  return isLink ? (
     <Wrapper
       data-testid="wrapper"
       tooltip={props.tooltip}
@@ -226,6 +218,8 @@ export const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonPr
       tooltipOffset={tooltipOffset}>
       {element}
     </Wrapper>
+  ) : (
+    <>{element}</>
   );
 });
 
