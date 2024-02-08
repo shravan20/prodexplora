@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { GoChevronUp } from 'react-icons/go';
 
 interface Props {
     currentCount: number;

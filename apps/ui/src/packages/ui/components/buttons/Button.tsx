@@ -31,9 +31,10 @@ export type ButtonBaseProps = {
 
 export type ButtonProps = ButtonBaseProps &
   (
-    | (Omit<JSX.IntrinsicElements["a"], "href" | "onClick" | "ref">)
-    | (Omit<JSX.IntrinsicElements["button"], "onClick" | "ref"> & { href?: never })
+    | (Omit<JSX.IntrinsicElements["a"], "onClick" | "ref"> & { href?: string })
+    | (Omit<JSX.IntrinsicElements["button"], "onClick" | "ref">)
   );
+
 
 export const buttonClasses = cva(
   "whitespace-nowrap inline-flex items-center text-sm font-medium relative rounded-md transition disabled:cursor-not-allowed",
