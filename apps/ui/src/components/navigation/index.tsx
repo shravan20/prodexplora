@@ -15,7 +15,7 @@ const Navigation: React.FC = () => {
                     <img src="/logo.svg" width="55" height="55" />
                     <div className="w-[350px] flex items-center justify-center">
                         <SearchInput
-                            placeholder="Search Amazing Open Source Products"
+                            placeholder="Discover Open Source Gems"
                             className="w-full"
                         />
                     </div>
