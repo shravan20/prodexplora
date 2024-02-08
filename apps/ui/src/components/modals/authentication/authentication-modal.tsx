@@ -1,18 +1,8 @@
+//@ts-nocheck
 import { GoogleLogin } from '@react-oauth/google';
 import * as React from 'react';
 
 const AuthenticationModal: React.FC = () => {
-  //@ts-ignore
-  const handleLoginSuccess = async (credentialResponse: any) => {
-    console.log(`credentialResponse`, credentialResponse);
-  };
-
-  //@ts-ignore
-  const handleLoginFailure = (error: any) => {
-    alert("Something went wrong, please try again");
-    console.log(`error`, error);
-  }
-
   return (
     <div className="p-[25px] bg-base-gradient rounded-md w-[500px]">
 
@@ -22,10 +12,12 @@ const AuthenticationModal: React.FC = () => {
       </div>
       <div className="flex flex-col gap-2 m-auto flex items-center justify-center p-5">
         <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            handleLoginSuccess(credentialResponse);
+          onSuccess={credentialResponse => {
+            console.log(credentialResponse);
           }}
-          onError={() => handleLoginFailure}
+          onError={() => {
+            console.log('Login Failed');
+          }}
         />
       </div>
     </div>
