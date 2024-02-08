@@ -1,12 +1,13 @@
-//@ts-nocheck
 import { GoogleLogin } from '@react-oauth/google';
 import * as React from 'react';
 
 const AuthenticationModal: React.FC = () => {
+  //@ts-ignore
   const handleLoginSuccess = async (credentialResponse: any) => {
     console.log(`credentialResponse`, credentialResponse);
   };
 
+  //@ts-ignore
   const handleLoginFailure = (error: any) => {
     alert("Something went wrong, please try again");
     console.log(`error`, error);
