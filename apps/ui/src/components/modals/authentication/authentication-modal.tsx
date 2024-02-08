@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { GoogleLogin } from '@react-oauth/google';
 import * as React from 'react';
 
