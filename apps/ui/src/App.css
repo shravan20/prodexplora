@@ -8,3 +8,104 @@
     color: #fff;
     background-color: #161616;
 }
+
+.fade-up-anim {
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Define the transition */
+    animation: fade-up 250ms;
+}
+
+/* fade-up */
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+      /* translate: -50% -50%; */
+    }
+    to {
+      /* translate: -50% -50%; */
+      opacity: 1;
+    transform: translateY(0);
+    }
+  }
+
+/* loading */
+
+@keyframes loading {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+
+@keyframes loadIntoPlace {
+  0% {
+    opacity: 0;
+    transform: translate(0px, -10px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: blur(0px);
+  }  
+}
+
+.load-into-place-anim {
+  animation: 0.3s ease 0.2s 1 normal both running loadIntoPlace;
+}
+
+
+@keyframes splashScreen {
+  0% {
+    opacity: 0;
+    transform: translate(0px, -10px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: blur(0px);
+  }  
+}
+
+.splash-screen-anim {
+  animation: 2s normal both running splashScreen;
+}
+
+@keyframes shimmer {
+  to {
+     background-position-x: 5%
+  }
+}
+
+@keyframes close {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ... (previous CSS code remains unchanged) */
+
+@keyframes close {
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.splash-screen {
+  background: linear-gradient(-45deg, #1F2125 40%, #232323 50%, #2d2d2d 60%);
+  background-size: 300%;
+  background-position-x: 100%;
+  opacity: 1;
+  animation: shimmer 1s running linear, close 1s ease-in-out 4s forwards;
+}

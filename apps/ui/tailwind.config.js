@@ -25,6 +25,22 @@ export default {
         'linear-gradient(92.88deg, rgb(69, 94, 181) 9.16%, rgb(86, 67, 204) 43.89%, rgb(103, 63, 215) 64.72%)',
       'radial-faded':
         'radial-gradient(circle at bottom center, var(--color), transparent 70%)',
+      'base-gradient': 
+        'url(./base-linear-gradient-bg.png)'
+    },
+    keyframes: {
+      overlayShow: {
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+      },
+      contentShow: {
+        from: { opacity: 0, transform: 'translate(-50%, -48%) scale(0.96)' },
+        to: { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
+      },
+    },
+    animation: {
+      overlayShow: 'overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
+      contentShow: 'contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
     },
     extend: {},
   },

@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { SearchInput } from '../../packages/ui/components/forms/inputs/SearchInput';
 
-import { GoIssueDraft, GoStack, GoProjectTemplate } from "react-icons/go";
+import { GoIssueDraft, GoStack, GoProjectTemplate, GoStarFill } from "react-icons/go";
 import { Button } from '../../packages/ui/components/buttons/Button';
 import { GiArrowCursor } from 'react-icons/gi';
+import AnimatedDialog from '../../packages/ui/components/dialog/AnimatedDialog';
+import AuthenticationModal from '../modals/authentication/authentication-modal';
 
 const Navigation: React.FC = () => {
     return (
@@ -36,16 +38,27 @@ const Navigation: React.FC = () => {
                             </ul>
                         </nav>
                     </div>
-                    <div className="flex flex-row items-center">
+                    <div className="flex flex-row items-center gap-2">
                         <Button color="fun" size="lg">
                             <div className="flex flex-row gap-1 items-center">
                             <GiArrowCursor />
                             <span>Submit Project</span>
                             </div>
                         </Button>
+                        <AnimatedDialog
+                            dialogTrigger={
+                                <Button color="subtle" size="lg">
+                                    <div className="flex flex-row gap-1 items-center">
+                                        <GoStarFill />
+                                        <span>Login</span>
+                                    </div>
+                                </Button>
+                            }
+                            dialogContent={<AuthenticationModal />}
+                        />
                     </div>
                 </div>
-                <img src="/gradient.svg" className="absolute top-0 left-0 w-[550px] h-[500px] z-20" />
+                <img src="/gradient.svg" className="absolute top-0 left-0 w-[550px] h-[500px] z-20 splash-screen-anim" />
             </div>
     )
 }
