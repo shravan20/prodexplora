@@ -4,9 +4,9 @@ import React, { forwardRef } from "react";
 
 
 import { GoPlus } from "react-icons/go";
+import classNames from "../../../../libs/classNames";
 import { SVGComponent } from "../../types/SVGComponent";
 import Tooltip from "../Tooltip/tooltip";
-import classNames from "../../../../libs/classNames";
 
 type InferredVariantProps = VariantProps<typeof buttonClasses>;
 
@@ -26,12 +26,12 @@ export type ButtonBaseProps = {
   disabled?: boolean;
   flex?: boolean;
 } & Omit<InferredVariantProps, "color"> & {
-    color?: ButtonColor;
-  };
+  color?: ButtonColor;
+};
 
 export type ButtonProps = ButtonBaseProps &
   (
-    | (Omit<JSX.IntrinsicElements["a"], "href" | "onClick" | "ref"> & LinkProps)
+    | (Omit<JSX.IntrinsicElements["a"], "href" | "onClick" | "ref">)
     | (Omit<JSX.IntrinsicElements["button"], "onClick" | "ref"> & { href?: never })
   );
 
@@ -51,7 +51,7 @@ export const buttonClasses = cva(
           "text-emphasis border border-default bg-default hover:bg-muted hover:border-emphasis focus-visible:bg-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-empthasis disabled:border-subtle disabled:bg-opacity-30 disabled:text-muted disabled:hover:bg-opacity-30 disabled:hover:text-muted disabled:hover:border-subtle disabled:hover:bg-default",
         minimal:
           "text-emphasis hover:bg-subtle focus-visible:bg-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-empthasis disabled:border-subtle disabled:bg-opacity-30 disabled:text-muted disabled:hover:bg-transparent disabled:hover:text-muted disabled:hover:border-subtle",
-        fun: 
+        fun:
           "bg-primary-gradient hover:bg-brand-emphasis focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-brand-default text-brand disabled:bg-brand-subtle disabled:text-brand-subtle disabled:opacity-40 disabled:hover:bg-brand-subtle disabled:hover:text-brand-default disabled:hover:opacity-40",
         subtle:
           "bg-primary-lighter text-white hover:bg-brand-emphasis focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-brand-default text-brand disabled:bg-brand-subtle disabled:text-brand-subtle disabled:opacity-40 disabled:hover:bg-brand-subtle disabled:hover:text-brand-default disabled:hover:opacity-40",
@@ -150,8 +150,8 @@ export const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonPr
       // if we click a disabled button, we prevent going through the click handler
       onClick: disabled
         ? (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-            e.preventDefault();
-          }
+          e.preventDefault();
+        }
         : props.onClick,
     },
     <>
@@ -197,7 +197,7 @@ export const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonPr
           {variant === "fab" ? (
             <>
               <EndIcon className="-mr-1 me-2 ms-2 hidden h-5 w-5 md:inline" />
-              <Plus data-testid="plus" className="inline h-6 w-6 md:hidden" />
+              <GoPlus data-testid="plus" className="inline h-6 w-6 md:hidden" />
             </>
           ) : (
             <EndIcon

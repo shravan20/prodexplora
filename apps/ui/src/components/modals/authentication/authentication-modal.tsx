@@ -2,13 +2,6 @@ import { GoogleLogin } from '@react-oauth/google';
 import * as React from 'react';
 
 const AuthenticationModal: React.FC = () => {
-  const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-  };
-
-
   const handleLoginSuccess = async (credentialResponse: any) => {
     console.log(`credentialResponse`, credentialResponse);
   };

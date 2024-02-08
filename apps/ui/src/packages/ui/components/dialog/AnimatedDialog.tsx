@@ -1,13 +1,12 @@
-import * as React from 'react'
-
 import * as Dialog from '@radix-ui/react-dialog';
+import * as React from 'react';
 
 type Props = {
-    dialogTrigger: React.ReactNode,
-    dialogContent: React.ReactNode,
+  dialogTrigger: React.ReactNode,
+  dialogContent: React.ReactNode,
 }
 
-const AnimatedDialog:React.FC = (props: Props) => (
+const AnimatedDialog: React.FC<Props> = (props) => (
   <Dialog.Root>
     <Dialog.Trigger asChild>
       {props.dialogTrigger}
