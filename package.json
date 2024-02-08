@@ -1,42 +1,36 @@
 {
-    "name": "ui",
-    "version": "0.0.0",
-    "description": "ProdExplora Service UI",
-    "author": "",
-    "private": true,
-    "license": "MIT",
-    "type": "module",
+    "name": "prodexplora",
+    "version": "1.0.0",
+    "description": "prodexplora - Connecting two dimensions",
+    "main": "index.js",
     "scripts": {
-        "dev": "vite",
-        "build": "tsc && vite build",
-        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-        "preview": "vite preview"
+      "start": "turbo run dev",
+      "test": "jest",
+      "build": "turbo run build",
+      "prod:build": "turbo run build",
+      "prod:start": "node apps/backend/dist/main",
+      "test:e2e": "echo \"Error: no test specified\" && exit 1",
+      "test:cov": "echo \"Error: no test specified\" && exit 1",
+      "prepare": "husky install",
+      "commit": "commit"
     },
-    "dependencies": {
-        "@radix-ui/react-checkbox": "^1.0.4",
-        "@radix-ui/react-dialog": "^1.0.5",
-        "@radix-ui/react-tooltip": "^1.0.7",
-        "class-variance-authority": "^0.7.0",
-        "jwt-decode": "^4.0.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-icons": "^5.0.1"
-    },
+    "workspaces": [
+      "apps/*"
+    ],
+    "keywords": [
+      "open-source",
+      "javascript",
+      "prodexplora"
+    ],
+    "author": "",
+    "license": "MIT",
     "devDependencies": {
-        "@types/react": "^18.2.43",
-        "@types/react-dom": "^18.2.17",
-        "@typescript-eslint/eslint-plugin": "^6.14.0",
-        "@typescript-eslint/parser": "^6.14.0",
-        "@vitejs/plugin-react-swc": "^3.5.0",
-        "autoprefixer": "^10.4.17",
-        "eslint": "^8.55.0",
-        "eslint-plugin-react-hooks": "^4.6.0",
-        "eslint-plugin-react-refresh": "^0.4.5",
-        "postcss": "^8.4.33",
-        "react-router-dom": "^6.21.3",
-        "tailwind-merge": "^2.2.1",
-        "tailwindcss": "^3.4.1",
-        "typescript": "^5.2.2",
-        "vite": "^5.0.8"
+      "@commitlint/cli": "^18.5.0",
+      "@commitlint/config-conventional": "^18.5.0",
+      "@commitlint/prompt-cli": "^18.5.0",
+      "conventional-changelog-atom": "^4.0.0",
+      "husky": "^8.0.3",
+      "turbo": "^1.11.3"
     }
-}
+  }
+  
