@@ -1,6 +1,5 @@
-// AuthContext.tsx
 "use client"
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { ReactNode, createContext, useContext, useState } from 'react';
 
 interface AuthContextType {
   token: string | null;
@@ -19,11 +18,11 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(
-    typeof window !== 'undefined' ?localStorage.getItem('userToken') || null : null
+    typeof window !== 'undefined' ? localStorage.getItem('userToken') || null : null
   );
 
   const [email, setEmail] = useState<string | null>(
-    typeof window !== 'undefined' ?localStorage.getItem('email') || null : null
+    typeof window !== 'undefined' ? localStorage.getItem('email') || null : null
   );
 
   const authLogin = (newToken: string, accessToken: string, email: string) => {
@@ -46,7 +45,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }
 
   const isAuthenticated = () => {
-    if(token !== null || token !== "") {
+    if (token !== null || token !== "") {
       return true;
     } else {
       return false;
