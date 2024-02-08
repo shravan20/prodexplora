@@ -1,21 +1,21 @@
 import {
-    Controller,
-    Get,
-    Post,
     Body,
-    Patch,
-    Param,
+    Controller,
     Delete,
+    Get,
+    Param,
+    Patch,
+    Post,
     UseFilters,
 } from '@nestjs/common';
-import { ProductDiscussionService } from './product-discussion.service';
+import { ApiTags } from '@nestjs/swagger';
+import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
+import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { CreateProductDiscussionDto } from './dto/create-request.dto';
 import { UpdateProductDiscussionDto } from './dto/update-request.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
-import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
+import { ProductDiscussionService } from './product-discussion.service';
 
-@ApiTags('Product Discussions Service API')
+@ApiTags('Product Discussion Service')
 @Controller({
     version: '1',
 })

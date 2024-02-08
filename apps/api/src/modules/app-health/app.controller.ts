@@ -1,25 +1,17 @@
-import {
-    Controller,
-    Get,
-    Post,
-    NotFoundException,
-    UseFilters,
-    Body,
-} from '@nestjs/common';
-import { AppService } from './app.service';
+import { Body, Controller, Get, Post, UseFilters } from '@nestjs/common';
 import {
     ApiNotFoundResponse,
-    ApiUnprocessableEntityResponse,
-    ApiProperty,
+    ApiResponse,
     ApiTags,
+    ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
-import { ApiResponse } from '@nestjs/swagger';
-import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
-import { MyResponseDto } from './dtos/health-response.dto';
+import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
+import { AppService } from './app.service';
 import { MyRequestDto } from './dtos/health-request.dto';
+import { MyResponseDto } from './dtos/health-response.dto';
 
-@ApiTags('Service Health Check')
+@ApiTags('Health Check Service')
 @Controller({
     version: '1',
 })

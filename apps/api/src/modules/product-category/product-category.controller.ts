@@ -1,21 +1,22 @@
 import {
-    Controller,
-    Get,
-    Post,
     Body,
-    Patch,
-    Param,
+    Controller,
     Delete,
+    Get,
+    Param,
+    Patch,
+    Post,
     UseFilters,
 } from '@nestjs/common';
-import { ProductCategoryService } from './product-category.service';
-import { CreateProductCategoryRequestDto } from './dto/create-request.dto';
-import { UpdateProductCategoryDto } from './dto/update-request.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { ObjectIdDto } from '@utils/validations/object-id.validation';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
+import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
+import { CreateCategoryRequestDto } from './dto/category-request.dto';
+import { UpdateProductCategoryDto } from './dto/update-request.dto';
+import { ProductCategoryService } from './product-category.service';
 
-@ApiTags('Categories Service API')
+@ApiTags('Categories Service')
 @Controller({
     version: '1',
 })
@@ -26,34 +27,39 @@ export class ProductCategoryController {
         private readonly productCategoryService: ProductCategoryService,
     ) {}
 
-    @Post('/products/:productId/product-categories')
-    create(@Body() createProductCategoryDto: CreateProductCategoryRequestDto) {
-        return this.productCategoryService.create(createProductCategoryDto);
+    @Post('/product-categories')
+    @ApiBody({ type: [CreateCategoryRequestDto] })
+    async create(
+        @Body() createProductCategoryDtos: CreateCategoryRequestDto[],
+    ) {
+        return await this.productCategoryService.create(
+            createProductCategoryDtos,
+        );
     }
 
-    @Get('/products/:productId/product-categories/:id')
-    findAll() {
-        return this.productCategoryService.findAll();
+    @Get('/product-categories')
+    async findAll() {
+        return await this.productCategoryService.findAll();
     }
 
-    @Get('/products/:productId/product-categories/:id')
-    findOne(@Param('id') id: string) {
-        return this.productCategoryService.findOne(+id);
+    @Get('/product-categories/:id')
+    findOne(@Param() { id }: ObjectIdDto) {
+        return this.productCategoryService.findById(id);
     }
 
-    @Patch('/products/:productId/product-categories/:id')
-    update(
-        @Param('id') id: string,
+    @Patch('/product-categories/:id')
+    async update(
+        @Param() { id }: ObjectIdDto,
         @Body() updateProductCategoryDto: UpdateProductCategoryDto,
     ) {
-        return this.productCategoryService.update(
-            +id,
+        return await this.productCategoryService.update(
+            id,
             updateProductCategoryDto,
         );
     }
 
-    @Delete('/products/:productId/product-categories/:id')
-    remove(@Param('id') id: string) {
-        return this.productCategoryService.remove(+id);
+    @Delete('/product-categories/:id')
+    async remove(@Param() { id }: ObjectIdDto) {
+        return await this.productCategoryService.remove(id);
     }
 }

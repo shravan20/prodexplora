@@ -18,7 +18,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
 import { UserService } from './user.service';
 
-@ApiTags('User Service API')
+@ApiTags('User Service')
 @Controller({
     version: '1',
 })

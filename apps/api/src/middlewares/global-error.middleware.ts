@@ -21,7 +21,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
             'Something really went wrong, reach out to the server builder or try again';
         let statusCode: number;
         let message: any[];
-
         if (exception instanceof HttpException) {
             statusCode = exception.getStatus();
             const validationMessage: any = exception.getResponse();
@@ -30,8 +29,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
                 ? this.appendMessage(validationMessage)
                 : [exception.message || unknownErrorMessage];
         } else {
-            statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-            message = [exception.message || unknownErrorMessage];
+            if (exception.name === 'ValidationError') {
+                statusCode = HttpStatus.BAD_REQUEST;
+                const messages = exception.message.split(':')[0];
+                message = [messages || unknownErrorMessage];
+            } else {
+                statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
+                message = [exception.message || unknownErrorMessage];
+            }
 
             // Log stack trace in development environment
             if (process.env.NODE_ENV === 'development' && exception.stack) {
