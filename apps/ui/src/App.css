@@ -2,45 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.gyan-container {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    background-color: #161616;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.fade-up-anim {
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Define the transition */
+    animation: fade-up 250ms;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* fade-up */
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+      /* translate: -50% -50%; */
+    }
+    to {
+      /* translate: -50% -50%; */
+      opacity: 1;
+    transform: translateY(0);
+    }
   }
+
+/* loading */
+
+@keyframes loading {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+
+@keyframes loadIntoPlace {
+  0% {
+    opacity: 0;
+    transform: translate(0px, -10px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: blur(0px);
+  }  
+}
+
+.load-into-place-anim {
+  animation: 0.3s ease 0.2s 1 normal both running loadIntoPlace;
+}
+
+
+@keyframes splashScreen {
+  0% {
+    opacity: 0;
+    transform: translate(0px, -10px);
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: blur(0px);
+  }  
+}
+
+.splash-screen-anim {
+  animation: 2s normal both running splashScreen;
+}
+
+@keyframes shimmer {
   to {
-    transform: rotate(360deg);
+     background-position-x: 5%
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@keyframes close {
+  to {
+    opacity: 0;
   }
 }
 
-.card {
-  padding: 2em;
+/* ... (previous CSS code remains unchanged) */
+
+@keyframes close {
+  to {
+    opacity: 0;
+    display: none;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+.splash-screen {
+  background: linear-gradient(-45deg, #1F2125 40%, #232323 50%, #2d2d2d 60%);
+  background-size: 300%;
+  background-position-x: 100%;
+  opacity: 1;
+  animation: shimmer 1s running linear, close 1s ease-in-out 4s forwards;
 }
