@@ -5,7 +5,6 @@ import { UpdateProductRequestDto } from './dtos/update-product.dto';
 @Injectable()
 export class ProductService {
     async create(createProductDto: ProductRequestDto) {
-
         return await 'This action adds a new product';
     }
 

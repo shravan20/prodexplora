@@ -1,10 +1,9 @@
-import { Product } from "@entities/product.entity";
-import { SocialLink } from "@entities/types/social-link.type";
-import { ApiProperty } from "@nestjs/swagger";
-import { ProductLaunchStatus } from "src/enums/product-launch-status.enum";
+import { Product } from '@entities/product.entity';
+import { SocialLink } from '@entities/types/social-link.type';
+import { ApiProperty } from '@nestjs/swagger';
+import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
 
 export class ProductResponseDto {
-
     @ApiProperty()
     readonly title: string;
 
@@ -41,12 +40,11 @@ export class ProductResponseDto {
         this.status = product.status;
         this.isPublished = product.isPublished;
         this.categories = product.categories.map(category => {
-            return category._id.toHexString()
+            return category._id.toHexString();
         });
     }
 
     static from(product: Product): ProductResponseDto {
         return new ProductResponseDto(product);
     }
-
 }
