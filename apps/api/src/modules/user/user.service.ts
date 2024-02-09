@@ -8,11 +8,11 @@ import {
 import { User } from '@entities/user.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
-import { AuthRequestDto } from './dto/auth-request.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UserRequestDto } from './dto/user-request.dto';
-import { UserResponseDto } from './dto/user-response.dto';
-import { UserRequest } from './interface/user-request.interface';
+import { AuthRequestDto } from './dtos/auth-request.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
+import { UserRequestDto } from './dtos/user-request.dto';
+import { UserResponseDto } from './dtos/user-response.dto';
+import { UserRequest } from './types/user-request.interface';
 import { UserRepository } from './user.repository';
 @Injectable()
 export class UserService {
@@ -20,7 +20,7 @@ export class UserService {
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
         private configService: SecretManagerService,
-    ) {}
+    ) { }
 
     async signIn(createAuthDto: AuthRequestDto) {
         const data = await this.createIfNotExists(createAuthDto);

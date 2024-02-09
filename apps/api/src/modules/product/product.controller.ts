@@ -17,8 +17,8 @@ import {
 } from '@nestjs/swagger';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
-import { ProductRequestDto } from './dto/product-request.dto';
-import { UpdateProductRequestDto } from './dto/update-product.dto';
+import { ProductRequestDto } from './dtos/product-request.dto';
+import { UpdateProductRequestDto } from './dtos/update-product.dto';
 import { ProductService } from './product.service';
 
 @ApiTags('Product Service')
@@ -28,7 +28,7 @@ import { ProductService } from './product.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductController {
-    constructor(private readonly productService: ProductService) {}
+    constructor(private readonly productService: ProductService) { }
 
     @ApiOkResponse({
         type: ProductRequestDto,

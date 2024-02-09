@@ -2,14 +2,14 @@ import { User as UserEntity } from '@entities/user.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { UserRequestDto } from './dto/user-request.dto';
+import { UserRequestDto } from './dtos/user-request.dto';
 
 @Injectable()
 export class UserRepository {
     constructor(
         @InjectModel(UserEntity.name)
         private readonly model: Model<UserEntity>,
-    ) {}
+    ) { }
 
     async findAll(): Promise<UserEntity[]> {
         return await this.model.find().exec();
