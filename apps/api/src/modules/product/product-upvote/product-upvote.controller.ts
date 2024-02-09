@@ -6,7 +6,7 @@ import {
     Param,
     Patch,
     Post,
-    UseFilters,
+    UseFilters
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
@@ -17,7 +17,7 @@ import { ProductUpvoteService } from './product-upvote.service';
 
 @ApiTags('Product Upvote Service')
 @Controller({
-    version: '1',
+    version: '1'
 })
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
@@ -42,7 +42,7 @@ export class ProductUpvoteController {
     @Patch('/product/:productId/product-upvotes/:id')
     update(
         @Param('id') id: string,
-        @Body() updateProductUpvoteDto: UpdateProductUpvoteRequestDto,
+        @Body() updateProductUpvoteDto: UpdateProductUpvoteRequestDto
     ) {
         return this.productUpvoteService.update(+id, updateProductUpvoteDto);
     }

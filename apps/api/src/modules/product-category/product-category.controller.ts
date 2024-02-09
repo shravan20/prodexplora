@@ -6,7 +6,7 @@ import {
     Param,
     Patch,
     Post,
-    UseFilters,
+    UseFilters
 } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { ObjectIdDto } from '@utils/validations/object-id.validation';
@@ -18,20 +18,20 @@ import { ProductCategoryService } from './product-category.service';
 
 @ApiTags('Categories Service')
 @Controller({
-    version: '1',
+    version: '1'
 })
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductCategoryController {
     constructor(
-        private readonly productCategoryService: ProductCategoryService,
+        private readonly productCategoryService: ProductCategoryService
     ) {}
 
     @Post('/product-categories')
     @ApiBody({ type: [CategoryRequestDto] })
     async create(@Body() createProductCategoryDtos: CategoryRequestDto[]) {
         return await this.productCategoryService.create(
-            createProductCategoryDtos,
+            createProductCategoryDtos
         );
     }
 
@@ -48,11 +48,11 @@ export class ProductCategoryController {
     @Patch('/product-categories/:id')
     async update(
         @Param() { id }: ObjectIdDto,
-        @Body() updateProductCategoryDto: UpdateProductCategoryDto,
+        @Body() updateProductCategoryDto: UpdateProductCategoryDto
     ) {
         return await this.productCategoryService.update(
             id,
-            updateProductCategoryDto,
+            updateProductCategoryDto
         );
     }
 

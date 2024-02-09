@@ -4,8 +4,6 @@ import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
 import { CommonEntity } from './common-entity';
 import { SocialLink } from './types/social-link.type';
 
-
-
 @Schema({ timestamps: true })
 export class Product extends CommonEntity {
     @Prop({ required: true })
@@ -25,7 +23,7 @@ export class Product extends CommonEntity {
 
     @Prop({
         enum: Object.values(ProductLaunchStatus),
-        default: ProductLaunchStatus.PRELAUNCH,
+        default: ProductLaunchStatus.PRELAUNCH
     })
     status: ProductLaunchStatus;
 

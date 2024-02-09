@@ -11,13 +11,13 @@ import { UserService } from './user.service';
     imports: [
         JwtModule.register({
             secret: process.env.JWT_SECRET_KEY,
-            signOptions: { expiresIn: '60s' },
+            signOptions: { expiresIn: '60s' }
         }),
         MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
-        SecretManagerModule,
+        SecretManagerModule
     ],
     controllers: [UserController],
     providers: [UserRepository, UserService],
-    exports: [JwtModule],
+    exports: [JwtModule]
 })
 export class UserModule {}

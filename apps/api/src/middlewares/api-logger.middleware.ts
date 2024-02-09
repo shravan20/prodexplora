@@ -3,7 +3,7 @@ import {
     ExecutionContext,
     Injectable,
     Logger,
-    NestInterceptor,
+    NestInterceptor
 } from '@nestjs/common';
 import { tap } from 'rxjs/operators';
 
@@ -26,7 +26,7 @@ export class LoggingInterceptor implements NestInterceptor {
         return next.handle().pipe(
             tap(() => {
                 Logger.debug(requestLogFormat);
-            }),
+            })
         );
     }
 }

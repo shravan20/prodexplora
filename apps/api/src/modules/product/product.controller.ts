@@ -6,14 +6,14 @@ import {
     Param,
     Patch,
     Post,
-    UseFilters,
+    UseFilters
 } from '@nestjs/common';
 import {
     ApiBadRequestResponse,
     ApiNotFoundResponse,
     ApiOkResponse,
     ApiTags,
-    ApiUnprocessableEntityResponse,
+    ApiUnprocessableEntityResponse
 } from '@nestjs/swagger';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
@@ -23,7 +23,7 @@ import { ProductService } from './product.service';
 
 @ApiTags('Product Service')
 @Controller({
-    version: '1',
+    version: '1'
 })
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
@@ -31,16 +31,16 @@ export class ProductController {
     constructor(private readonly productService: ProductService) {}
 
     @ApiOkResponse({
-        type: ProductRequestDto,
+        type: ProductRequestDto
     })
     @ApiNotFoundResponse({
-        description: 'API path not found/invalid',
+        description: 'API path not found/invalid'
     })
     @ApiUnprocessableEntityResponse({
-        description: 'Product cannot be created.',
+        description: 'Product cannot be created.'
     })
     @ApiBadRequestResponse({
-        description: 'Bad Request due to validation error.',
+        description: 'Bad Request due to validation error.'
     })
     @Post('/products')
     create(@Body() createProductDto: ProductRequestDto): ProductRequestDto {
@@ -49,16 +49,16 @@ export class ProductController {
     }
 
     @ApiOkResponse({
-        type: [ProductRequestDto],
+        type: [ProductRequestDto]
     })
     @ApiNotFoundResponse({
-        description: 'API path not found/invalid',
+        description: 'API path not found/invalid'
     })
     @ApiUnprocessableEntityResponse({
-        description: 'Product cannot be created.',
+        description: 'Product cannot be created.'
     })
     @ApiBadRequestResponse({
-        description: 'Bad Request due to validation error.',
+        description: 'Bad Request due to validation error.'
     })
     @Get('/products')
     findAll(): ProductRequestDto[] {
@@ -75,7 +75,7 @@ export class ProductController {
     @Patch('/products/:id')
     update(
         @Param('id') id: string,
-        @Body() updateProductDto: UpdateProductRequestDto,
+        @Body() updateProductDto: UpdateProductRequestDto
     ): UpdateProductRequestDto {
         this.productService.update(+id, updateProductDto);
         return {};

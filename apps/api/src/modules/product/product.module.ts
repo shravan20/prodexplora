@@ -8,10 +8,6 @@ import { ProductDiscussionModule } from './product-discussion/product-discussion
 @Module({
     controllers: [ProductController],
     providers: [ProductService],
-    imports: [
-        ProductUpvoteModule,
-        ProductRatingModule,
-        ProductDiscussionModule,
-    ],
+    imports: [ProductUpvoteModule, ProductRatingModule, ProductDiscussionModule]
 })
 export class ProductModule {}

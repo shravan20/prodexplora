@@ -6,7 +6,7 @@ import {
     Param,
     Patch,
     Post,
-    UseFilters,
+    UseFilters
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
@@ -17,13 +17,13 @@ import { ProductDiscussionService } from './product-discussion.service';
 
 @ApiTags('Product Discussion Service')
 @Controller({
-    version: '1',
+    version: '1'
 })
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductDiscussionController {
     constructor(
-        private readonly productDiscussionService: ProductDiscussionService,
+        private readonly productDiscussionService: ProductDiscussionService
     ) {}
 
     @Post('/products/:productId/product-discussions')
@@ -44,11 +44,11 @@ export class ProductDiscussionController {
     @Patch('/products/:productId/product-discussions/:id')
     update(
         @Param('id') id: string,
-        @Body() updateProductDiscussionDto: UpdateProductDiscussionDto,
+        @Body() updateProductDiscussionDto: UpdateProductDiscussionDto
     ) {
         return this.productDiscussionService.update(
             +id,
-            updateProductDiscussionDto,
+            updateProductDiscussionDto
         );
     }
 

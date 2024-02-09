@@ -8,7 +8,7 @@ import { UserRequestDto } from './dtos/user-request.dto';
 export class UserRepository {
     constructor(
         @InjectModel(UserEntity.name)
-        private readonly model: Model<UserEntity>,
+        private readonly model: Model<UserEntity>
     ) {}
 
     async findAll(): Promise<UserEntity[]> {
@@ -36,7 +36,7 @@ export class UserRepository {
             profilePicture: createUserDto.profilePicture,
             bio: createUserDto.bio,
             username: createUserDto.email.split('@')[0],
-            loginProvider: createUserDto.authProvider,
+            loginProvider: createUserDto.authProvider
         });
     }
 
@@ -49,7 +49,7 @@ export class UserRepository {
     async findOneAndUpdate(
         query: any = {},
         update: any = {},
-        options: any = {},
+        options: any = {}
     ): Promise<UserEntity> {
         return await this.model
             .findOneAndUpdate(query, update, { new: true, ...options })
@@ -59,7 +59,7 @@ export class UserRepository {
     async deleteById(id: string): Promise<UserEntity> {
         return await this.model
             .findByIdAndUpdate(id, {
-                isArchived: true,
+                isArchived: true
             })
             .exec();
     }

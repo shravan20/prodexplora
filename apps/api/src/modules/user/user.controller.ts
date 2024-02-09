@@ -6,7 +6,7 @@ import {
     Param,
     Patch,
     Post,
-    UseFilters,
+    UseFilters
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ObjectIdDto } from '@utils/validations/object-id.validation';
@@ -20,7 +20,7 @@ import { UserService } from './user.service';
 
 @ApiTags('User Service')
 @Controller({
-    version: '1',
+    version: '1'
 })
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()

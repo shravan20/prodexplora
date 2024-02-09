@@ -6,11 +6,11 @@ describe('ProductDiscussionService', () => {
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            providers: [ProductDiscussionService],
+            providers: [ProductDiscussionService]
         }).compile();
 
         service = module.get<ProductDiscussionService>(
-            ProductDiscussionService,
+            ProductDiscussionService
         );
     });
 

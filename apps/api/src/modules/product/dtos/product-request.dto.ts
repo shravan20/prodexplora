@@ -8,21 +8,21 @@ import {
     IsMongoId,
     IsOptional,
     IsString,
-    ValidateNested,
+    ValidateNested
 } from 'class-validator';
 import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
 
 export class ExternalLinkDto {
     @ApiProperty({
         example: 'facebook',
-        required: true,
+        required: true
     })
     @IsString()
     platform: string;
 
     @ApiProperty({
         example: 'www.fb.com/prodexplora',
-        required: true,
+        required: true
     })
     @IsString()
     link: string;

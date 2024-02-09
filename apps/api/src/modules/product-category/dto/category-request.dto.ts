@@ -4,7 +4,7 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 export class CategoryRequestDto {
     @ApiProperty({
         description: `Category Name under which a Product comes into`,
-        example: 'Developer tools',
+        example: 'Developer tools'
     })
     @IsNotEmpty()
     @IsString()
@@ -13,7 +13,7 @@ export class CategoryRequestDto {
     @ApiProperty({
         description: `Description of the product category`,
         example:
-            'Developer tools is category which takes in dev friendly/productivity tools',
+            'Developer tools is category which takes in dev friendly/productivity tools'
     })
     @IsNotEmpty()
     @IsString()
@@ -22,7 +22,7 @@ export class CategoryRequestDto {
     @ApiProperty({
         description: `URL component that designates a particular section`,
         example: 'category/developer-tools',
-        required: false,
+        required: false
     })
     @IsOptional()
     @IsString()

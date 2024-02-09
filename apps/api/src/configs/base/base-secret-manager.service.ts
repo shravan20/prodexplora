@@ -10,7 +10,7 @@ export class BaseSecretManager implements ISecretsManager {
     getSecret<T>(key: string): T | null {
         if (!key) {
             throw new Error(
-                `Secret key ${key} is required but was not provided.`,
+                `Secret key ${key} is required but was not provided.`
             );
         }
         const value = this.configService.get(key);
