@@ -18,7 +18,7 @@ export class ApiResponseEnvelopeInterceptor implements NestInterceptor {
         const route = request?.route?.path;
 
         return next.handle().pipe(
-            map((data) => ({
+            map(data => ({
                 status: true,
                 statusCode,
                 data,

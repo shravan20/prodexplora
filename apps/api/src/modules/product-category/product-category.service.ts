@@ -10,12 +10,12 @@ export class ProductCategoryService {
 
     async create(dtos: CategoryRequestDto[]): Promise<CategoryResponseDto[]> {
         const categories = await this.repository.create(dtos);
-        return categories.map((category) => CategoryResponseDto.from(category));
+        return categories.map(category => CategoryResponseDto.from(category));
     }
 
     async findAll(): Promise<CategoryResponseDto[]> {
         const categories = await this.repository.findAll();
-        return categories.map((category) => CategoryResponseDto.from(category));
+        return categories.map(category => CategoryResponseDto.from(category));
     }
 
     async findById(id: string): Promise<CategoryResponseDto> {

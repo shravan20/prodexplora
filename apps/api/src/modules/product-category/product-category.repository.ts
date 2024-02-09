@@ -15,7 +15,7 @@ export class ProductCategoryRepository {
     }
 
     private toEntity(dtos: any): ProductCategoryEntity[] {
-        return dtos.map((dto) => {
+        return dtos.map(dto => {
             return new this.model({
                 name: dto.name,
                 description: dto.description,
