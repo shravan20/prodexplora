@@ -10,7 +10,7 @@
         "prod:build": "NODE_ENV=production turbo run build",
         "prod:start": "NODE_ENV=production node apps/backend/dist/main",
         "build": "nest build",
-        "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+        "format": "prettier --config .prettierrc --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "start": "nest start",
         "start:dev": "nest start --watch",
         "start:debug": "nest start --debug --watch",
