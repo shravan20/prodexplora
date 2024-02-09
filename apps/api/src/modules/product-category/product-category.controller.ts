@@ -25,11 +25,13 @@ import { ProductCategoryService } from './product-category.service';
 export class ProductCategoryController {
     constructor(
         private readonly productCategoryService: ProductCategoryService
-    ) { }
+    ) {}
 
     @Post('/product-categories')
     @ApiBody({ type: [CategoryRequestDto] })
-    async create(@Body() createProductCategoryDtos: CategoryRequestDto[]): Promise<CategoryRequestDto[]> {
+    async create(
+        @Body() createProductCategoryDtos: CategoryRequestDto[]
+    ): Promise<CategoryRequestDto[]> {
         return await this.productCategoryService.create(
             createProductCategoryDtos
         );
