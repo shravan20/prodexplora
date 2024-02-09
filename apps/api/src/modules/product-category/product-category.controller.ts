@@ -25,23 +25,23 @@ import { ProductCategoryService } from './product-category.service';
 export class ProductCategoryController {
     constructor(
         private readonly productCategoryService: ProductCategoryService
-    ) {}
+    ) { }
 
     @Post('/product-categories')
     @ApiBody({ type: [CategoryRequestDto] })
-    async create(@Body() createProductCategoryDtos: CategoryRequestDto[]) {
+    async create(@Body() createProductCategoryDtos: CategoryRequestDto[]): Promise<CategoryRequestDto[]> {
         return await this.productCategoryService.create(
             createProductCategoryDtos
         );
     }
 
     @Get('/product-categories')
-    async findAll() {
+    async findAll(): Promise<CategoryRequestDto[]> {
         return await this.productCategoryService.findAll();
     }
 
     @Get('/product-categories/:id')
-    findOne(@Param() { id }: ObjectIdDto) {
+    findOne(@Param() { id }: ObjectIdDto): Promise<CategoryRequestDto> {
         return this.productCategoryService.findById(id);
     }
 
