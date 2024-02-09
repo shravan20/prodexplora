@@ -14,13 +14,15 @@ import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
 
 export class ExternalLinkDto {
     @ApiProperty({
-        example: 'facebook', required: true
+        example: 'facebook',
+        required: true,
     })
     @IsString()
     platform: string;
 
     @ApiProperty({
-        example: 'www.fb.com/prodexplora', required: true
+        example: 'www.fb.com/prodexplora',
+        required: true,
     })
     @IsString()
     link: string;

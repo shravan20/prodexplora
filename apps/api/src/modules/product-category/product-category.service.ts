@@ -6,11 +6,9 @@ import { ProductCategoryRepository } from './product-category.repository';
 
 @Injectable()
 export class ProductCategoryService {
-    constructor(private readonly repository: ProductCategoryRepository) { }
+    constructor(private readonly repository: ProductCategoryRepository) {}
 
-    async create(
-        dtos: CategoryRequestDto[],
-    ): Promise<CategoryResponseDto[]> {
+    async create(dtos: CategoryRequestDto[]): Promise<CategoryResponseDto[]> {
         const categories = await this.repository.create(dtos);
         return categories.map((category) => CategoryResponseDto.from(category));
     }
