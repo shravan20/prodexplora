@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import {
     ApiBadRequestResponse,
+    ApiBody,
     ApiNotFoundResponse,
     ApiOkResponse,
     ApiTags,
@@ -28,8 +29,10 @@ import { ProductService } from './product.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductController {
-    constructor(private readonly productService: ProductService) {}
+    constructor(private readonly productService: ProductService) { }
 
+
+    @Post('/products')
     @ApiOkResponse({
         type: ProductRequestDto
     })
@@ -42,7 +45,7 @@ export class ProductController {
     @ApiBadRequestResponse({
         description: 'Bad Request due to validation error.'
     })
-    @Post('/products')
+    @ApiBody({ type: ProductRequestDto })
     create(@Body() createProductDto: ProductRequestDto): ProductRequestDto {
         this.productService.create(createProductDto);
         return new ProductRequestDto();
@@ -63,7 +66,7 @@ export class ProductController {
     @Get('/products')
     findAll(): ProductRequestDto[] {
         this.productService.findAll();
-        return [];
+        return;
     }
 
     @Get('/products/:id')

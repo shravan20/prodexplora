@@ -8,6 +8,7 @@ import {
     IsMongoId,
     IsOptional,
     IsString,
+    IsUrl,
     ValidateNested
 } from 'class-validator';
 import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
@@ -18,24 +19,29 @@ export class ExternalLinkDto {
         required: true
     })
     @IsString()
-    platform: string;
+    readonly platform: string;
 
     @ApiProperty({
         example: 'www.fb.com/prodexplora',
         required: true
     })
     @IsString()
-    link: string;
+    @IsUrl()
+    readonly link: string;
 }
 
 export class ProductRequestDto {
-    @ApiProperty()
+    @ApiProperty({ required: true })
     @IsString()
-    title: string;
+    readonly title: string;
 
-    @ApiProperty()
+    @ApiProperty({ required: true })
     @IsString()
-    description: string;
+    readonly description: string;
+
+    @ApiProperty({ required: true })
+    @IsString()
+    readonly slug: string;
 
     @ApiProperty()
     @IsArray()
@@ -63,7 +69,7 @@ export class ProductRequestDto {
     @ApiProperty()
     @IsBoolean()
     @IsOptional()
-    readonly isPublish?: boolean = false;
+    readonly isPublished?: boolean = false;
 
     @ApiProperty({ type: [ExternalLinkDto], required: false })
     @IsArray()

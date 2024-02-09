@@ -12,6 +12,9 @@ export class Product extends CommonEntity {
     @Prop({ required: true })
     description: string;
 
+    @Prop({ required: true, unique: true, index: true })
+    slug: string;
+
     @Prop({ type: [{ type: Types.ObjectId, ref: 'Category' }] })
     categories: Types.ObjectId[];
 
@@ -28,7 +31,7 @@ export class Product extends CommonEntity {
     status: ProductLaunchStatus;
 
     @Prop({ default: false })
-    isPublish: boolean;
+    isPublished: boolean;
 
     @Prop({ type: [{ platform: String, link: String }] })
     externalLinks: SocialLink[];
