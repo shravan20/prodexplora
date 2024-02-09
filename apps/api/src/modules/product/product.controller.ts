@@ -19,6 +19,7 @@ import {
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ProductRequestDto } from './dtos/product-request.dto';
+import { ProductResponseDto } from './dtos/product-response.dto';
 import { UpdateProductRequestDto } from './dtos/update-product.dto';
 import { ProductService } from './product.service';
 
@@ -29,7 +30,7 @@ import { ProductService } from './product.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductController {
-    constructor(private readonly productService: ProductService) {}
+    constructor(private readonly productService: ProductService) { }
 
     @Post('/products')
     @ApiOkResponse({
@@ -45,9 +46,8 @@ export class ProductController {
         description: 'Bad Request due to validation error.'
     })
     @ApiBody({ type: ProductRequestDto })
-    create(@Body() createProductDto: ProductRequestDto): ProductRequestDto {
-        this.productService.create(createProductDto);
-        return new ProductRequestDto();
+    async create(@Body() createProductDto: ProductRequestDto): Promise<ProductResponseDto> {
+        return this.productService.create(createProductDto);
     }
 
     @ApiOkResponse({
