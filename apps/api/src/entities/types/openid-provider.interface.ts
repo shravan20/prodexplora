@@ -8,4 +8,4 @@ export type OpenIdProvider = {
      * The unique identifier for the user provided by the OpenID provider.
      */
     identifier: string;
-}
+};
