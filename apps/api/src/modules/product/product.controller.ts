@@ -30,7 +30,7 @@ import { ProductService } from './product.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductController {
-    constructor(private readonly productService: ProductService) { }
+    constructor(private readonly productService: ProductService) {}
 
     @Post('/products')
     @ApiOkResponse({
@@ -46,7 +46,9 @@ export class ProductController {
         description: 'Bad Request due to validation error.'
     })
     @ApiBody({ type: ProductRequestDto })
-    async create(@Body() createProductDto: ProductRequestDto): Promise<ProductResponseDto> {
+    async create(
+        @Body() createProductDto: ProductRequestDto
+    ): Promise<ProductResponseDto> {
         return this.productService.create(createProductDto);
     }
 
