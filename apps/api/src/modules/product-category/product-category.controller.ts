@@ -12,8 +12,8 @@ import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { ObjectIdDto } from '@utils/validations/object-id.validation';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
-import { CreateCategoryRequestDto } from './dto/category-request.dto';
-import { UpdateProductCategoryDto } from './dto/update-request.dto';
+import { CategoryRequestDto } from './dto/category-request.dto';
+import { UpdateProductCategoryDto } from './dto/update-category.dto';
 import { ProductCategoryService } from './product-category.service';
 
 @ApiTags('Categories Service')
@@ -25,12 +25,12 @@ import { ProductCategoryService } from './product-category.service';
 export class ProductCategoryController {
     constructor(
         private readonly productCategoryService: ProductCategoryService,
-    ) {}
+    ) { }
 
     @Post('/product-categories')
-    @ApiBody({ type: [CreateCategoryRequestDto] })
+    @ApiBody({ type: [CategoryRequestDto] })
     async create(
-        @Body() createProductCategoryDtos: CreateCategoryRequestDto[],
+        @Body() createProductCategoryDtos: CategoryRequestDto[],
     ) {
         return await this.productCategoryService.create(
             createProductCategoryDtos,

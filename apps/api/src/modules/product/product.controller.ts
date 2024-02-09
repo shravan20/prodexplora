@@ -17,8 +17,8 @@ import {
 } from '@nestjs/swagger';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
-import { CreateProductRequestDto } from './dto/create-request.dto';
-import { UpdateProductRequestDto } from './dto/update-request.dto';
+import { ProductRequestDto } from './dto/product-request.dto';
+import { UpdateProductRequestDto } from './dto/update-product.dto';
 import { ProductService } from './product.service';
 
 @ApiTags('Product Service')
@@ -28,10 +28,10 @@ import { ProductService } from './product.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductController {
-    constructor(private readonly productService: ProductService) {}
+    constructor(private readonly productService: ProductService) { }
 
     @ApiOkResponse({
-        type: CreateProductRequestDto,
+        type: ProductRequestDto,
     })
     @ApiNotFoundResponse({
         description: 'API path not found/invalid',
@@ -44,14 +44,14 @@ export class ProductController {
     })
     @Post('/products')
     create(
-        @Body() createProductDto: CreateProductRequestDto,
-    ): CreateProductRequestDto {
+        @Body() createProductDto: ProductRequestDto,
+    ): ProductRequestDto {
         this.productService.create(createProductDto);
-        return new CreateProductRequestDto();
+        return new ProductRequestDto();
     }
 
     @ApiOkResponse({
-        type: [CreateProductRequestDto],
+        type: [ProductRequestDto],
     })
     @ApiNotFoundResponse({
         description: 'API path not found/invalid',
@@ -63,15 +63,15 @@ export class ProductController {
         description: 'Bad Request due to validation error.',
     })
     @Get('/products')
-    findAll(): CreateProductRequestDto[] {
+    findAll(): ProductRequestDto[] {
         this.productService.findAll();
         return [];
     }
 
     @Get('/products/:id')
-    findOne(@Param('id') id: string): CreateProductRequestDto {
+    findOne(@Param('id') id: string): ProductRequestDto {
         this.productService.findOne(+id);
-        return new CreateProductRequestDto();
+        return new ProductRequestDto();
     }
 
     @Patch('/products/:id')
@@ -84,8 +84,8 @@ export class ProductController {
     }
 
     @Delete('/products/:id')
-    remove(@Param('id') id: string): CreateProductRequestDto {
+    remove(@Param('id') id: string): ProductRequestDto {
         this.productService.remove(+id);
-        return new CreateProductRequestDto();
+        return new ProductRequestDto();
     }
 }

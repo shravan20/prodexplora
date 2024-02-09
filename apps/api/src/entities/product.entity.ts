@@ -1,9 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { CommonEntity } from './common-entity';
 import { Types } from 'mongoose';
 import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
+import { CommonEntity } from './common-entity';
 
-@Schema()
+interface ISocialLink {
+    platform: string;
+    link: string;
+}
+
+@Schema({ timestamps: true })
 export class Product extends CommonEntity {
     @Prop({ required: true })
     title: string;
@@ -30,7 +35,7 @@ export class Product extends CommonEntity {
     isPublish: boolean;
 
     @Prop({ type: [{ platform: String, link: String }] })
-    externalLinks: { platform: string; link: string }[];
+    externalLinks: ISocialLink[];
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

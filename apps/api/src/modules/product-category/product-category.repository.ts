@@ -1,16 +1,16 @@
 import { ProductCategory as ProductCategoryEntity } from '@entities/product-category.entity';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateCategoryRequestDto } from './dto/category-request.dto';
+import { CategoryRequestDto } from './dto/category-request.dto';
 
 export class ProductCategoryRepository {
     constructor(
         @InjectModel(ProductCategoryEntity.name)
         private readonly model: Model<ProductCategoryEntity>,
-    ) {}
+    ) { }
 
     async create(
-        dtos: CreateCategoryRequestDto[],
+        dtos: CategoryRequestDto[],
     ): Promise<ProductCategoryEntity[]> {
         const categories: ProductCategoryEntity[] = this.toEntity(dtos);
         return await this.model.create(categories);

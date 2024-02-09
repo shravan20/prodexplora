@@ -9,8 +9,8 @@ import { User } from '@entities/user.entity';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
 import { AuthRequestDto } from './dto/auth-request.dto';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserRequestDto } from './dto/user-request.dto';
 import { UserResponseDto } from './dto/user-response.dto';
 import { UserRequest } from './interface/user-request.interface';
 import { UserRepository } from './user.repository';
@@ -20,7 +20,7 @@ export class UserService {
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
         private configService: SecretManagerService,
-    ) {}
+    ) { }
 
     async signIn(createAuthDto: AuthRequestDto) {
         const data = await this.createIfNotExists(createAuthDto);
@@ -68,7 +68,7 @@ export class UserService {
     }
 
     async createIfNotExists(
-        createUserDto: CreateUserDto,
+        createUserDto: UserRequestDto,
     ): Promise<UserRequest> {
         const emailQuery = {
             email: createUserDto.email,
@@ -99,7 +99,7 @@ export class UserService {
         };
     }
 
-    private async create(createUserDto: CreateUserDto) {
+    private async create(createUserDto: UserRequestDto) {
         return await this.userRepository.create(createUserDto);
     }
 

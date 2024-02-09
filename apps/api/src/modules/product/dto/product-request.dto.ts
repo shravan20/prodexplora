@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
+    ArrayMaxSize,
     IsArray,
     IsBoolean,
     IsEnum,
@@ -13,19 +14,19 @@ import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
 
 export class ExternalLinkDto {
     @ApiProperty({
-        example: 'facebook',
+        example: 'facebook', required: true
     })
     @IsString()
     platform: string;
 
     @ApiProperty({
-        example: 'www.fb.com/prodexplora',
+        example: 'www.fb.com/prodexplora', required: true
     })
     @IsString()
     link: string;
 }
 
-export class CreateProductRequestDto {
+export class ProductRequestDto {
     @ApiProperty()
     @IsString()
     title: string;
@@ -37,30 +38,35 @@ export class CreateProductRequestDto {
     @ApiProperty()
     @IsArray()
     @Type(() => String)
-    categories: string[];
+    @ArrayMaxSize(5)
+    @IsMongoId({ each: true })
+    readonly categories: string[] = [];
 
     @ApiProperty()
     @IsArray()
     @IsString({ each: true })
-    technologies: string[];
+    @IsOptional()
+    readonly technologies: string[] = [];
 
     @ApiProperty()
     @IsString()
     @IsMongoId()
-    createdBy: string;
+    @IsOptional()
+    readonly createdBy: string;
 
     @ApiProperty()
     @IsEnum(ProductLaunchStatus)
-    status: ProductLaunchStatus;
+    readonly status: ProductLaunchStatus;
 
-    @ApiProperty({ enum: ProductLaunchStatus })
+    @ApiProperty()
     @IsBoolean()
     @IsOptional()
-    isPublish?: boolean;
+    readonly isPublish?: boolean = false;
 
-    @ApiProperty({ type: [ExternalLinkDto] })
+    @ApiProperty({ type: [ExternalLinkDto], required: false })
     @IsArray()
     @ValidateNested({ each: true })
     @Type(() => ExternalLinkDto)
-    externalLinks: ExternalLinkDto[];
+    @IsOptional()
+    readonly externalLinks: ExternalLinkDto[];
 }
