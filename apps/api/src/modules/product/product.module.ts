@@ -9,11 +9,15 @@ import { ProductRepository } from './product.repository';
 import { ProductService } from './product.service';
 
 @Module({
-
     controllers: [ProductController],
     providers: [ProductService, ProductRepository],
-    imports: [ProductUpvoteModule, ProductRatingModule, ProductDiscussionModule,
-        MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }]),
+    imports: [
+        ProductUpvoteModule,
+        ProductRatingModule,
+        ProductDiscussionModule,
+        MongooseModule.forFeature([
+            { name: Product.name, schema: ProductSchema }
+        ])
     ]
 })
-export class ProductModule { }
+export class ProductModule {}
