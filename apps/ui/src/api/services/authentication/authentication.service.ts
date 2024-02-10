@@ -11,6 +11,6 @@ type Data = {
     lastName: string
 }
 export const signIn = (data: Data) => {
-    const response = postDataMethod(API_HOST + "/users", data);
+    const response = postDataMethod(API_HOST + "/users/open-id-auth", data);
     console.log(response);
 }

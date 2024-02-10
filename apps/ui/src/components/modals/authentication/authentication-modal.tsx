@@ -37,6 +37,7 @@ const AuthenticationModal: React.FC = () => {
                     "firstName": firstName,
                     "lastName": lastName
                 }
+                // console.log(`data`, data);
                 handleUserSignIn(data);
             }
         },
