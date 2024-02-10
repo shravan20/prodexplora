@@ -7,7 +7,7 @@ import HomePage from './pages/home/home';
 function App() {
     return (
         <AuthProvider>
-            <GoogleOAuthProvider clientId={import.meta.env.REACT_APP_GOOGLE_CLIENT_ID}>
+            <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID}>
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<HomePage />}>
