@@ -16,6 +16,7 @@ import {
     ApiTags,
     ApiUnprocessableEntityResponse
 } from '@nestjs/swagger';
+import { ObjectIdDto } from '@utils/validations/object-id.validation';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ProductRequestDto } from './dtos/product-request.dto';
@@ -30,7 +31,7 @@ import { ProductService } from './product.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductController {
-    constructor(private readonly productService: ProductService) {}
+    constructor(private readonly productService: ProductService) { }
 
     @Post('/products')
     @ApiOkResponse({
@@ -71,8 +72,8 @@ export class ProductController {
     }
 
     @Get('/products/:id')
-    findOne(@Param('id') id: string): ProductRequestDto {
-        this.productService.findOne(+id);
+    findOne(@Param() { id }: ObjectIdDto): ProductRequestDto {
+        this.productService.findById(id);
         return new ProductRequestDto();
     }
 

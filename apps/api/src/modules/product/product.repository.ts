@@ -9,7 +9,7 @@ export class ProductRepository {
     constructor(
         @InjectModel(ProductEntity.name)
         private readonly model: Model<ProductEntity>
-    ) {}
+    ) { }
 
     async create(dto: ProductRequestDto): Promise<ProductEntity> {
         try {
@@ -31,5 +31,9 @@ export class ProductRepository {
             isPublished: dto.isPublished,
             externalLinks: dto.externalLinks
         });
+    }
+
+    async findById(id: string): Promise<ProductEntity> {
+        return await this.model.findById(id);
     }
 }

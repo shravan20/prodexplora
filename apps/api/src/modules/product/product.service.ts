@@ -1,7 +1,8 @@
 import { ProductCategoryService } from '@modules/product-category/product-category.service';
 import { UserService } from '@modules/user/user.service';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CatchError } from '@utils/decorators/try-catch.decorator';
+import { resourceNotFoundMessage } from '@utils/validations/error-message-validation';
 import { ProductRequestDto } from './dtos/product-request.dto';
 import { ProductResponseDto } from './dtos/product-response.dto';
 import { UpdateProductRequestDto } from './dtos/update-product.dto';
@@ -9,11 +10,14 @@ import { ProductRepository } from './product.repository';
 
 @Injectable()
 export class ProductService {
+
     constructor(
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
     ) { }
+
+    private static readonly RESOURCE: string = 'Product';
 
     @CatchError
     async create(
@@ -38,7 +42,12 @@ export class ProductService {
         return `This action returns all product`;
     }
 
-    async findOne(id: number) {
+    async findById(id: string) {
+        let product = this.repository.findById(id);
+        if (!product) {
+            throw new NotFoundException(resourceNotFoundMessage(ProductService.RESOURCE, id));
+        }
+        return;
         return `This action returns a #${id} product`;
     }
 
