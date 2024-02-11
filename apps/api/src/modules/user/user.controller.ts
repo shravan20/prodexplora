@@ -6,21 +6,21 @@ import {
     Param,
     Patch,
     Post,
-    UseFilters,
+    UseFilters
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ObjectIdDto } from '@utils/validations/object-id.validation';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
-import { AuthRequestDto } from './dto/auth-request.dto';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UserResponseDto } from './dto/user-response.dto';
+import { AuthRequestDto } from './dtos/auth-request.dto';
+import { UpdateUserDto } from './dtos/update-user.dto';
+import { UserRequestDto } from './dtos/user-request.dto';
+import { UserResponseDto } from './dtos/user-response.dto';
 import { UserService } from './user.service';
 
 @ApiTags('User Service')
 @Controller({
-    version: '1',
+    version: '1'
 })
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
@@ -28,7 +28,7 @@ export class UserController {
     constructor(private readonly userService: UserService) {}
 
     @Post('/users')
-    create(@Body() createUserDto: CreateUserDto) {
+    create(@Body() createUserDto: UserRequestDto) {
         return this.userService.createIfNotExists(createUserDto);
     }
 

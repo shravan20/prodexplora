@@ -4,6 +4,6 @@ import { ProductDiscussionController } from './product-discussion.controller';
 
 @Module({
     controllers: [ProductDiscussionController],
-    providers: [ProductDiscussionService],
+    providers: [ProductDiscussionService]
 })
 export class ProductDiscussionModule {}

@@ -5,7 +5,7 @@ import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
 export class CreateProductUpvoteRequestDto {
     @ApiProperty({
         description: `Status of the Rating (UP_VOTE/DOWN_VOTE)`,
-        example: 'UP_VOTE',
+        example: 'UP_VOTE'
     })
     @IsNotEmpty()
     @IsEnum(ProductLaunchStatus)
@@ -13,7 +13,7 @@ export class CreateProductUpvoteRequestDto {
 
     @ApiProperty({
         description: `User ID who is voting the product`,
-        example: '507f1f77bcf86cd799439012',
+        example: '507f1f77bcf86cd799439012'
     })
     @IsNotEmpty()
     @IsMongoId()
@@ -21,7 +21,7 @@ export class CreateProductUpvoteRequestDto {
 
     @ApiProperty({
         description: `Product ID which is being voted`,
-        example: '507f1f77bcf86cd799439011',
+        example: '507f1f77bcf86cd799439011'
     })
     @IsNotEmpty()
     @IsMongoId()

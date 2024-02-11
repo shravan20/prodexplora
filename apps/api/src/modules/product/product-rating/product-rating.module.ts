@@ -4,6 +4,6 @@ import { ProductRatingController } from './product-rating.controller';
 
 @Module({
     controllers: [ProductRatingController],
-    providers: [ProductRatingService],
+    providers: [ProductRatingService]
 })
 export class ProductRatingModule {}

@@ -1,26 +1,40 @@
+import { ProductCategoryService } from '@modules/product-category/product-category.service';
+import { UserService } from '@modules/user/user.service';
 import { Injectable } from '@nestjs/common';
-import { CreateProductRequestDto } from './dto/create-request.dto';
-import { UpdateProductRequestDto } from './dto/update-request.dto';
+import { ProductRequestDto } from './dtos/product-request.dto';
+import { ProductResponseDto } from './dtos/product-response.dto';
+import { UpdateProductRequestDto } from './dtos/update-product.dto';
+import { ProductRepository } from './product.repository';
 
 @Injectable()
 export class ProductService {
-    create(createProductDto: CreateProductRequestDto) {
-        return 'This action adds a new product';
+    constructor(
+        private readonly userService: UserService,
+        private readonly productCategory: ProductCategoryService,
+        private readonly repository: ProductRepository
+    ) {}
+
+    async create(
+        createProductDto: ProductRequestDto
+    ): Promise<ProductResponseDto> {
+        return ProductResponseDto.from(
+            await this.repository.create(createProductDto)
+        );
     }
 
-    findAll() {
+    async findAll() {
         return `This action returns all product`;
     }
 
-    findOne(id: number) {
+    async findOne(id: number) {
         return `This action returns a #${id} product`;
     }
 
-    update(id: number, updateProductDto: UpdateProductRequestDto) {
+    async update(id: number, updateProductDto: UpdateProductRequestDto) {
         return `This action updates a #${id} product`;
     }
 
-    remove(id: number) {
+    async remove(id: number) {
         return `This action removes a #${id} product`;
     }
 }
