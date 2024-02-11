@@ -9,7 +9,7 @@ export class ProductRepository {
     constructor(
         @InjectModel(ProductEntity.name)
         private readonly model: Model<ProductEntity>
-    ) { }
+    ) {}
 
     async create(dto: ProductRequestDto): Promise<ProductEntity> {
         try {

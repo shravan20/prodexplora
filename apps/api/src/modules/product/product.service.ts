@@ -10,12 +10,11 @@ import { ProductRepository } from './product.repository';
 
 @Injectable()
 export class ProductService {
-
     constructor(
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) { }
+    ) {}
 
     private static readonly RESOURCE: string = 'Product';
 
@@ -43,9 +42,11 @@ export class ProductService {
     }
 
     async findById(id: string) {
-        let product = this.repository.findById(id);
+        const product = this.repository.findById(id);
         if (!product) {
-            throw new NotFoundException(resourceNotFoundMessage(ProductService.RESOURCE, id));
+            throw new NotFoundException(
+                resourceNotFoundMessage(ProductService.RESOURCE, id)
+            );
         }
         return;
         return `This action returns a #${id} product`;
