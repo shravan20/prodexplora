@@ -12,17 +12,17 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) { }
+    ) {}
 
     async create(
         createProductDto: ProductRequestDto
     ): Promise<ProductResponseDto> {
-
-        let createdBy = await this.userService.findById(createProductDto.createdBy);
-        let categories = createProductDto.categories.map(async (id) => {
-            return await this.productCategoryService.findById(id)
+        const createdBy = await this.userService.findById(
+            createProductDto.createdBy
+        );
+        const categories = createProductDto.categories.map(async id => {
+            return await this.productCategoryService.findById(id);
         });
-
 
         return ProductResponseDto.from(
             await this.repository.create(createProductDto)

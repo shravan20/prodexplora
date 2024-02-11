@@ -20,7 +20,7 @@ export class UserService {
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
         private configService: SecretManagerService
-    ) { }
+    ) {}
 
     async signIn(createAuthDto: AuthRequestDto) {
         const data = await this.createIfNotExists(createAuthDto);
