@@ -13,7 +13,7 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) {}
+    ) { }
 
     @CatchError
     async create(
@@ -22,10 +22,11 @@ export class ProductService {
         const createdBy = await this.userService.findById(
             createProductDto.createdBy
         );
-        const categories = createProductDto.categories.map(async id => {
-            return await this.productCategoryService.findById(id);
-        });
-        const data = await Promise.all(categories);
+
+        const categories = await Promise.all(
+            createProductDto.categories.map(id => this.productCategoryService.findById(id))
+        );
+
 
         return null;
         return ProductResponseDto.from(
