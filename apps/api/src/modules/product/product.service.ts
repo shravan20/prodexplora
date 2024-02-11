@@ -1,6 +1,7 @@
 import { ProductCategoryService } from '@modules/product-category/product-category.service';
 import { UserService } from '@modules/user/user.service';
 import { Injectable } from '@nestjs/common';
+import { CatchError } from '@utils/decorators/try-catch.decorator';
 import { ProductRequestDto } from './dtos/product-request.dto';
 import { ProductResponseDto } from './dtos/product-response.dto';
 import { UpdateProductRequestDto } from './dtos/update-product.dto';
@@ -12,18 +13,21 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) {}
+    ) { }
 
+    @CatchError
     async create(
         createProductDto: ProductRequestDto
     ): Promise<ProductResponseDto> {
-        const createdBy = await this.userService.findById(
+        let createdBy = await this.userService.findById(
             createProductDto.createdBy
         );
-        const categories = createProductDto.categories.map(async id => {
+        let categories = createProductDto.categories.map(async id => {
             return await this.productCategoryService.findById(id);
         });
+        let data = await Promise.all(categories);
 
+        return null;
         return ProductResponseDto.from(
             await this.repository.create(createProductDto)
         );
