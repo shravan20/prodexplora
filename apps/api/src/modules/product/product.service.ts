@@ -1,3 +1,5 @@
+import { ProductCategoryService } from '@modules/product-category/product-category.service';
+import { UserService } from '@modules/user/user.service';
 import { Injectable } from '@nestjs/common';
 import { ProductRequestDto } from './dtos/product-request.dto';
 import { ProductResponseDto } from './dtos/product-response.dto';
@@ -6,11 +8,14 @@ import { ProductRepository } from './product.repository';
 
 @Injectable()
 export class ProductService {
-    constructor(private readonly repository: ProductRepository) {}
+    constructor(private readonly userService: UserService, private readonly productCategory: ProductCategoryService, private readonly repository: ProductRepository) { }
 
     async create(
         createProductDto: ProductRequestDto
     ): Promise<ProductResponseDto> {
+
+
+
         return ProductResponseDto.from(
             await this.repository.create(createProductDto)
         );

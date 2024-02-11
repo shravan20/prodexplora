@@ -59,7 +59,6 @@ export class ProductRequestDto {
     @ApiProperty()
     @IsString()
     @IsMongoId()
-    @IsOptional()
     readonly createdBy: string;
 
     @ApiProperty()

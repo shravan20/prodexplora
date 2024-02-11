@@ -18,6 +18,6 @@ import { UserService } from './user.service';
     ],
     controllers: [UserController],
     providers: [UserRepository, UserService],
-    exports: [JwtModule]
+    exports: [UserRepository, UserService, JwtModule]
 })
-export class UserModule {}
+export class UserModule { }

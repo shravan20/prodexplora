@@ -1,4 +1,6 @@
 import { Product, ProductSchema } from '@entities/product.entity';
+import { ProductCategoryModule } from '@modules/product-category/product-category.module';
+import { UserModule } from '@modules/user/user.module';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProductDiscussionModule } from './product-discussion/product-discussion.module';
@@ -12,12 +14,14 @@ import { ProductService } from './product.service';
     controllers: [ProductController],
     providers: [ProductService, ProductRepository],
     imports: [
+        UserModule,
+        ProductCategoryModule,
         ProductUpvoteModule,
         ProductRatingModule,
         ProductDiscussionModule,
         MongooseModule.forFeature([
             { name: Product.name, schema: ProductSchema }
-        ])
-    ]
+        ]),
+    ],
 })
-export class ProductModule {}
+export class ProductModule { }
