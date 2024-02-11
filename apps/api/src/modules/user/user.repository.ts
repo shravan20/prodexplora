@@ -9,7 +9,7 @@ export class UserRepository {
     constructor(
         @InjectModel(UserEntity.name)
         private readonly model: Model<UserEntity>
-    ) { }
+    ) {}
 
     async findAll(): Promise<UserEntity[]> {
         return await this.model.find().exec();

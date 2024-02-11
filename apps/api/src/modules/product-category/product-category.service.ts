@@ -6,8 +6,7 @@ import { ProductCategoryRepository } from './product-category.repository';
 
 @Injectable()
 export class ProductCategoryService {
-
-    constructor(private readonly repository: ProductCategoryRepository) { }
+    constructor(private readonly repository: ProductCategoryRepository) {}
 
     private static readonly RESOURCE: string = 'Product-Category';
 
@@ -24,7 +23,9 @@ export class ProductCategoryService {
     async findById(id: string): Promise<CategoryResponseDto> {
         const category = await this.repository.findById(id);
         if (!category) {
-            throw new NotFoundException(`${ProductCategoryService.RESOURCE} with id=${id} not found`);
+            throw new NotFoundException(
+                `${ProductCategoryService.RESOURCE} with id=${id} not found`
+            );
         }
         return CategoryResponseDto.from(category);
     }

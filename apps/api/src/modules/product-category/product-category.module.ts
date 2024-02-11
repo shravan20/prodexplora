@@ -16,6 +16,6 @@ import { ProductCategoryService } from './product-category.service';
     ],
     controllers: [ProductCategoryController],
     providers: [ProductCategoryRepository, ProductCategoryService],
-    exports: [ProductCategoryService],
+    exports: [ProductCategoryService]
 })
-export class ProductCategoryModule { }
+export class ProductCategoryModule {}
