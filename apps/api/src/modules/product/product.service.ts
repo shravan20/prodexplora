@@ -13,7 +13,7 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) {}
+    ) { }
 
     @CatchError
     async create(
@@ -29,7 +29,6 @@ export class ProductService {
             )
         );
 
-        return null;
         return ProductResponseDto.from(
             await this.repository.create(createProductDto)
         );
