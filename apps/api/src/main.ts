@@ -3,7 +3,7 @@ import {
     INestApplication,
     Logger,
     ValidationPipe,
-    VersioningType,
+    VersioningType
 } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as dotenv from 'dotenv';
@@ -21,7 +21,7 @@ async function setInterceptors(app: INestApplication) {
     app.setGlobalPrefix('/api');
 
     app.enableVersioning({
-        type: VersioningType.URI,
+        type: VersioningType.URI
     });
 
     if (parseInt(process.env.MONGO_DEBUG, 10) === 1) {
@@ -33,8 +33,8 @@ async function setInterceptors(app: INestApplication) {
 
     app.useGlobalPipes(
         new ValidationPipe({
-            disableErrorMessages: false,
-        }),
+            disableErrorMessages: false
+        })
     );
 }
 
@@ -48,7 +48,7 @@ async function bootstrap(): Promise<void> {
     }
 
     const app: INestApplication = await NestFactory.create(AppModule, {
-        abortOnError: false,
+        abortOnError: false
     });
 
     await setInterceptors(app);

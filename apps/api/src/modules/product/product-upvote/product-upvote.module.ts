@@ -4,6 +4,6 @@ import { ProductUpvoteController } from './product-upvote.controller';
 
 @Module({
     controllers: [ProductUpvoteController],
-    providers: [ProductUpvoteService],
+    providers: [ProductUpvoteService]
 })
 export class ProductUpvoteModule {}

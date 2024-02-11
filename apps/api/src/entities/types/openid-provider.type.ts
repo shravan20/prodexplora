@@ -1,4 +1,4 @@
-export interface IOpenIdProvider {
+export type OpenIdProvider = {
     /**
      * The name of the OpenID provider (e.g., Google, Facebook).
      */
@@ -8,4 +8,4 @@ export interface IOpenIdProvider {
      * The unique identifier for the user provided by the OpenID provider.
      */
     identifier: string;
-}
+};

@@ -3,7 +3,7 @@ import {
     ExecutionContext,
     HttpStatus,
     Injectable,
-    NestInterceptor,
+    NestInterceptor
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,14 +18,14 @@ export class ApiResponseEnvelopeInterceptor implements NestInterceptor {
         const route = request?.route?.path;
 
         return next.handle().pipe(
-            map((data) => ({
+            map(data => ({
                 status: true,
                 statusCode,
                 data,
                 message: 'Request successful',
                 timestamp: new Date().toISOString(),
-                endpoint: route,
-            })),
+                endpoint: route
+            }))
         );
     }
 }

@@ -6,7 +6,7 @@ import {
     Param,
     Patch,
     Post,
-    UseFilters,
+    UseFilters
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
@@ -17,7 +17,7 @@ import { ProductRatingService } from './product-rating.service';
 
 @ApiTags('Product Rating Service')
 @Controller({
-    version: '1',
+    version: '1'
 })
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
@@ -42,7 +42,7 @@ export class ProductRatingController {
     @Patch('/products/:productId/product-ratings/:id')
     update(
         @Param('id') id: string,
-        @Body() updateProductRatingDto: UpdateProductRatingRequestDto,
+        @Body() updateProductRatingDto: UpdateProductRatingRequestDto
     ) {
         return this.productRatingService.update(+id, updateProductRatingDto);
     }

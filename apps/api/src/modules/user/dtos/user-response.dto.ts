@@ -41,7 +41,7 @@ export class UserResponseDto {
         this.authProvider = user.loginProvider;
         this.productFollowing =
             user.productFollowing.length > 0
-                ? user.productFollowing.map((v) => v.toString())
+                ? user.productFollowing.map(v => v.toString())
                 : [];
     }
 

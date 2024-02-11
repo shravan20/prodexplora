@@ -18,18 +18,18 @@ const modules = [
     ConfigModule.forRoot({
         isGlobal: true,
         envFilePath: [join('.', '.env'), join('.', '.env.production')],
-        cache: process.env.ENABLE_CONFIG_CACHING === '1',
+        cache: process.env.ENABLE_CONFIG_CACHING === '1'
     }),
     ServeStaticModule.forRoot({
         //  TODO: Make this configurable
-        rootPath: join(__dirname, '../..', 'ui', 'dist'),
+        rootPath: join(__dirname, '../..', 'ui', 'dist')
     }),
     SwaggerSetupModule,
     UserModule,
     ProductCategoryModule,
     ProductModule,
     SecretManagerModule,
-    MongooseModule.forRoot(process.env.MONGODB_DB_URL),
+    MongooseModule.forRoot(process.env.MONGODB_DB_URL)
 ];
 
 const controllers = [AppController];
@@ -38,17 +38,17 @@ const providers = [
     AppService,
     {
         provide: APP_INTERCEPTOR,
-        useClass: ApiResponseEnvelopeInterceptor,
+        useClass: ApiResponseEnvelopeInterceptor
     },
     {
         provide: APP_INTERCEPTOR,
-        useClass: LoggingInterceptor,
-    },
+        useClass: LoggingInterceptor
+    }
 ];
 
 @Module({
     imports: modules,
     controllers: controllers,
-    providers: providers,
+    providers: providers
 })
 export class AppModule {}

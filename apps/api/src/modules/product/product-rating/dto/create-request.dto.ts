@@ -5,13 +5,13 @@ import {
     IsNotEmpty,
     IsNumber,
     Max,
-    Min,
+    Min
 } from 'class-validator';
 
 export class CreateProductRatingRequestDto {
     @ApiProperty({
         description: 'User ID who is rating the product',
-        example: '507f1f77bcf86cd799439011',
+        example: '507f1f77bcf86cd799439011'
     })
     @IsNotEmpty()
     @IsMongoId()
@@ -19,7 +19,7 @@ export class CreateProductRatingRequestDto {
 
     @ApiProperty({
         description: 'Product ID who is rating the product',
-        example: '507f1f77bcf86cd799439011',
+        example: '507f1f77bcf86cd799439011'
     })
     @IsNotEmpty()
     @IsMongoId()
@@ -27,18 +27,18 @@ export class CreateProductRatingRequestDto {
 
     @ApiProperty({
         description: 'Rating for the product from 1 to 5',
-        example: '4',
+        example: '4'
     })
     @IsNotEmpty()
     @IsNumber(
         {
             allowNaN: false,
             allowInfinity: false,
-            maxDecimalPlaces: 2,
+            maxDecimalPlaces: 2
         },
         {
-            message: 'Rating must be a number with at most 2 decimal places',
-        },
+            message: 'Rating must be a number with at most 2 decimal places'
+        }
     )
     @Min(1, { message: 'Rating must be at least 1' })
     @Max(10, { message: 'Rating must be at most 5' })

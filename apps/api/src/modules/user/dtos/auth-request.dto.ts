@@ -6,19 +6,19 @@ import {
     IsOptional,
     IsString,
     IsUrl,
-    Length,
+    Length
 } from 'class-validator';
 
 export class OpenIdProvider {
     @ApiProperty({
-        example: 'opensource@prodexplora.com',
+        example: 'opensource@prodexplora.com'
     })
     @IsNotEmpty()
     @IsEmail()
     identifier: string;
 
     @ApiProperty({
-        example: 'GOOGLE or GITHUB',
+        example: 'GOOGLE or GITHUB'
     })
     @IsNotEmpty()
     @IsString()

@@ -8,11 +8,11 @@ describe('ProductUpvoteController', () => {
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             controllers: [ProductUpvoteController],
-            providers: [ProductUpvoteService],
+            providers: [ProductUpvoteService]
         }).compile();
 
         controller = module.get<ProductUpvoteController>(
-            ProductUpvoteController,
+            ProductUpvoteController
         );
     });
 

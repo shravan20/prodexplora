@@ -3,6 +3,6 @@ import { SecretManagerService } from './secret-manager.service';
 
 @Module({
     providers: [SecretManagerService],
-    exports: [SecretManagerService],
+    exports: [SecretManagerService]
 })
 export class SecretManagerModule {}
