@@ -20,7 +20,7 @@ export class UserService {
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
         private configService: SecretManagerService
-    ) {}
+    ) { }
 
     async signIn(createAuthDto: AuthRequestDto) {
         const data = await this.createIfNotExists(createAuthDto);
@@ -107,7 +107,7 @@ export class UserService {
         return `This action returns all user`;
     }
 
-    async getById(id: string): Promise<UserResponseDto> {
+    async findById(id: string): Promise<UserResponseDto> {
         const user = await this.userRepository.findById(id);
         if (!user) {
             throw new NotFoundException(`Resource with id=${id} not found`);

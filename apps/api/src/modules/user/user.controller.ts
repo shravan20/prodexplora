@@ -25,7 +25,7 @@ import { UserService } from './user.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class UserController {
-    constructor(private readonly userService: UserService) {}
+    constructor(private readonly userService: UserService) { }
 
     @Post('/users')
     create(@Body() createUserDto: UserRequestDto) {
@@ -39,7 +39,7 @@ export class UserController {
 
     @Get('/users/:id')
     findOne(@Param() { id }: ObjectIdDto): Promise<UserResponseDto> {
-        return this.userService.getById(id);
+        return this.userService.findById(id);
     }
 
     @Patch('/users/:id')

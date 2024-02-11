@@ -10,13 +10,20 @@ import { ProductRepository } from './product.repository';
 export class ProductService {
     constructor(
         private readonly userService: UserService,
-        private readonly productCategory: ProductCategoryService,
+        private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) {}
+    ) { }
 
     async create(
         createProductDto: ProductRequestDto
     ): Promise<ProductResponseDto> {
+
+        let createdBy = await this.userService.findById(createProductDto.createdBy);
+        let categories = createProductDto.categories.map(async (id) => {
+            return await this.productCategoryService.findById(id)
+        });
+
+
         return ProductResponseDto.from(
             await this.repository.create(createProductDto)
         );
