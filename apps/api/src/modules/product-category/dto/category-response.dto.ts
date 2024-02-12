@@ -15,7 +15,7 @@ export class CategoryResponseDto {
     slug: string;
 
     constructor(category: ProductCategory) {
-        this.id = category._id;
+        this.id = category.id;
         this.description = category.description;
         this.slug = category.slug;
         this.name = category.name;

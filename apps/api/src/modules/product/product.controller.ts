@@ -16,6 +16,7 @@ import {
     ApiTags,
     ApiUnprocessableEntityResponse
 } from '@nestjs/swagger';
+import { ObjectIdDto } from '@utils/validations/object-id.validation';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
 import { ProductRequestDto } from './dtos/product-request.dto';
@@ -58,36 +59,59 @@ export class ProductController {
     @ApiNotFoundResponse({
         description: 'API path not found/invalid'
     })
-    @ApiUnprocessableEntityResponse({
-        description: 'Product cannot be created.'
-    })
     @ApiBadRequestResponse({
         description: 'Bad Request due to validation error.'
     })
     @Get('/products')
-    findAll(): ProductRequestDto[] {
-        this.productService.findAll();
-        return;
+    async findAll(): Promise<ProductResponseDto[]> {
+        return await this.productService.findAll();
     }
 
+    @ApiOkResponse({
+        type: ProductRequestDto
+    })
+    @ApiNotFoundResponse({
+        description: 'API path not found/invalid'
+    })
+    @ApiBadRequestResponse({
+        description: 'Bad Request due to validation error.'
+    })
+    @ApiBody({ type: ProductRequestDto })
     @Get('/products/:id')
-    findOne(@Param('id') id: string): ProductRequestDto {
-        this.productService.findOne(+id);
-        return new ProductRequestDto();
+    async findOne(@Param() { id }: ObjectIdDto): Promise<ProductResponseDto> {
+        return await this.productService.findById(id);
     }
 
+    @ApiOkResponse({
+        type: ProductRequestDto
+    })
+    @ApiNotFoundResponse({
+        description: 'API path not found/invalid'
+    })
+    @ApiBadRequestResponse({
+        description: 'Bad Request due to validation error.'
+    })
+    @ApiBody({ type: ProductRequestDto })
     @Patch('/products/:id')
     update(
-        @Param('id') id: string,
+        @Param() { id }: ObjectIdDto,
         @Body() updateProductDto: UpdateProductRequestDto
     ): UpdateProductRequestDto {
-        this.productService.update(+id, updateProductDto);
+        this.productService.update(id, updateProductDto);
         return {};
     }
 
+    @ApiOkResponse({
+        type: ProductRequestDto
+    })
+    @ApiNotFoundResponse({
+        description: 'API path not found/invalid'
+    })
+    @ApiBadRequestResponse({
+        description: 'Bad Request due to validation error.'
+    })
     @Delete('/products/:id')
-    remove(@Param('id') id: string): ProductRequestDto {
-        this.productService.remove(+id);
-        return new ProductRequestDto();
+    async remove(@Param() { id }: ObjectIdDto): Promise<ProductResponseDto> {
+        return await this.productService.remove(id);
     }
 }

@@ -50,7 +50,7 @@ export class ProductCategoryRepository {
     async deleteById(
         categoryId: string
     ): Promise<ProductCategoryEntity | null> {
-        return await this.findByIdAndUpdate(categoryId, {
+        return await this.model.findByIdAndUpdate(categoryId, {
             isArchived: true
         });
     }

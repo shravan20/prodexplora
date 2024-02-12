@@ -11,25 +11,44 @@ export class ProductRepository {
         private readonly model: Model<ProductEntity>
     ) {}
 
-    async create(dto: ProductRequestDto): Promise<ProductEntity> {
+    async create(dto: ProductRequestDto, categories): Promise<ProductEntity> {
         try {
-            return await await this.model.create(this.toEntity(dto));
+            return await await this.model.create(
+                this.toEntity(dto, categories)
+            );
         } catch (error) {
             throw error;
         }
     }
 
-    private toEntity(dto: ProductRequestDto): ProductEntity {
+    private toEntity(dto: ProductRequestDto, categories: []): ProductEntity {
         return new this.model({
             title: dto.title,
             description: dto.description,
             slug: dto.slug,
-            categories: dto.categories,
+            categories: categories,
             technologies: dto.technologies,
             createdBy: dto.createdBy,
             status: dto.status,
             isPublished: dto.isPublished,
             externalLinks: dto.externalLinks
+        });
+    }
+
+    async findById(
+        id: string,
+        populate: string[] = []
+    ): Promise<ProductEntity> {
+        return await this.model.findById(id).populate('categories').exec();
+    }
+
+    async findAll(query = {}, projection = {}): Promise<ProductEntity[]> {
+        return await this.model.find(query, projection);
+    }
+
+    async deleteById(id: string): Promise<ProductEntity | null> {
+        return await this.model.findByIdAndUpdate(id, {
+            isArchived: true
         });
     }
 }
