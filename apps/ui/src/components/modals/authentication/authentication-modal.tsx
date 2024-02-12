@@ -5,6 +5,9 @@ import axios from 'axios';
 import { signIn } from '../../../api/services/authentication/authentication.service';
 import { useAuth } from '../../../context/AuthContext';
 
+import { FaGoogle } from 'react-icons/fa';
+import { Button } from '../../../packages/ui/components/buttons/Button';
+
 const AuthenticationModal: React.FC = () => {
     const [user, setUser] = React.useState([]);
     const [profile, setProfile] = React.useState([]);
@@ -71,7 +74,12 @@ const AuthenticationModal: React.FC = () => {
             </div>
             <div className="flex flex-col gap-2 m-auto flex items-center justify-center p-5">
 
-                <button onClick={() => login()}>Sign in with Google 🚀 </button>
+                <Button onClick={() => login()} variant="button" color="fun">
+                    <div className="flex flex-row gap-2 text-m font-semibold items-center">
+                        <FaGoogle />
+                        Sign in with Google
+                    </div>
+                </Button>
             </div>
         </div>
     )
