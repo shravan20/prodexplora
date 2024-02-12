@@ -1,3 +1,4 @@
+import { Product } from '@entities/product.entity';
 import { ProductCategoryService } from '@modules/product-category/product-category.service';
 import { UserService } from '@modules/user/user.service';
 import { Injectable, NotFoundException } from '@nestjs/common';
@@ -14,7 +15,7 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) {}
+    ) { }
 
     private static readonly RESOURCE: string = 'Product';
 
@@ -41,15 +42,14 @@ export class ProductService {
         return `This action returns all product`;
     }
 
-    async findById(id: string) {
-        const product = this.repository.findById(id);
+    async findById(id: string): Promise<ProductResponseDto> {
+        const product: Product = await this.repository.findById(id);
         if (!product) {
             throw new NotFoundException(
                 resourceNotFoundMessage(ProductService.RESOURCE, id)
             );
         }
-        return;
-        return `This action returns a #${id} product`;
+        return ProductResponseDto.from(product);
     }
 
     async update(id: number, updateProductDto: UpdateProductRequestDto) {
