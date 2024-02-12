@@ -20,4 +20,4 @@ import { UserService } from './user.service';
     providers: [UserRepository, UserService],
     exports: [JwtModule],
 })
-export class UserModule { }
+export class UserModule {}

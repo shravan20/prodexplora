@@ -1,11 +1,14 @@
 "use client"
 import React, { ReactNode, createContext, useContext, useState } from 'react';
+import { getDataMethod } from '../api/api';
+import { API_HOST } from '../api/api-host';
 
 interface AuthContextType {
   token: string | null;
   email: string | null;
   authLogin: (newToken: string, accessToken: string, email: string) => void;
   authSignup: (newToken: string) => void;
+  fetchUserDetails: (userToken: string) => void;
   isAuthenticated: () => void;
   authLogout: () => void;
 }
@@ -39,6 +42,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     localStorage.removeItem('email');
   };
 
+  const fetchUserDetails = (userToken: string) => {
+    const response = getDataMethod(API_HOST + "/users/" + userToken);
+    return response;
+  }
+
   const authSignup = (newToken: string) => {
     setToken(newToken);
     localStorage.setItem('userToken', newToken);
@@ -53,7 +61,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ token, email, authLogin, authSignup, authLogout, isAuthenticated }}>
+    <AuthContext.Provider value={{ token, email, fetchUserDetails, authLogin, authSignup, authLogout, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

@@ -10,7 +10,8 @@ type Data = {
     firstName: string,
     lastName: string
 }
+
 export const signIn = (data: Data) => {
     const response = postDataMethod(API_HOST + "/users/open-id-auth", data);
-    console.log(response);
+    return response;
 }

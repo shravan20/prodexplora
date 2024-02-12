@@ -3,11 +3,14 @@ import * as React from 'react';
 
 import axios from 'axios';
 import { signIn } from '../../../api/services/authentication/authentication.service';
+import { useAuth } from '../../../context/AuthContext';
 
 const AuthenticationModal: React.FC = () => {
     const [user, setUser] = React.useState([]);
     const [profile, setProfile] = React.useState([]);
     const [response, setResponse] = React.useState({});
+
+    const { authLogin } = useAuth();
 
     const login = useGoogleLogin({
         onSuccess: async (codeResponse: any) => {
@@ -46,7 +49,8 @@ const AuthenticationModal: React.FC = () => {
 
     const handleUserSignIn = async (data: any) => {
         const response = await signIn(data);
-        console.log(`response`, response);
+        authLogin(response.data.user._id, response.data.access_token, response.data.user.email);
+        window.location.reload();
     }
 
     React.useEffect(() => { }, [user]);
