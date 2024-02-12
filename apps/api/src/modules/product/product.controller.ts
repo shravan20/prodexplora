@@ -31,7 +31,7 @@ import { ProductService } from './product.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductController {
-    constructor(private readonly productService: ProductService) {}
+    constructor(private readonly productService: ProductService) { }
 
     @Post('/products')
     @ApiOkResponse({
@@ -59,22 +59,39 @@ export class ProductController {
     @ApiNotFoundResponse({
         description: 'API path not found/invalid'
     })
-    @ApiUnprocessableEntityResponse({
-        description: 'Product cannot be created.'
-    })
     @ApiBadRequestResponse({
         description: 'Bad Request due to validation error.'
     })
     @Get('/products')
-    async findAll(): Promise<ProductRequestDto[]> {
+    async findAll(): Promise<ProductResponseDto[]> {
         return await this.productService.findAll();
     }
 
+    @ApiOkResponse({
+        type: ProductRequestDto
+    })
+    @ApiNotFoundResponse({
+        description: 'API path not found/invalid'
+    })
+    @ApiBadRequestResponse({
+        description: 'Bad Request due to validation error.'
+    })
+    @ApiBody({ type: ProductRequestDto })
     @Get('/products/:id')
-    async findOne(@Param() { id }: ObjectIdDto): Promise<ProductRequestDto> {
+    async findOne(@Param() { id }: ObjectIdDto): Promise<ProductResponseDto> {
         return await this.productService.findById(id);
     }
 
+    @ApiOkResponse({
+        type: ProductRequestDto
+    })
+    @ApiNotFoundResponse({
+        description: 'API path not found/invalid'
+    })
+    @ApiBadRequestResponse({
+        description: 'Bad Request due to validation error.'
+    })
+    @ApiBody({ type: ProductRequestDto })
     @Patch('/products/:id')
     update(
         @Param() { id }: ObjectIdDto,
@@ -84,6 +101,15 @@ export class ProductController {
         return {};
     }
 
+    @ApiOkResponse({
+        type: ProductRequestDto
+    })
+    @ApiNotFoundResponse({
+        description: 'API path not found/invalid'
+    })
+    @ApiBadRequestResponse({
+        description: 'Bad Request due to validation error.'
+    })
     @Delete('/products/:id')
     async remove(@Param() { id }: ObjectIdDto): Promise<ProductResponseDto> {
         return await this.productService.remove(id);

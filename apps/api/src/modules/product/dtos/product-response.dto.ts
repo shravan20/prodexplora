@@ -1,5 +1,6 @@
 import { Product } from '@entities/product.entity';
 import { SocialLink } from '@entities/types/social-link.type';
+import { CategoryResponseDto } from '@modules/product-category/dto/category-response.dto';
 import { ApiProperty } from '@nestjs/swagger';
 import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
 
@@ -14,7 +15,7 @@ export class ProductResponseDto {
     readonly slug: string;
 
     @ApiProperty()
-    readonly categories: string[];
+    readonly categories: CategoryResponseDto[];
 
     @ApiProperty()
     readonly technologies: string[];
@@ -31,7 +32,7 @@ export class ProductResponseDto {
     @ApiProperty()
     readonly externalLinks: SocialLink[];
 
-    constructor(product: Product) {
+    constructor(product: Product, populateCategories: boolean = false) {
         this.title = product.title;
         this.description = product.description;
         this.slug = product.slug;
@@ -39,12 +40,18 @@ export class ProductResponseDto {
         this.externalLinks = product.externalLinks;
         this.status = product.status;
         this.isPublished = product.isPublished;
-        this.categories = product.categories.map(category => {
-            return category._id.toHexString();
-        });
+
+        if (populateCategories) {
+            this.categories = product.categories.map(category => {
+                return CategoryResponseDto.from(category);
+            });
+        } else {
+            this.categories = product.categories.map(category => category.id);
+        }
+
     }
 
-    static from(product: Product): ProductResponseDto {
-        return new ProductResponseDto(product);
+    static from(product: Product, populateCategories: boolean = false): ProductResponseDto {
+        return new ProductResponseDto(product, populateCategories);
     }
 }

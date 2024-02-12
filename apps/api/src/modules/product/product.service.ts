@@ -15,7 +15,7 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) {}
+    ) { }
 
     private static readonly RESOURCE: string = 'Product';
 
@@ -34,7 +34,7 @@ export class ProductService {
         );
 
         return ProductResponseDto.from(
-            await this.repository.create(createProductDto)
+            await this.repository.create(createProductDto, categories)
         );
     }
 
@@ -47,13 +47,15 @@ export class ProductService {
     }
 
     async findById(id: string): Promise<ProductResponseDto> {
+
         const product: Product = await this.repository.findById(id);
         if (!product) {
             throw new NotFoundException(
                 resourceNotFoundMessage(ProductService.RESOURCE, id)
             );
         }
-        return ProductResponseDto.from(product);
+        console.log(product);
+        return ProductResponseDto.from(product, true);
     }
 
     async update(id: string, updateProductDto: UpdateProductRequestDto) {
