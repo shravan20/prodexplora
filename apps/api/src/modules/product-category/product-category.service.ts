@@ -24,7 +24,9 @@ export class ProductCategoryService {
     async findById(id: string): Promise<CategoryResponseDto> {
         const category = await this.repository.findById(id);
         if (!category) {
-            throw new NotFoundException(resourceNotFoundMessage(ProductCategoryService.RESOURCE, id));
+            throw new NotFoundException(
+                resourceNotFoundMessage(ProductCategoryService.RESOURCE, id)
+            );
         }
         return CategoryResponseDto.from(category);
     }
@@ -36,7 +38,9 @@ export class ProductCategoryService {
     async remove(id: string): Promise<CategoryResponseDto> {
         const archivedCategory = await this.repository.deleteById(id);
         if (!archivedCategory) {
-            throw new NotFoundException(resourceNotFoundMessage(ProductCategoryService.RESOURCE, id));
+            throw new NotFoundException(
+                resourceNotFoundMessage(ProductCategoryService.RESOURCE, id)
+            );
         }
         return CategoryResponseDto.from(archivedCategory);
     }

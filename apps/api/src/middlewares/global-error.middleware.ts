@@ -29,7 +29,12 @@ export class HttpExceptionFilter implements ExceptionFilter {
                 ? this.appendMessage(validationMessage)
                 : [exception.message || unknownErrorMessage];
         } else {
-            ({ statusCode, message } = this.customErrors(exception, statusCode, message, unknownErrorMessage));
+            ({ statusCode, message } = this.customErrors(
+                exception,
+                statusCode,
+                message,
+                unknownErrorMessage
+            ));
 
             // Log stack trace in development environment
             if (process.env.NODE_ENV === 'development' && exception.stack) {
@@ -51,8 +56,12 @@ export class HttpExceptionFilter implements ExceptionFilter {
         response.status(statusCode).json(body);
     }
 
-    private customErrors(exception: Error, statusCode: number, message: any[], unknownErrorMessage: string) {
-
+    private customErrors(
+        exception: Error,
+        statusCode: number,
+        message: any[],
+        unknownErrorMessage: string
+    ) {
         let messages;
 
         switch (exception.name) {

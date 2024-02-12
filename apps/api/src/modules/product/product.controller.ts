@@ -77,16 +77,16 @@ export class ProductController {
 
     @Patch('/products/:id')
     update(
-        @Param('id') id: string,
+        @Param() { id }: ObjectIdDto,
         @Body() updateProductDto: UpdateProductRequestDto
     ): UpdateProductRequestDto {
-        this.productService.update(+id, updateProductDto);
+        this.productService.update(id, updateProductDto);
         return {};
     }
 
     @Delete('/products/:id')
-    remove(@Param('id') id: string): ProductRequestDto {
-        this.productService.remove(+id);
+    remove(@Param() { id }: ObjectIdDto): ProductRequestDto {
+        this.productService.remove(id);
         return new ProductRequestDto();
     }
 }

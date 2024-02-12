@@ -39,7 +39,7 @@ export class ProductService {
     }
 
     async findAll(query?: {}, projection?: {}): Promise<ProductResponseDto[]> {
-        let products = await this.repository.findAll(query, projection);
+        const products = await this.repository.findAll(query, projection);
         return products.map(product => ProductResponseDto.from(product));
     }
 
