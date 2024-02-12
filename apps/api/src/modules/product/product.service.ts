@@ -15,7 +15,7 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) { }
+    ) {}
 
     private static readonly RESOURCE: string = 'Product';
 
@@ -47,7 +47,6 @@ export class ProductService {
     }
 
     async findById(id: string): Promise<ProductResponseDto> {
-
         const product: Product = await this.repository.findById(id);
         if (!product) {
             throw new NotFoundException(

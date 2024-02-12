@@ -48,10 +48,12 @@ export class ProductResponseDto {
         } else {
             this.categories = product.categories.map(category => category.id);
         }
-
     }
 
-    static from(product: Product, populateCategories: boolean = false): ProductResponseDto {
+    static from(
+        product: Product,
+        populateCategories: boolean = false
+    ): ProductResponseDto {
         return new ProductResponseDto(product, populateCategories);
     }
 }

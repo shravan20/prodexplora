@@ -9,11 +9,13 @@ export class ProductRepository {
     constructor(
         @InjectModel(ProductEntity.name)
         private readonly model: Model<ProductEntity>
-    ) { }
+    ) {}
 
     async create(dto: ProductRequestDto, categories): Promise<ProductEntity> {
         try {
-            return await await this.model.create(this.toEntity(dto, categories));
+            return await await this.model.create(
+                this.toEntity(dto, categories)
+            );
         } catch (error) {
             throw error;
         }
@@ -33,7 +35,10 @@ export class ProductRepository {
         });
     }
 
-    async findById(id: string, populate: string[] = []): Promise<ProductEntity> {
+    async findById(
+        id: string,
+        populate: string[] = []
+    ): Promise<ProductEntity> {
         return await this.model.findById(id).populate('categories').exec();
     }
 
