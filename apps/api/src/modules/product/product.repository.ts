@@ -9,7 +9,7 @@ export class ProductRepository {
     constructor(
         @InjectModel(ProductEntity.name)
         private readonly model: Model<ProductEntity>
-    ) { }
+    ) {}
 
     async create(dto: ProductRequestDto): Promise<ProductEntity> {
         try {
@@ -41,12 +41,9 @@ export class ProductRepository {
         return await this.model.find(query, projection);
     }
 
-    async deleteById(
-        categoryId: string
-    ): Promise<ProductEntity | null> {
+    async deleteById(categoryId: string): Promise<ProductEntity | null> {
         return await this.model.findByIdAndUpdate(categoryId, {
             isArchived: true
         });
     }
-
 }

@@ -15,7 +15,7 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) { }
+    ) {}
 
     private static readonly RESOURCE: string = 'Product';
 
@@ -61,7 +61,7 @@ export class ProductService {
     }
 
     async remove(id: string): Promise<ProductResponseDto> {
-        let product = await this.repository.deleteById(id);
+        const product = await this.repository.deleteById(id);
         if (!product) {
             throw new NotFoundException(
                 resourceNotFoundMessage(ProductService.RESOURCE, id)

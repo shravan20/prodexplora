@@ -7,7 +7,7 @@ export class ProductCategoryRepository {
     constructor(
         @InjectModel(ProductCategoryEntity.name)
         private readonly model: Model<ProductCategoryEntity>
-    ) { }
+    ) {}
 
     async create(dtos: CategoryRequestDto[]): Promise<ProductCategoryEntity[]> {
         const categories: ProductCategoryEntity[] = this.toEntity(dtos);
