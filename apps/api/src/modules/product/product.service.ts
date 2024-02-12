@@ -15,7 +15,7 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) { }
+    ) {}
 
     private static readonly RESOURCE: string = 'Product';
 
@@ -38,7 +38,10 @@ export class ProductService {
         );
     }
 
-    async findAll(query: any = {}, projection: any = {}): Promise<ProductResponseDto[]> {
+    async findAll(
+        query: any = {},
+        projection: any = {}
+    ): Promise<ProductResponseDto[]> {
         const products = await this.repository.findAll(query, projection);
         return products.map(product => ProductResponseDto.from(product));
     }
