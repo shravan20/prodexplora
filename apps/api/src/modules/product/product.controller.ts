@@ -31,7 +31,7 @@ import { ProductService } from './product.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductController {
-    constructor(private readonly productService: ProductService) {}
+    constructor(private readonly productService: ProductService) { }
 
     @Post('/products')
     @ApiOkResponse({
@@ -66,15 +66,13 @@ export class ProductController {
         description: 'Bad Request due to validation error.'
     })
     @Get('/products')
-    findAll(): ProductRequestDto[] {
-        this.productService.findAll();
-        return;
+    async findAll(): Promise<ProductRequestDto[]> {
+        return await this.productService.findAll();
     }
 
     @Get('/products/:id')
-    findOne(@Param() { id }: ObjectIdDto): ProductRequestDto {
-        this.productService.findById(id);
-        return new ProductRequestDto();
+    async findOne(@Param() { id }: ObjectIdDto): Promise<ProductRequestDto> {
+        return await this.productService.findById(id);
     }
 
     @Patch('/products/:id')

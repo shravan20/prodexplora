@@ -38,8 +38,9 @@ export class ProductService {
         );
     }
 
-    async findAll() {
-        return `This action returns all product`;
+    async findAll(query?: {}, projection?: {}): Promise<ProductResponseDto[]> {
+        let products = await this.repository.findAll(query, projection);
+        return products.map(product => ProductResponseDto.from(product));
     }
 
     async findById(id: string): Promise<ProductResponseDto> {
@@ -52,11 +53,11 @@ export class ProductService {
         return ProductResponseDto.from(product);
     }
 
-    async update(id: number, updateProductDto: UpdateProductRequestDto) {
+    async update(id: string, updateProductDto: UpdateProductRequestDto) {
         return `This action updates a #${id} product`;
     }
 
-    async remove(id: number) {
+    async remove(id: string) {
         return `This action removes a #${id} product`;
     }
 }
