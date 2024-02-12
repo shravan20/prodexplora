@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { resourceNotFoundMessage } from '@utils/validations/error-message-validation';
 import { CategoryRequestDto } from './dto/category-request.dto';
 import { CategoryResponseDto } from './dto/category-response.dto';
 import { UpdateProductCategoryDto } from './dto/update-category.dto';
@@ -24,7 +25,7 @@ export class ProductCategoryService {
         const category = await this.repository.findById(id);
         if (!category) {
             throw new NotFoundException(
-                `${ProductCategoryService.RESOURCE} with id=${id} not found`
+                resourceNotFoundMessage(ProductCategoryService.RESOURCE, id)
             );
         }
         return CategoryResponseDto.from(category);
@@ -37,7 +38,9 @@ export class ProductCategoryService {
     async remove(id: string): Promise<CategoryResponseDto> {
         const archivedCategory = await this.repository.deleteById(id);
         if (!archivedCategory) {
-            throw new NotFoundException(`Resource with id=${id} not found`);
+            throw new NotFoundException(
+                resourceNotFoundMessage(ProductCategoryService.RESOURCE, id)
+            );
         }
         return CategoryResponseDto.from(archivedCategory);
     }

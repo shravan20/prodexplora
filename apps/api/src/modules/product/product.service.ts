@@ -1,6 +1,9 @@
+import { Product } from '@entities/product.entity';
 import { ProductCategoryService } from '@modules/product-category/product-category.service';
 import { UserService } from '@modules/user/user.service';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CatchError } from '@utils/decorators/try-catch.decorator';
+import { resourceNotFoundMessage } from '@utils/validations/error-message-validation';
 import { ProductRequestDto } from './dtos/product-request.dto';
 import { ProductResponseDto } from './dtos/product-response.dto';
 import { UpdateProductRequestDto } from './dtos/update-product.dto';
@@ -10,31 +13,61 @@ import { ProductRepository } from './product.repository';
 export class ProductService {
     constructor(
         private readonly userService: UserService,
-        private readonly productCategory: ProductCategoryService,
+        private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
     ) {}
 
+    private static readonly RESOURCE: string = 'Product';
+
+    @CatchError
     async create(
         createProductDto: ProductRequestDto
     ): Promise<ProductResponseDto> {
+        const createdBy = await this.userService.findById(
+            createProductDto.createdBy
+        );
+
+        const categories = await Promise.all(
+            createProductDto.categories.map(id =>
+                this.productCategoryService.findById(id)
+            )
+        );
+
         return ProductResponseDto.from(
-            await this.repository.create(createProductDto)
+            await this.repository.create(createProductDto, categories)
         );
     }
 
-    async findAll() {
-        return `This action returns all product`;
+    async findAll(
+        query: any = {},
+        projection: any = {}
+    ): Promise<ProductResponseDto[]> {
+        const products = await this.repository.findAll(query, projection);
+        return products.map(product => ProductResponseDto.from(product));
     }
 
-    async findOne(id: number) {
-        return `This action returns a #${id} product`;
+    async findById(id: string): Promise<ProductResponseDto> {
+        const product: Product = await this.repository.findById(id);
+        if (!product) {
+            throw new NotFoundException(
+                resourceNotFoundMessage(ProductService.RESOURCE, id)
+            );
+        }
+        console.log(product);
+        return ProductResponseDto.from(product, true);
     }
 
-    async update(id: number, updateProductDto: UpdateProductRequestDto) {
+    async update(id: string, updateProductDto: UpdateProductRequestDto) {
         return `This action updates a #${id} product`;
     }
 
-    async remove(id: number) {
-        return `This action removes a #${id} product`;
+    async remove(id: string): Promise<ProductResponseDto> {
+        const product = await this.repository.deleteById(id);
+        if (!product) {
+            throw new NotFoundException(
+                resourceNotFoundMessage(ProductService.RESOURCE, id)
+            );
+        }
+        return ProductResponseDto.from(product);
     }
 }
