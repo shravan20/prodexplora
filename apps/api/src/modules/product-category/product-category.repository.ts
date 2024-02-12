@@ -7,7 +7,7 @@ export class ProductCategoryRepository {
     constructor(
         @InjectModel(ProductCategoryEntity.name)
         private readonly model: Model<ProductCategoryEntity>
-    ) {}
+    ) { }
 
     async create(dtos: CategoryRequestDto[]): Promise<ProductCategoryEntity[]> {
         const categories: ProductCategoryEntity[] = this.toEntity(dtos);
@@ -50,7 +50,7 @@ export class ProductCategoryRepository {
     async deleteById(
         categoryId: string
     ): Promise<ProductCategoryEntity | null> {
-        return await this.findByIdAndUpdate(categoryId, {
+        return await this.model.findByIdAndUpdate(categoryId, {
             isArchived: true
         });
     }

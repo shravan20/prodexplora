@@ -31,7 +31,7 @@ import { ProductService } from './product.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductController {
-    constructor(private readonly productService: ProductService) {}
+    constructor(private readonly productService: ProductService) { }
 
     @Post('/products')
     @ApiOkResponse({
@@ -85,8 +85,7 @@ export class ProductController {
     }
 
     @Delete('/products/:id')
-    remove(@Param() { id }: ObjectIdDto): ProductRequestDto {
-        this.productService.remove(id);
-        return new ProductRequestDto();
+    async remove(@Param() { id }: ObjectIdDto): Promise<ProductResponseDto> {
+        return await this.productService.remove(id);
     }
 }
