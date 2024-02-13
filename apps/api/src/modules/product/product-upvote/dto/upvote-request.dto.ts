@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsMongoId, IsNotEmpty } from 'class-validator';
 import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
 
-export class CreateProductUpvoteRequestDto {
+export class ProductUpvoteRequestDto {
     @ApiProperty({
         description: `Status of the Rating (UP_VOTE/DOWN_VOTE)`,
         example: 'UP_VOTE'

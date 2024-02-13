@@ -11,8 +11,8 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
-import { CreateProductUpvoteRequestDto } from './dto/create-request.dto';
-import { UpdateProductUpvoteRequestDto } from './dto/update-request.dto';
+import { UpdateProductUpvoteRequestDto } from './dto/update-upvote.dto';
+import { ProductUpvoteRequestDto } from './dto/upvote-request.dto';
 import { ProductUpvoteService } from './product-upvote.service';
 
 @ApiTags('Product Upvote Service')
@@ -25,7 +25,7 @@ export class ProductUpvoteController {
     constructor(private readonly productUpvoteService: ProductUpvoteService) {}
 
     @Post('/product/:productId/product-upvotes')
-    create(@Body() createProductUpvoteDto: CreateProductUpvoteRequestDto) {
+    create(@Body() createProductUpvoteDto: ProductUpvoteRequestDto) {
         return this.productUpvoteService.create(createProductUpvoteDto);
     }
 
