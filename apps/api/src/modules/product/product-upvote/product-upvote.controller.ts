@@ -22,24 +22,19 @@ import { ProductUpvoteService } from './product-upvote.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductUpvoteController {
-    constructor(private readonly productUpvoteService: ProductUpvoteService) {}
+    constructor(private readonly productUpvoteService: ProductUpvoteService) { }
 
-    @Post('/product/:productId/product-upvotes')
+    @Post('/products/:productId/product-upvotes')
     create(@Body() createProductUpvoteDto: ProductUpvoteRequestDto) {
         return this.productUpvoteService.create(createProductUpvoteDto);
     }
 
-    @Get('/product/:productId/product-upvotes')
+    @Get('/products/:productId/product-upvotes')
     findAll() {
         return this.productUpvoteService.findAll();
     }
 
-    @Get('/product/:productId/product-upvotes/:id')
-    findOne(@Param('id') id: string) {
-        return this.productUpvoteService.findOne(+id);
-    }
-
-    @Patch('/product/:productId/product-upvotes/:id')
+    @Patch('/products/:productId/product-upvotes/:id')
     update(
         @Param('id') id: string,
         @Body() updateProductUpvoteDto: UpdateProductUpvoteRequestDto
@@ -47,7 +42,7 @@ export class ProductUpvoteController {
         return this.productUpvoteService.update(+id, updateProductUpvoteDto);
     }
 
-    @Delete('/product/:productId/product-upvotes/:id')
+    @Delete('/products/:productId/product-upvotes/:id')
     remove(@Param('id') id: string) {
         return this.productUpvoteService.remove(+id);
     }

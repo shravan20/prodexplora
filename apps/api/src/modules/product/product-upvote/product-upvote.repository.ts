@@ -1,5 +1,4 @@
 import {
-    ProductUpvote,
     ProductUpvote as ProductUpvoteEntity
 } from '@entities/product-upvote.entity';
 import { Injectable } from '@nestjs/common';
@@ -9,15 +8,13 @@ import { Model } from 'mongoose';
 @Injectable()
 export class ProductUpvoteRepository {
     constructor(
-        @InjectModel(ProductUpvote.name)
+        @InjectModel(ProductUpvoteEntity.name)
         private readonly model: Model<ProductUpvoteEntity>
-    ) {}
+    ) { }
 
-    async create() {}
+    async create() { }
 
-    async findById() {}
+    async findAll() { }
 
-    async findAll() {}
-
-    async deleteById() {}
+    async deleteById() { }
 }
