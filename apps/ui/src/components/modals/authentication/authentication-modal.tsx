@@ -1,11 +1,12 @@
-import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 import * as React from 'react';
 
 import axios from 'axios';
 import { signIn } from '../../../api/services/authentication/authentication.service';
 import { useAuth } from '../../../context/AuthContext';
 
-import { FaGoogle } from 'react-icons/fa';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { getDataMethod } from '../../../api/api';
 import { Button } from '../../../packages/ui/components/buttons/Button';
 
 const AuthenticationModal: React.FC = () => {
@@ -56,14 +57,15 @@ const AuthenticationModal: React.FC = () => {
         window.location.reload();
     }
 
-    React.useEffect(() => { }, [user]);
-
-    // log out function to log the user out of google and set the profile array to null
-    const logOut = () => {
-        googleLogout();
-        setProfile([]);
-    };
-
+    const loginWithGithub = async () => {
+        try {
+            const res = await getDataMethod("https://github.com/login/oauth/authorize?client_id=" + import.meta.env.VITE_GITHUB_CLIENT_ID);
+            const data = res;
+            console.log(`data`, data);
+        } catch (error: any) {
+            console.log(error);
+        }
+    }
 
     return (
         <div className="p-[25px] bg-base-gradient rounded-md w-[500px]">
@@ -78,6 +80,12 @@ const AuthenticationModal: React.FC = () => {
                     <div className="flex flex-row gap-2 text-m font-semibold items-center">
                         <FaGoogle />
                         Sign in with Google
+                    </div>
+                </Button>
+                <Button onClick={() => loginWithGithub()} variant="button" color="subtle">
+                    <div className="flex flex-row gap-2 text-m font-semibold items-center">
+                        <FaGithub />
+                        Sign in with Github
                     </div>
                 </Button>
             </div>
