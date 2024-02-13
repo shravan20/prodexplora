@@ -6,13 +6,10 @@ import { ProductUpvoteRepository } from './product-upvote.repository';
 
 @Injectable()
 export class ProductUpvoteService {
-
     constructor(
         private readonly productService: ProductService,
         private readonly repository: ProductUpvoteRepository
-    ) {
-
-    }
+    ) {}
 
     create(createProductUpvoteDto: ProductUpvoteRequestDto) {
         return 'This action adds a new productUpvote';
