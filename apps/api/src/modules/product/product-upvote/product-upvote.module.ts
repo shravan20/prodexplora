@@ -2,6 +2,7 @@ import {
     ProductUpvote,
     ProductUpvoteSchema
 } from '@entities/product-upvote.entity';
+import { UserModule } from '@modules/user/user.module';
 import { Module, forwardRef } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ProductModule } from '../product.module';
@@ -16,7 +17,8 @@ import { ProductUpvoteService } from './product-upvote.service';
         MongooseModule.forFeature([
             { name: ProductUpvote.name, schema: ProductUpvoteSchema }
         ]),
-        forwardRef(() => ProductModule)
+        forwardRef(() => ProductModule),
+        UserModule
     ]
 })
-export class ProductUpvoteModule {}
+export class ProductUpvoteModule { }

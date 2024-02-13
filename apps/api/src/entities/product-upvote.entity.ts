@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Types } from 'mongoose';
-import { CommonEntity } from './common-entity';
 import { ProductUpvoteStatus } from 'src/enums/product-upvote-status.enum';
+import { CommonEntity } from './common-entity';
 
 @Schema()
 export class ProductUpvote extends CommonEntity {
