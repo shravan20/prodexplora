@@ -3,13 +3,14 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ProductRequestDto } from './dtos/product-request.dto';
+import { UpdateProductRequestDto } from './dtos/update-product.dto';
 
 @Injectable()
 export class ProductRepository {
     constructor(
         @InjectModel(ProductEntity.name)
         private readonly model: Model<ProductEntity>
-    ) {}
+    ) { }
 
     async create(dto: ProductRequestDto, categories): Promise<ProductEntity> {
         try {
@@ -48,5 +49,11 @@ export class ProductRepository {
         return await this.model.findByIdAndUpdate(id, {
             isArchived: true
         });
+    }
+
+    async findByIdAndPatch(id: string, body: UpdateProductRequestDto): Promise<ProductEntity> {
+        return await this.model.findByIdAndUpdate(id,
+            { $set: body }
+            , { new: true });
     }
 }

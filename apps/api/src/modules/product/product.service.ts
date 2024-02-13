@@ -15,7 +15,7 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) {}
+    ) { }
 
     private static readonly RESOURCE: string = 'Product';
 
@@ -48,26 +48,28 @@ export class ProductService {
 
     async findById(id: string): Promise<ProductResponseDto> {
         const product: Product = await this.repository.findById(id);
-        if (!product) {
-            throw new NotFoundException(
-                resourceNotFoundMessage(ProductService.RESOURCE, id)
-            );
-        }
+        this.isResourceAvailable(product, id);
         console.log(product);
         return ProductResponseDto.from(product, true);
     }
 
     async update(id: string, updateProductDto: UpdateProductRequestDto) {
-        return `This action updates a #${id} product`;
+        let product: Product = await this.repository.findByIdAndPatch(id, updateProductDto);
+        this.isResourceAvailable(product, id);
+        return product;
     }
 
-    async remove(id: string): Promise<ProductResponseDto> {
-        const product = await this.repository.deleteById(id);
+    private isResourceAvailable(product: Product, id: string) {
         if (!product) {
             throw new NotFoundException(
                 resourceNotFoundMessage(ProductService.RESOURCE, id)
             );
         }
+    }
+
+    async remove(id: string): Promise<ProductResponseDto> {
+        const product = await this.repository.deleteById(id);
+        this.isResourceAvailable(product, id);
         return ProductResponseDto.from(product);
     }
 }
