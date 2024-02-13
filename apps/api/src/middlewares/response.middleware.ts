@@ -22,7 +22,7 @@ export class ApiResponseEnvelopeInterceptor implements NestInterceptor {
                 status: true,
                 statusCode,
                 payload: data,
-                message: 'Request successful',
+                message: 'Et voilà! Request successful..',
                 timestamp: new Date().toISOString(),
                 endpoint: route
             }))

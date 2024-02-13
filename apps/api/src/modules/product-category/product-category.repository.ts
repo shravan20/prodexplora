@@ -1,5 +1,6 @@
 import { ProductCategory as ProductCategoryEntity } from '@entities/product-category.entity';
 import { InjectModel } from '@nestjs/mongoose';
+import { CatchError } from '@utils/decorators/try-catch.decorator';
 import { Model } from 'mongoose';
 import { CategoryRequestDto } from './dto/category-request.dto';
 
@@ -7,8 +8,9 @@ export class ProductCategoryRepository {
     constructor(
         @InjectModel(ProductCategoryEntity.name)
         private readonly model: Model<ProductCategoryEntity>
-    ) {}
+    ) { }
 
+    @CatchError
     async create(dtos: CategoryRequestDto[]): Promise<ProductCategoryEntity[]> {
         const categories: ProductCategoryEntity[] = this.toEntity(dtos);
         return await this.model.create(categories);
@@ -24,6 +26,7 @@ export class ProductCategoryRepository {
         });
     }
 
+    @CatchError
     async findById(id: string): Promise<ProductCategoryEntity | null> {
         return await this.model.findById(id);
     }
@@ -31,6 +34,7 @@ export class ProductCategoryRepository {
     /**
      * TODO: Add pagination support for all findAll queries
      */
+    @CatchError
     async findAll(
         query: any = {},
         projection: any = {}
@@ -38,6 +42,7 @@ export class ProductCategoryRepository {
         return await this.model.find(query, projection).exec();
     }
 
+    @CatchError
     async findByIdAndUpdate(
         categoryId: string,
         categoryData: Partial<ProductCategoryEntity>
@@ -47,6 +52,7 @@ export class ProductCategoryRepository {
             .exec();
     }
 
+    @CatchError
     async deleteById(
         categoryId: string
     ): Promise<ProductCategoryEntity | null> {
