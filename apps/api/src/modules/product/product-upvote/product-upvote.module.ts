@@ -21,4 +21,4 @@ import { ProductUpvoteService } from './product-upvote.service';
         UserModule
     ]
 })
-export class ProductUpvoteModule { }
+export class ProductUpvoteModule {}

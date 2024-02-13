@@ -18,5 +18,4 @@ export class ProductUpvoteRequestDto {
     @IsNotEmpty()
     @IsMongoId()
     userId: string;
-
 }

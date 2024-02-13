@@ -11,13 +11,21 @@ export class ProductUpvoteRepository {
     constructor(
         @InjectModel(ProductUpvoteEntity.name)
         private readonly model: Model<ProductUpvoteEntity>
-    ) { }
+    ) {}
 
-    async create(productUpvoteDto: ProductUpvoteRequestDto, product: Product, user: User) {
-        let data = this.toEntity(productUpvoteDto, product, user);
+    async create(
+        productUpvoteDto: ProductUpvoteRequestDto,
+        product: Product,
+        user: User
+    ) {
+        const data = this.toEntity(productUpvoteDto, product, user);
     }
 
-    private toEntity(dto: ProductUpvoteRequestDto, product: Product, user: User) {
+    private toEntity(
+        dto: ProductUpvoteRequestDto,
+        product: Product,
+        user: User
+    ) {
         return new this.model({
             status: dto.status,
             userId: user,
@@ -25,9 +33,7 @@ export class ProductUpvoteRepository {
         });
     }
 
-    async findAll() { }
+    async findAll() {}
 
-    async deleteById() { }
+    async deleteById() {}
 }
-
-
