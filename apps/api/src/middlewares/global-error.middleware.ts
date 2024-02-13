@@ -45,7 +45,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         const body: any = {
             status: false,
             statusCode,
-            data: null,
+            payload: null,
             message,
             timestamp: new Date().toISOString(),
             endpoint: request.url
