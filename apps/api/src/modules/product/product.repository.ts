@@ -10,7 +10,7 @@ export class ProductRepository {
     constructor(
         @InjectModel(ProductEntity.name)
         private readonly model: Model<ProductEntity>
-    ) { }
+    ) {}
 
     async create(dto: ProductRequestDto, categories): Promise<ProductEntity> {
         try {
@@ -51,9 +51,14 @@ export class ProductRepository {
         });
     }
 
-    async findByIdAndPatch(id: string, body: UpdateProductRequestDto): Promise<ProductEntity> {
-        return await this.model.findByIdAndUpdate(id,
-            { $set: body }
-            , { new: true });
+    async findByIdAndPatch(
+        id: string,
+        body: UpdateProductRequestDto
+    ): Promise<ProductEntity> {
+        return await this.model.findByIdAndUpdate(
+            id,
+            { $set: body },
+            { new: true }
+        );
     }
 }
