@@ -9,11 +9,11 @@ export class ProductRepository {
     constructor(
         @InjectModel(ProductEntity.name)
         private readonly model: Model<ProductEntity>
-    ) {}
+    ) { }
 
     async create(dto: ProductRequestDto, categories): Promise<ProductEntity> {
         try {
-            return await await this.model.create(
+            return await this.model.create(
                 this.toEntity(dto, categories)
             );
         } catch (error) {
