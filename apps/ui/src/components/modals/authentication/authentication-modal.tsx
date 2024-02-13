@@ -6,7 +6,6 @@ import { signIn } from '../../../api/services/authentication/authentication.serv
 import { useAuth } from '../../../context/AuthContext';
 
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { getDataMethod } from '../../../api/api';
 import { Button } from '../../../packages/ui/components/buttons/Button';
 
 const AuthenticationModal: React.FC = () => {
@@ -58,14 +57,17 @@ const AuthenticationModal: React.FC = () => {
     }
 
     const loginWithGithub = async () => {
-        try {
-            const res = await getDataMethod("https://github.com/login/oauth/authorize?client_id=" + import.meta.env.VITE_GITHUB_CLIENT_ID);
-            const data = res;
-            console.log(`data`, data);
-        } catch (error: any) {
-            console.log(error);
-        }
+        window.location.href = "https://github.com/login/oauth/authorize?client_id=" + import.meta.env.VITE_GITHUB_CLIENT_ID + "&scope=read:user, user:email, user:follow, read:project, repo:public_repo";
     }
+
+    React.useEffect(() => {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const codeParams = urlParams.get('code');
+        console.log(codeParams);
+    }, []);
+
+
 
     return (
         <div className="p-[25px] bg-base-gradient rounded-md w-[500px]">
