@@ -8,7 +8,7 @@ export class ProductCategoryRepository {
     constructor(
         @InjectModel(ProductCategoryEntity.name)
         private readonly model: Model<ProductCategoryEntity>
-    ) { }
+    ) {}
 
     @CatchError
     async create(dtos: CategoryRequestDto[]): Promise<ProductCategoryEntity[]> {
