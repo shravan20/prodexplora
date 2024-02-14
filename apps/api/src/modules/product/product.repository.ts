@@ -11,9 +11,12 @@ export class ProductRepository {
     constructor(
         @InjectModel(ProductEntity.name)
         private readonly model: Model<ProductEntity>
-    ) { }
+    ) {}
 
-    async create(dto: ProductRequestDto, categories: ProductCategory[]): Promise<ProductEntity> {
+    async create(
+        dto: ProductRequestDto,
+        categories: ProductCategory[]
+    ): Promise<ProductEntity> {
         try {
             return await this.model.create(this.toEntity(dto, categories));
         } catch (error) {
@@ -21,7 +24,10 @@ export class ProductRepository {
         }
     }
 
-    private toEntity(dto: ProductRequestDto, categories: ProductCategory[]): ProductEntity {
+    private toEntity(
+        dto: ProductRequestDto,
+        categories: ProductCategory[]
+    ): ProductEntity {
         return new this.model({
             title: dto.title,
             description: dto.description,
