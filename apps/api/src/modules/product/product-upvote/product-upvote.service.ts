@@ -8,22 +8,21 @@ import { ProductUpvoteRepository } from './product-upvote.repository';
 
 @Injectable()
 export class ProductUpvoteService {
+
     constructor(
         private readonly productService: ProductService,
         private readonly userService: UserService,
         private readonly repository: ProductUpvoteRepository
-    ) {}
+    ) {
+
+    }
 
     @CatchError
-    create(
-        productId: string,
-        productUpvoteRequestDto: ProductUpvoteRequestDto
-    ) {
-        const createdBy = this.userService.findById(
-            productUpvoteRequestDto.userId
-        );
-        const product = this.productService.findById(productId);
-        return 'This action adds a new productUpvote';
+    async create(productId: string, productUpvoteRequestDto: ProductUpvoteRequestDto) {
+        let createdBy = await this.userService.findById(productUpvoteRequestDto.userId);
+        let product = await this.productService.findById(productId);
+        // return this.repository.create(productUpvoteRequestDto, product, createdBy);
+        return null;
     }
 
     findAll() {

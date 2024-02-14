@@ -1,3 +1,4 @@
+import { ProductCategory } from '@entities/product-category.entity';
 import { Product } from '@entities/product.entity';
 import { ProductCategoryService } from '@modules/product-category/product-category.service';
 import { UserService } from '@modules/user/user.service';
@@ -15,7 +16,7 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) {}
+    ) { }
 
     private static readonly RESOURCE: string = 'Product';
 
@@ -27,9 +28,9 @@ export class ProductService {
             createProductDto.createdBy
         );
 
-        const categories = await Promise.all(
+        const categories: ProductCategory[] = await Promise.all(
             createProductDto.categories.map(id =>
-                this.productCategoryService.findById(id)
+                this.productCategoryService.getById(id)
             )
         );
 
