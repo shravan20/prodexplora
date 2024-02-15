@@ -20,7 +20,7 @@ export class UserService {
         private readonly jwtService: JwtService,
         private readonly userRepository: UserRepository,
         private configService: SecretManagerService
-    ) {}
+    ) { }
 
     async signIn(createAuthDto: AuthRequestDto) {
         const data = await this.createIfNotExists(createAuthDto);
@@ -108,11 +108,16 @@ export class UserService {
     }
 
     async findById(id: string): Promise<UserResponseDto> {
+        const user: User = await this.getById(id);
+        return UserResponseDto.from(user);
+    }
+
+    async getById(id: string): Promise<User> {
         const user = await this.userRepository.findById(id);
         if (!user) {
             throw new NotFoundException(`Resource with id=${id} not found`);
         }
-        return UserResponseDto.from(user);
+        return user;
     }
 
     update(id: string, updateUserDto: UpdateUserDto) {
