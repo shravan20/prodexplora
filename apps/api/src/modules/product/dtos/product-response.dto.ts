@@ -6,6 +6,9 @@ import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
 
 export class ProductResponseDto {
     @ApiProperty()
+    readonly id: string;
+
+    @ApiProperty()
     readonly title: string;
 
     @ApiProperty()
@@ -15,7 +18,7 @@ export class ProductResponseDto {
     readonly slug: string;
 
     @ApiProperty()
-    readonly categories: CategoryResponseDto[];
+    readonly categories: (CategoryResponseDto[] | string[]) = [];
 
     @ApiProperty()
     readonly technologies: string[];
@@ -33,6 +36,7 @@ export class ProductResponseDto {
     readonly externalLinks: SocialLink[];
 
     constructor(product: Product, populateCategories: boolean = false) {
+        this.id = product._id;
         this.title = product.title;
         this.description = product.description;
         this.slug = product.slug;
@@ -46,7 +50,7 @@ export class ProductResponseDto {
                 return CategoryResponseDto.from(category);
             });
         } else {
-            this.categories = product.categories.map(category => category.id);
+            this.categories = product.categories.map(category => category._id);
         }
     }
 

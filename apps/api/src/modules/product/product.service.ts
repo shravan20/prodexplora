@@ -16,7 +16,7 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) {}
+    ) { }
 
     private static readonly RESOURCE: string = 'Product';
 
@@ -49,18 +49,18 @@ export class ProductService {
 
     async findById(id: string): Promise<ProductResponseDto> {
         const product: Product = await this.repository.findById(id);
-        this.isResourceAvailable(product, id);
         console.log(product);
+        this.isResourceAvailable(product, id);
         return ProductResponseDto.from(product, true);
     }
 
-    async update(id: string, updateProductDto: UpdateProductRequestDto) {
+    async update(id: string, updateProductDto: UpdateProductRequestDto): Promise<ProductResponseDto> {
         const product: Product = await this.repository.findByIdAndPatch(
             id,
             updateProductDto
         );
         this.isResourceAvailable(product, id);
-        return product;
+        return ProductResponseDto.from(product);
     }
 
     private isResourceAvailable(product: Product, id: string) {

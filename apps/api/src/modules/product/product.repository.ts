@@ -11,7 +11,7 @@ export class ProductRepository {
     constructor(
         @InjectModel(ProductEntity.name)
         private readonly model: Model<ProductEntity>
-    ) {}
+    ) { }
 
     async create(
         dto: ProductRequestDto,
@@ -32,7 +32,7 @@ export class ProductRepository {
             title: dto.title,
             description: dto.description,
             slug: dto.slug,
-            categories: categories,
+            categories: categories.map(category => category._id),
             technologies: dto.technologies,
             createdBy: dto.createdBy,
             status: dto.status,
@@ -45,7 +45,7 @@ export class ProductRepository {
         id: string,
         populate: string[] = []
     ): Promise<ProductEntity> {
-        return await this.model.findById(id).populate('categories').exec();
+        return await this.model.findById(id).populate({ path: "categories", model: ProductCategory.name }).exec();
     }
 
     async findAll(query = {}, projection = {}): Promise<ProductEntity[]> {

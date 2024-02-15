@@ -18,7 +18,7 @@
             "@configs/*": ["src/configs/*"],
             "@modules/*": ["src/modules/*"],
             "@utils/*": ["src/utils/*"],
-            "@constants/*": ["src/constants/*"],
+            "@constants/*": ["src/constants/*"]
         },
         "incremental": true,
         "skipLibCheck": true,
@@ -26,6 +26,6 @@
         "noImplicitAny": false,
         "strictBindCallApply": false,
         "forceConsistentCasingInFileNames": false,
-        "noFallthroughCasesInSwitch": false,
-    },
+        "noFallthroughCasesInSwitch": false
+    }
 }
