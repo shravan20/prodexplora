@@ -7,6 +7,4 @@ export class UpdateProductRequestDto extends ProductRequestDto {
     @IsString()
     @IsMongoId()
     readonly id: string;
-
 }
-

@@ -18,7 +18,7 @@ export class ProductResponseDto {
     readonly slug: string;
 
     @ApiProperty()
-    readonly categories: (CategoryResponseDto[] | string[]) = [];
+    readonly categories: CategoryResponseDto[] | string[] = [];
 
     @ApiProperty()
     readonly technologies: string[];

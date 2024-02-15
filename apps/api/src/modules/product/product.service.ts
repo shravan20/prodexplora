@@ -16,7 +16,7 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) { }
+    ) {}
 
     private static readonly RESOURCE: string = 'Product';
 
@@ -54,7 +54,10 @@ export class ProductService {
         return ProductResponseDto.from(product, true);
     }
 
-    async update(id: string, updateProductDto: UpdateProductRequestDto): Promise<ProductResponseDto> {
+    async update(
+        id: string,
+        updateProductDto: UpdateProductRequestDto
+    ): Promise<ProductResponseDto> {
         const product: Product = await this.repository.findByIdAndPatch(
             id,
             updateProductDto
