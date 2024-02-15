@@ -16,7 +16,7 @@ export class ProductService {
         private readonly userService: UserService,
         private readonly productCategoryService: ProductCategoryService,
         private readonly repository: ProductRepository
-    ) { }
+    ) {}
 
     private static readonly RESOURCE: string = 'Product';
 

@@ -12,7 +12,7 @@ export class ProductUpvoteRepository {
     constructor(
         @InjectModel(ProductUpvoteEntity.name)
         private readonly model: Model<ProductUpvoteEntity>
-    ) { }
+    ) {}
 
     @CatchError
     async create(

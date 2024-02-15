@@ -11,7 +11,7 @@ export class ProductUpvoteService {
         private readonly productService: ProductService,
         private readonly userService: UserService,
         private readonly repository: ProductUpvoteRepository
-    ) { }
+    ) {}
 
     @CatchError
     async create(
@@ -22,7 +22,11 @@ export class ProductUpvoteService {
             productUpvoteRequestDto.userId
         );
         const product = await this.productService.getById(productId);
-        return this.repository.create(productUpvoteRequestDto, product, createdBy);
+        return this.repository.create(
+            productUpvoteRequestDto,
+            product,
+            createdBy
+        );
     }
 
     findAll() {
