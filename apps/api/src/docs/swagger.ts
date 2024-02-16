@@ -7,6 +7,6 @@ export const swaggerOptions = new DocumentBuilder()
     .addServer('/api/v1')
     .setLicense(
         'MIT License',
-        'https://github.com/shravan20/prodexplora/blob/main/LICENSE',
+        'https://github.com/shravan20/prodexplora/blob/main/LICENSE'
     )
     .build();

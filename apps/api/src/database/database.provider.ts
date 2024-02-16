@@ -21,6 +21,6 @@ export const databaseProviders = [
                 logger.error('DB Connection Error', error);
                 throw new Error('Failed to connect to the database');
             }
-        },
-    },
+        }
+    }
 ];

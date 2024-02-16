@@ -1,53 +1,58 @@
 import {
     Body,
+    ConflictException,
     Controller,
     Delete,
     Get,
     Param,
-    Patch,
     Post,
-    UseFilters,
+    UseFilters
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { ObjectIdDto } from '@utils/validations/object-id.validation';
 import { ApiResponseEnvelope } from 'src/middlewares/decorators/response-envelope.decorator';
 import { HttpExceptionFilter } from 'src/middlewares/global-error.middleware';
-import { CreateProductUpvoteRequestDto } from './dto/create-request.dto';
-import { UpdateProductUpvoteRequestDto } from './dto/update-request.dto';
+import { ProductUpvoteRequestDto } from './dto/upvote-request.dto';
 import { ProductUpvoteService } from './product-upvote.service';
 
 @ApiTags('Product Upvote Service')
 @Controller({
-    version: '1',
+    version: '1'
 })
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductUpvoteController {
     constructor(private readonly productUpvoteService: ProductUpvoteService) {}
 
-    @Post('/product/:productId/product-upvotes')
-    create(@Body() createProductUpvoteDto: CreateProductUpvoteRequestDto) {
-        return this.productUpvoteService.create(createProductUpvoteDto);
-    }
-
-    @Get('/product/:productId/product-upvotes')
-    findAll() {
-        return this.productUpvoteService.findAll();
-    }
-
-    @Get('/product/:productId/product-upvotes/:id')
-    findOne(@Param('id') id: string) {
-        return this.productUpvoteService.findOne(+id);
-    }
-
-    @Patch('/product/:productId/product-upvotes/:id')
-    update(
-        @Param('id') id: string,
-        @Body() updateProductUpvoteDto: UpdateProductUpvoteRequestDto,
+    @Post('/products/:id/product-upvotes')
+    create(
+        @Param() { id: productId }: ObjectIdDto,
+        @Body() createProductUpvoteDto: ProductUpvoteRequestDto
     ) {
-        return this.productUpvoteService.update(+id, updateProductUpvoteDto);
+        this.matchAndValidateProductId(productId, createProductUpvoteDto);
+        return this.productUpvoteService.create(
+            productId,
+            createProductUpvoteDto
+        );
     }
 
-    @Delete('/product/:productId/product-upvotes/:id')
+    private matchAndValidateProductId(
+        productId: string,
+        createProductUpvoteDto: ProductUpvoteRequestDto
+    ) {
+        if (productId != createProductUpvoteDto.productId) {
+            throw new ConflictException(
+                'Product ID mismatch in body and path variables'
+            );
+        }
+    }
+
+    @Get('/products/:productId/product-upvotes')
+    async findAll() {
+        return await this.productUpvoteService.findAll();
+    }
+
+    @Delete('/products/:productId/product-upvotes/:id')
     remove(@Param('id') id: string) {
         return this.productUpvoteService.remove(+id);
     }

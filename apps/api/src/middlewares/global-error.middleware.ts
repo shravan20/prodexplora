@@ -4,9 +4,10 @@ import {
     ExceptionFilter,
     HttpException,
     HttpStatus,
-    Logger,
+    Logger
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { ResponseBody } from './dtos/response-body.dto';
 
 @Catch(Error, HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -29,14 +30,12 @@ export class HttpExceptionFilter implements ExceptionFilter {
                 ? this.appendMessage(validationMessage)
                 : [exception.message || unknownErrorMessage];
         } else {
-            if (exception.name === 'ValidationError') {
-                statusCode = HttpStatus.BAD_REQUEST;
-                const messages = exception.message.split(':')[0];
-                message = [messages || unknownErrorMessage];
-            } else {
-                statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-                message = [exception.message || unknownErrorMessage];
-            }
+            ({ statusCode, message } = this.customErrors(
+                exception,
+                statusCode,
+                message,
+                unknownErrorMessage
+            ));
 
             // Log stack trace in development environment
             if (process.env.NODE_ENV === 'development' && exception.stack) {
@@ -44,18 +43,48 @@ export class HttpExceptionFilter implements ExceptionFilter {
             }
         }
 
-        const body: any = {
+        const body: ResponseBody<any> = {
             status: false,
             statusCode,
-            data: null,
-            message,
+            payload: null,
+            message: message,
             timestamp: new Date().toISOString(),
-            endpoint: request.url,
+            endpoint: request.url
         };
 
         this.logger.warn(`${statusCode} ${message}`);
 
         response.status(statusCode).json(body);
+    }
+
+    private customErrors(
+        exception: Error,
+        statusCode: number,
+        message: any[],
+        unknownErrorMessage: string
+    ) {
+        let messages;
+
+        switch (exception.name) {
+            case 'ValidationError':
+                statusCode = HttpStatus.BAD_REQUEST;
+                messages = exception.message.split(':')[0];
+                message = [messages || unknownErrorMessage];
+                break;
+
+            case 'MongoServerError':
+                statusCode = HttpStatus.CONFLICT;
+                messages = exception.message;
+                message = [messages || unknownErrorMessage];
+                break;
+
+            default:
+                statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
+                message = [exception.message || unknownErrorMessage];
+                break;
+        }
+
+        return { statusCode, message };
     }
 
     private appendMessage(validationMessage: any): any[] {

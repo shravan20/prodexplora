@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/mapped-types';
-import * as createRequestDto from './create-request.dto';
+import * as createRequestDto from './upvote-request.dto';
 
 export class UpdateProductUpvoteRequestDto extends PartialType(
-    createRequestDto.CreateProductUpvoteRequestDto,
+    createRequestDto.ProductUpvoteRequestDto
 ) {}

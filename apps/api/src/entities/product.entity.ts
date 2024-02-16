@@ -1,9 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { CommonEntity } from './common-entity';
 import { Types } from 'mongoose';
 import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
+import { CommonEntity } from './common-entity';
+import { ProductCategory } from './product-category.entity';
+import { SocialLink } from './types/social-link.type';
 
-@Schema()
+@Schema({ timestamps: true })
 export class Product extends CommonEntity {
     @Prop({ required: true })
     title: string;
@@ -11,8 +13,11 @@ export class Product extends CommonEntity {
     @Prop({ required: true })
     description: string;
 
-    @Prop({ type: [{ type: Types.ObjectId, ref: 'Category' }] })
-    categories: Types.ObjectId[];
+    @Prop({ required: true, unique: true, index: true })
+    slug: string;
+
+    @Prop({ type: [{ type: Types.ObjectId, ref: ProductCategory.name }] })
+    categories: ProductCategory[];
 
     @Prop({ type: [String] })
     technologies: string[];
@@ -22,15 +27,15 @@ export class Product extends CommonEntity {
 
     @Prop({
         enum: Object.values(ProductLaunchStatus),
-        default: ProductLaunchStatus.PRELAUNCH,
+        default: ProductLaunchStatus.PRELAUNCH
     })
     status: ProductLaunchStatus;
 
     @Prop({ default: false })
-    isPublish: boolean;
+    isPublished: boolean;
 
-    @Prop({ type: [{ platform: String, link: String }] })
-    externalLinks: { platform: string; link: string }[];
+    @Prop({ type: [{ platform: String, link: String }], _id: false })
+    externalLinks: SocialLink[];
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
