@@ -21,8 +21,8 @@ export class ApiResponseEnvelopeInterceptor implements NestInterceptor {
             map(data => ({
                 status: true,
                 statusCode,
-                data,
-                message: 'Request successful',
+                payload: data,
+                message: 'Et voilà! Request successful..',
                 timestamp: new Date().toISOString(),
                 endpoint: route
             }))

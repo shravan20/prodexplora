@@ -7,6 +7,7 @@ import {
     Logger
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { ResponseBody } from './dtos/response-body.dto';
 
 @Catch(Error, HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -42,11 +43,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
             }
         }
 
-        const body: any = {
+        const body: ResponseBody<any> = {
             status: false,
             statusCode,
-            data: null,
-            message,
+            payload: null,
+            message: message,
             timestamp: new Date().toISOString(),
             endpoint: request.url
         };

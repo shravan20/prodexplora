@@ -1,3 +1,4 @@
+import { ProductCategory } from '@entities/product-category.entity';
 import { Product } from '@entities/product.entity';
 import { ProductCategoryService } from '@modules/product-category/product-category.service';
 import { UserService } from '@modules/user/user.service';
@@ -27,9 +28,9 @@ export class ProductService {
             createProductDto.createdBy
         );
 
-        const categories = await Promise.all(
+        const categories: ProductCategory[] = await Promise.all(
             createProductDto.categories.map(id =>
-                this.productCategoryService.findById(id)
+                this.productCategoryService.getById(id)
             )
         );
 
@@ -47,27 +48,39 @@ export class ProductService {
     }
 
     async findById(id: string): Promise<ProductResponseDto> {
+        const product: Product = await this.getById(id);
+        return ProductResponseDto.from(product, true);
+    }
+
+    async getById(id: string): Promise<Product> {
         const product: Product = await this.repository.findById(id);
+        this.isResourceAvailable(product, id);
+        return product;
+    }
+
+    async update(
+        id: string,
+        updateProductDto: UpdateProductRequestDto
+    ): Promise<ProductResponseDto> {
+        const product: Product = await this.repository.findByIdAndPatch(
+            id,
+            updateProductDto
+        );
+        this.isResourceAvailable(product, id);
+        return ProductResponseDto.from(product);
+    }
+
+    private isResourceAvailable(product: Product, id: string) {
         if (!product) {
             throw new NotFoundException(
                 resourceNotFoundMessage(ProductService.RESOURCE, id)
             );
         }
-        console.log(product);
-        return ProductResponseDto.from(product, true);
-    }
-
-    async update(id: string, updateProductDto: UpdateProductRequestDto) {
-        return `This action updates a #${id} product`;
     }
 
     async remove(id: string): Promise<ProductResponseDto> {
         const product = await this.repository.deleteById(id);
-        if (!product) {
-            throw new NotFoundException(
-                resourceNotFoundMessage(ProductService.RESOURCE, id)
-            );
-        }
+        this.isResourceAvailable(product, id);
         return ProductResponseDto.from(product);
     }
 }

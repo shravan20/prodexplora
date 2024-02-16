@@ -16,7 +16,7 @@ export class Product extends CommonEntity {
     @Prop({ required: true, unique: true, index: true })
     slug: string;
 
-    @Prop({ type: [{ type: Types.ObjectId, ref: 'ProductCategory' }] })
+    @Prop({ type: [{ type: Types.ObjectId, ref: ProductCategory.name }] })
     categories: ProductCategory[];
 
     @Prop({ type: [String] })
