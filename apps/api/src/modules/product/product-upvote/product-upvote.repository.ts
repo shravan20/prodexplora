@@ -28,7 +28,7 @@ export class ProductUpvoteRepository {
         dto: ProductUpvoteRequestDto,
         product: Product,
         user: User
-    ) {
+    ): ProductUpvoteEntity {
         return new this.model({
             status: dto.status,
             userId: user._id,
@@ -41,16 +41,16 @@ export class ProductUpvoteRepository {
     }
 
     async findOne(
-        query: {} = {},
-        projection: {} = {}
+        query: Record<string, any> = {},
+        projection: Record<string, any> = {}
     ): Promise<ProductUpvoteEntity> {
         return await this.model.findOne(query, projection);
     }
 
     async findOneAndUpdate(
-        query: {} = {},
-        updateQuery: {} = {},
-        options: {} = {}
+        query: Record<string, any> = {},
+        updateQuery: Record<string, any> = {},
+        options: Record<string, any> = {}
     ): Promise<ProductUpvoteEntity> {
         return await this.model.findOneAndUpdate(query, updateQuery, {
             new: true,
@@ -58,7 +58,7 @@ export class ProductUpvoteRepository {
         });
     }
 
-    async deleteById(id: string, query = {}): Promise<ProductUpvoteEntity> {
+    async deleteById(id: string): Promise<ProductUpvoteEntity> {
         return await this.model.findByIdAndUpdate(id, { isArchived: true });
     }
 }

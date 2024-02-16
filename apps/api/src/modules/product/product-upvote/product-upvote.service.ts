@@ -1,3 +1,4 @@
+import { ProductUpvote } from '@entities/product-upvote.entity';
 import { UserService } from '@modules/user/user.service';
 import { Injectable } from '@nestjs/common';
 import { CatchError } from '@utils/decorators/try-catch.decorator';
@@ -17,25 +18,28 @@ export class ProductUpvoteService {
     async create(
         productId: string,
         productUpvoteRequestDto: ProductUpvoteRequestDto
-    ) {
+    ): Promise<ProductUpvote> {
         const createdBy = await this.userService.getById(
             productUpvoteRequestDto.userId
         );
         const product = await this.productService.getById(productId);
 
-        const query = {
+        const query: any = {
             productId: product._id,
             userId: createdBy._id
         };
 
-        const update = { ...query, status: productUpvoteRequestDto.status };
+        const update: any = {
+            ...query,
+            status: productUpvoteRequestDto.status
+        };
 
-        const options = { upsert: true };
+        const options: any = { upsert: true };
 
         return await this.repository.findOneAndUpdate(query, update, options);
     }
 
-    async findAll() {
+    async findAll(): Promise<ProductUpvote[]> {
         return await this.repository.findAll();
     }
 
