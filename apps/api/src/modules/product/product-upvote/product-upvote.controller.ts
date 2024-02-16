@@ -22,7 +22,7 @@ import { ProductUpvoteService } from './product-upvote.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductUpvoteController {
-    constructor(private readonly productUpvoteService: ProductUpvoteService) { }
+    constructor(private readonly productUpvoteService: ProductUpvoteService) {}
 
     @Post('/products/:id/product-upvotes')
     create(
@@ -30,12 +30,20 @@ export class ProductUpvoteController {
         @Body() createProductUpvoteDto: ProductUpvoteRequestDto
     ) {
         this.matchAndValidateProductId(productId, createProductUpvoteDto);
-        return this.productUpvoteService.create(productId, createProductUpvoteDto);
+        return this.productUpvoteService.create(
+            productId,
+            createProductUpvoteDto
+        );
     }
 
-    private matchAndValidateProductId(productId: string, createProductUpvoteDto: ProductUpvoteRequestDto) {
+    private matchAndValidateProductId(
+        productId: string,
+        createProductUpvoteDto: ProductUpvoteRequestDto
+    ) {
         if (productId != createProductUpvoteDto.productId) {
-            throw new ConflictException("Product ID mismatch in body and path variables");
+            throw new ConflictException(
+                'Product ID mismatch in body and path variables'
+            );
         }
     }
 

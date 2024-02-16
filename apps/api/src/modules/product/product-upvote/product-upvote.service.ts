@@ -11,7 +11,7 @@ export class ProductUpvoteService {
         private readonly productService: ProductService,
         private readonly userService: UserService,
         private readonly repository: ProductUpvoteRepository
-    ) { }
+    ) {}
 
     @CatchError
     async create(
@@ -23,14 +23,14 @@ export class ProductUpvoteService {
         );
         const product = await this.productService.getById(productId);
 
-        let query = {
+        const query = {
             productId: product._id,
             userId: createdBy._id
         };
 
-        let update = { ...query, status: productUpvoteRequestDto.status }
+        const update = { ...query, status: productUpvoteRequestDto.status };
 
-        let options = { upsert: true }
+        const options = { upsert: true };
 
         return await this.repository.findOneAndUpdate(query, update, options);
     }

@@ -12,7 +12,7 @@ export class ProductUpvoteRepository {
     constructor(
         @InjectModel(ProductUpvoteEntity.name)
         private readonly model: Model<ProductUpvoteEntity>
-    ) { }
+    ) {}
 
     @CatchError
     async create(
@@ -40,12 +40,22 @@ export class ProductUpvoteRepository {
         return await this.model.find();
     }
 
-    async findOne(query: {} = {}, projection: {} = {}): Promise<ProductUpvoteEntity> {
+    async findOne(
+        query: {} = {},
+        projection: {} = {}
+    ): Promise<ProductUpvoteEntity> {
         return await this.model.findOne(query, projection);
     }
 
-    async findOneAndUpdate(query: {} = {}, updateQuery: {} = {}, options: {} = {}): Promise<ProductUpvoteEntity> {
-        return await this.model.findOneAndUpdate(query, updateQuery, { new: true, ...options });
+    async findOneAndUpdate(
+        query: {} = {},
+        updateQuery: {} = {},
+        options: {} = {}
+    ): Promise<ProductUpvoteEntity> {
+        return await this.model.findOneAndUpdate(query, updateQuery, {
+            new: true,
+            ...options
+        });
     }
 
     async deleteById(id: string, query = {}): Promise<ProductUpvoteEntity> {
