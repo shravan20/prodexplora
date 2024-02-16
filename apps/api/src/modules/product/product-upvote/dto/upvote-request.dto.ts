@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsMongoId, IsNotEmpty } from 'class-validator';
-import { ProductLaunchStatus } from 'src/enums/product-launch-status.enum';
+import { ProductUpvoteStatus } from 'src/enums/product-upvote-status.enum';
 
 export class ProductUpvoteRequestDto {
     @ApiProperty({
@@ -8,8 +8,8 @@ export class ProductUpvoteRequestDto {
         example: 'UP_VOTE'
     })
     @IsNotEmpty()
-    @IsEnum(ProductLaunchStatus)
-    status: ProductLaunchStatus;
+    @IsEnum(ProductUpvoteStatus)
+    status: ProductUpvoteStatus;
 
     @ApiProperty({
         description: `User ID who is voting the product`,
@@ -18,4 +18,12 @@ export class ProductUpvoteRequestDto {
     @IsNotEmpty()
     @IsMongoId()
     userId: string;
+
+    @ApiProperty({
+        description: `Product ID`,
+        example: '507f1f77bcf86cd799439013'
+    })
+    @IsNotEmpty()
+    @IsMongoId()
+    productId: string;
 }

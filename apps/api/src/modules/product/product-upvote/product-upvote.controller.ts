@@ -1,5 +1,6 @@
 import {
     Body,
+    ConflictException,
     Controller,
     Delete,
     Get,
@@ -21,19 +22,26 @@ import { ProductUpvoteService } from './product-upvote.service';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class ProductUpvoteController {
-    constructor(private readonly productUpvoteService: ProductUpvoteService) {}
+    constructor(private readonly productUpvoteService: ProductUpvoteService) { }
 
     @Post('/products/:id/product-upvotes')
     create(
-        @Param() { id }: ObjectIdDto,
+        @Param() { id: productId }: ObjectIdDto,
         @Body() createProductUpvoteDto: ProductUpvoteRequestDto
     ) {
-        return this.productUpvoteService.create(id, createProductUpvoteDto);
+        this.matchAndValidateProductId(productId, createProductUpvoteDto);
+        return this.productUpvoteService.create(productId, createProductUpvoteDto);
+    }
+
+    private matchAndValidateProductId(productId: string, createProductUpvoteDto: ProductUpvoteRequestDto) {
+        if (productId != createProductUpvoteDto.productId) {
+            throw new ConflictException("Product ID mismatch in body and path variables");
+        }
     }
 
     @Get('/products/:productId/product-upvotes')
-    findAll() {
-        return this.productUpvoteService.findAll();
+    async findAll() {
+        return await this.productUpvoteService.findAll();
     }
 
     @Delete('/products/:productId/product-upvotes/:id')

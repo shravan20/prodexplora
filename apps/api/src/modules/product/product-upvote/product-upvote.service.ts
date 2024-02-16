@@ -11,7 +11,7 @@ export class ProductUpvoteService {
         private readonly productService: ProductService,
         private readonly userService: UserService,
         private readonly repository: ProductUpvoteRepository
-    ) {}
+    ) { }
 
     @CatchError
     async create(
@@ -22,15 +22,21 @@ export class ProductUpvoteService {
             productUpvoteRequestDto.userId
         );
         const product = await this.productService.getById(productId);
-        return this.repository.create(
-            productUpvoteRequestDto,
-            product,
-            createdBy
-        );
+
+        let query = {
+            productId: product._id,
+            userId: createdBy._id
+        };
+
+        let update = { ...query, status: productUpvoteRequestDto.status }
+
+        let options = { upsert: true }
+
+        return await this.repository.findOneAndUpdate(query, update, options);
     }
 
-    findAll() {
-        return `This action returns all productUpvote`;
+    async findAll() {
+        return await this.repository.findAll();
     }
 
     findOne(id: number) {
