@@ -22,13 +22,18 @@ export class ProductCategoryService {
     }
 
     async findById(id: string): Promise<CategoryResponseDto> {
+        const category = await this.getById(id);
+        return CategoryResponseDto.from(category);
+    }
+
+    async getById(id: string) {
         const category = await this.repository.findById(id);
         if (!category) {
             throw new NotFoundException(
                 resourceNotFoundMessage(ProductCategoryService.RESOURCE, id)
             );
         }
-        return CategoryResponseDto.from(category);
+        return category;
     }
 
     update(id: string, updateProductCategoryDto: UpdateProductCategoryDto) {

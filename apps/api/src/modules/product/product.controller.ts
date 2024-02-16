@@ -35,7 +35,7 @@ export class ProductController {
 
     @Post('/products')
     @ApiOkResponse({
-        type: ProductRequestDto
+        type: ProductResponseDto
     })
     @ApiNotFoundResponse({
         description: 'API path not found/invalid'
@@ -54,7 +54,7 @@ export class ProductController {
     }
 
     @ApiOkResponse({
-        type: [ProductRequestDto]
+        type: [ProductResponseDto]
     })
     @ApiNotFoundResponse({
         description: 'API path not found/invalid'
@@ -68,7 +68,7 @@ export class ProductController {
     }
 
     @ApiOkResponse({
-        type: ProductRequestDto
+        type: ProductResponseDto
     })
     @ApiNotFoundResponse({
         description: 'API path not found/invalid'
@@ -83,7 +83,7 @@ export class ProductController {
     }
 
     @ApiOkResponse({
-        type: ProductRequestDto
+        type: ProductResponseDto
     })
     @ApiNotFoundResponse({
         description: 'API path not found/invalid'
@@ -91,18 +91,17 @@ export class ProductController {
     @ApiBadRequestResponse({
         description: 'Bad Request due to validation error.'
     })
-    @ApiBody({ type: ProductRequestDto })
+    @ApiBody({ type: UpdateProductRequestDto })
     @Patch('/products/:id')
-    update(
+    async update(
         @Param() { id }: ObjectIdDto,
         @Body() updateProductDto: UpdateProductRequestDto
-    ): UpdateProductRequestDto {
-        this.productService.update(id, updateProductDto);
-        return {};
+    ): Promise<ProductResponseDto> {
+        return await this.productService.update(id, updateProductDto);
     }
 
     @ApiOkResponse({
-        type: ProductRequestDto
+        type: ProductResponseDto
     })
     @ApiNotFoundResponse({
         description: 'API path not found/invalid'
