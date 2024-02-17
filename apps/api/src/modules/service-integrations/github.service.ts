@@ -12,7 +12,7 @@ export class GitHubService implements IServiceIntegration {
         const CACHE = {};
 
         this.octokit = new Octokit({
-            auth: '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'
+            auth: process.env.GITHUB_ACCESS_TOKEN
         });
     }
     @CatchError
