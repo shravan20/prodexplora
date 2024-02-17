@@ -43,8 +43,8 @@ const AuthenticationModal: React.FC = () => {
                     "firstName": firstName,
                     "lastName": lastName
                 }
-                // console.log(`data`, data);
-                handleUserSignIn(data);
+                console.log(`data`, data);
+                // handleUserSignIn(data);
             }
         },
         onError: (error) => console.log('Login Failed:', error)
@@ -64,7 +64,7 @@ const AuthenticationModal: React.FC = () => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const codeParams = urlParams.get('code');
-        console.log(codeParams);
+        console.log("====>>>>>>" + codeParams);
     }, []);
 
 

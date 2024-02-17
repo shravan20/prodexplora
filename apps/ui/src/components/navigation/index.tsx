@@ -17,7 +17,7 @@ const Navigation: React.FC = () => {
 
     const handleFetchUserDetails = async (token: string) => {
         const response = await fetchUserDetails(token);
-        setUserData(response.data);
+        setUserData(response['data']);
     }
 
     React.useEffect(() => {
@@ -80,7 +80,7 @@ const Navigation: React.FC = () => {
                                 >
                                     <div className="text-xl font-semibold p-3.5 pt-2.5 leading-tight">
                                         Hey, <br />
-                                        {userData.firstName} {userData.lastName}
+                                        {userData['firstName']} {userData['lastName']}
                                     </div>
                                     <DropdownMenu.Item className="group hover:bg-primary transition-all text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] p-3.5 relative select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1 cursor-pointer">
                                         <div className="flex flex-row gap-2 items-center-justify-center">
