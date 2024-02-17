@@ -12,6 +12,7 @@ echo -e "${GREEN}Build is complete${NC}"
 
 
 cd apps/ui/ &&
+npm run format &&
 npm run lint
 echo -e "${GREEN}Linter validation complete for the ui # production build mode
 $ npm run prod:build${NC}"
