@@ -14,7 +14,7 @@ axios.interceptors.request.use(
     },
     function (error) {
         return Promise.reject(error);
-    }
+    },
 );
 
 // Response interceptor
@@ -38,26 +38,44 @@ axios.interceptors.response.use(
             console.error('Error setting up request:', error.message);
             return Promise.reject(error.message);
         }
-    }
+    },
 );
 
 // Methods for making API requests
-export const getDataMethod = (path: string, config: AxiosRequestConfig = {}): Promise<any> => {
+export const getDataMethod = (
+    path: string,
+    config: AxiosRequestConfig = {},
+): Promise<any> => {
     return axios.get(path, config);
 };
 
-export const postDataMethod = (path: string, data: any, config: AxiosRequestConfig = {}): Promise<any> => {
+export const postDataMethod = (
+    path: string,
+    data: any,
+    config: AxiosRequestConfig = {},
+): Promise<any> => {
     return axios.post(path, data, config);
 };
 
-export const putDataMethod = (path: string, data: any, config: AxiosRequestConfig = {}): Promise<any> => {
+export const putDataMethod = (
+    path: string,
+    data: any,
+    config: AxiosRequestConfig = {},
+): Promise<any> => {
     return axios.put(path, data, config);
 };
 
-export const patchDataMethod = (path: string, data: any, config: AxiosRequestConfig = {}): Promise<any> => {
+export const patchDataMethod = (
+    path: string,
+    data: any,
+    config: AxiosRequestConfig = {},
+): Promise<any> => {
     return axios.patch(path, data, config);
 };
 
-export const deleteDataMethod = (path: string, config: AxiosRequestConfig = {}): Promise<any> => {
+export const deleteDataMethod = (
+    path: string,
+    config: AxiosRequestConfig = {},
+): Promise<any> => {
     return axios.delete(path, config);
 };
