@@ -57,7 +57,7 @@ const AuthenticationModal: React.FC = () => {
     }
 
     const loginWithGithub = async () => {
-        window.location.href = "https://github.com/login/oauth/authorize?client_id=" + import.meta.env.VITE_GITHUB_CLIENT_ID + "&scope=read:user, user:email, user:follow, read:project, repo:public_repo" + "&redirect_uri=localhost:5173";
+        window.location.href = "https://github.com/login/oauth/authorize?client_id=" + '36882031fb197ef84d97' + "&scope=read:user, user:email, user:follow, read:project, repo:public_repo";
     }
 
     React.useEffect(() => {
