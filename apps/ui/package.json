@@ -10,6 +10,7 @@
         "dev": "vite",
         "build": "tsc && vite build",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "format": "prettier --config .prettierrc --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "preview": "vite preview"
     },
     "dependencies": {
