@@ -87,7 +87,7 @@ const AuthenticationModal: React.FC = () => {
         const githubCode = urlParams.get('code');
 
         //1. Make an API call to get user access token
-        //2. https://github.com/login/oauth/access_token?client_id=36882031fb197ef84d97&client_secret=9310f7989a679b8af9b8c60415ab025284112bc0&code=52a1aca4bc37b3cc149f
+        //2. https://github.com/login/oauth/access_token?client_id=clientId&client_secret=secret&code=tokens
         //3. use access_token make user information get call https://api.github.com/user
         //4. https://api.github.com/user/emails get emails with accesstoken
 
