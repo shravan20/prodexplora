@@ -44,7 +44,7 @@ const AuthenticationModal: React.FC = () => {
                     "lastName": lastName
                 }
                 console.log(`data`, data);
-                handleUserSignIn(data);
+                // handleUserSignIn(data);
             }
         },
         onError: (error) => console.log('Login Failed:', error)
@@ -57,50 +57,14 @@ const AuthenticationModal: React.FC = () => {
     }
 
     const loginWithGithub = async () => {
-        window.location.href = "https://github.com/login/oauth/authorize?client_id=" + import.meta.env.VITE_GITHUB_CLIENT_ID + "&scope=read:user,user:email,user:follow,read:project,repo:public_repo";
-    }
-
-    const getAccessToken = async (url) => {
-        return await axios.get(url);
-    }
-
-    async function githubLogin(data) {
-        let option = {
-            headers: {
-                'Authorization': `token ${data.data.access_token}`
-            }
-        };
-
-        let userUrl = `https://api.github.com/user`;
-        let user = await axios.get(userUrl, option);
-        let emailUrl = 'https://api.github.com/user/email';
-
-        if (user) {
-            let emails = await axios.get(emailUrl, option);
-        }
-        // TODO: Backend API call for github-login
+        window.location.href = "https://github.com/login/oauth/authorize?client_id=" + import.meta.env.VITE_GITHUB_CLIENT_ID + "&scope=read:user, user:email, user:follow, read:project, repo:public_repo" + "&redirect_uri=localhost:5173";
     }
 
     React.useEffect(() => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        const githubCode = urlParams.get('code');
-
-        //1. Make an API call to get user access token
-        //2. https://github.com/login/oauth/access_token?client_id=36882031fb197ef84d97&client_secret=9310f7989a679b8af9b8c60415ab025284112bc0&code=52a1aca4bc37b3cc149f
-        //3. use access_token make user information get call https://api.github.com/user
-        //4. https://api.github.com/user/emails get emails with accesstoken
-
-        console.log("====>>>>>>", githubCode);
-
-        if (githubCode) {
-            let tokenUrl = `https://github.com/login/oauth/access_token?client_id=${import.meta.env.VITE_GITHUB_CLIENT_ID}&client_secret=${import.meta.env.VITE_GITHUB_CLIENT_SECRET}&code=${githubCode}`
-            getAccessToken(tokenUrl)
-                .then(async (data) => {
-                    await githubLogin(data);
-                });
-        }
-
+        const codeParams = urlParams.get('code');
+        console.log("====>>>>>>" + codeParams);
     }, []);
 
 
