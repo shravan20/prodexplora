@@ -4,11 +4,23 @@ export default {
   theme: {
     colors: {
       primary: '#161616',
+      darks: {
+        100: '#151621',
+        200: '#000000',
+      },
+      gray: {
+        100: 'rgba(255, 255, 255, 0.08)', // transparent white
+        200: '#f7f8f8', // off white
+        300: '#b4bcd0', // primary text
+        400: '#858699', // gray
+        500: '#222326', // gray dark
+      },
       'primary-lighter': '#3D3D3D',
       secondary: '#7B61EF',
       white: '#fff',
       black: '#232325',
-      info: '#737373'
+      info: '#C4C4C4',
+      error: "#7676a7"
     },
     backgroundImage: {
       'glass-gradient':
@@ -25,7 +37,7 @@ export default {
         'linear-gradient(92.88deg, rgb(69, 94, 181) 9.16%, rgb(86, 67, 204) 43.89%, rgb(103, 63, 215) 64.72%)',
       'radial-faded':
         'radial-gradient(circle at bottom center, var(--color), transparent 70%)',
-      'base-gradient': 
+      'base-gradient':
         'url(./base-linear-gradient-bg.png)'
     },
     keyframes: {
@@ -37,6 +49,9 @@ export default {
         from: { opacity: 0, transform: 'translate(-50%, -48%) scale(0.96)' },
         to: { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
       },
+    },
+    boxShadow: {
+      primary: 'rgb(80 63 205 / 50%) 0px 1px 40px',
     },
     animation: {
       overlayShow: 'overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',

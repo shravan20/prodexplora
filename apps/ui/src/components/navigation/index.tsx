@@ -6,6 +6,7 @@ import { GoIssueDraft, GoProjectTemplate, GoStack, GoStarFill } from "react-icon
 import { Button } from '../../packages/ui/components/buttons/Button';
 import AnimatedDialog from '../../packages/ui/components/dialog/AnimatedDialog';
 import AuthenticationModal from '../modals/authentication/authentication-modal';
+import CreateProjectModal from '../modals/project/create-project-modal';
 
 const Navigation: React.FC = () => {
     return (
@@ -39,12 +40,17 @@ const Navigation: React.FC = () => {
                     </nav>
                 </div>
                 <div className="flex flex-row items-center gap-2">
-                    <Button color="fun" size="lg">
-                        <div className="flex flex-row gap-1 items-center">
-                            <GiArrowCursor />
-                            <span>Submit Project</span>
-                        </div>
-                    </Button>
+                    <AnimatedDialog
+                        dialogTrigger={
+                            <Button color="fun" size="lg">
+                                <div className="flex flex-row gap-1 items-center">
+                                    <GiArrowCursor />
+                                    <span>Submit Project</span>
+                                </div>
+                            </Button>
+                        }
+                        dialogContent={<CreateProjectModal />}
+                    />
                     <AnimatedDialog
                         dialogTrigger={
                             <Button color="subtle" size="lg">
