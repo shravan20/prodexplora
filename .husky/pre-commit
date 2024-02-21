@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Check for secrets in the staged files
+npx detect-secrets scan
+
+# If any secrets are found, exit with a non-zero status code
+if [ $? -ne 0 ]; then
+  echo "Secrets detected! Please remove them before committing."
+  exit 1
+fi
+
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -12,6 +22,7 @@ echo -e "${GREEN}Build is complete${NC}"
 
 
 cd apps/ui/ &&
+npm run format &&
 npm run lint
 echo -e "${GREEN}Linter validation complete for the ui # production build mode
 $ npm run prod:build${NC}"
