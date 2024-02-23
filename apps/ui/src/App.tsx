@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { AuthProvider } from './context/AuthContext';
 import HomePage from './pages/home/home';
+import Product from './pages/product/product';
 
 function App() {
     return (
@@ -10,8 +11,9 @@ function App() {
             <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID}>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<HomePage />}>
-                            <Route index element={<HomePage />} />
+                        <Route>
+                            <Route path="/" element={<HomePage />} />
+                            <Route path="product/:id" element={<Product />} />
                         </Route>
                     </Routes>
                 </BrowserRouter>
