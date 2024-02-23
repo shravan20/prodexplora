@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Button } from '../../packages/ui/components/buttons/Button';
+import { Button } from '../../../packages/ui/components/buttons/Button';
 
 const HomeBanner: React.FC = () => {
     return (

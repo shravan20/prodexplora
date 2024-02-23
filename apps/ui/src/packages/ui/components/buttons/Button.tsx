@@ -62,7 +62,7 @@ export const buttonClasses = cva(
       size: {
         sm: "px-3 py-2 leading-4 rounded-sm" /** For backwards compatibility */,
         base: "h-9 px-4 py-2.5 ",
-        lg: "h-[36px] px-4 py-2.5 ",
+        lg: "p-3",
       },
       loading: {
         true: "cursor-wait",

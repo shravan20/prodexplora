@@ -59,7 +59,7 @@ const Navigation: React.FC = () => {
                     </nav>
                 </div>
                 <div className="flex flex-row items-center gap-2">
-                    <Button color="fun" size="lg">
+                    <Button color="fun" size="base">
                         <div className="flex flex-row gap-1 items-center">
                             <GiArrowCursor />
                             <span>Submit Project</span>
@@ -100,7 +100,7 @@ const Navigation: React.FC = () => {
                     ) : (
                         <AnimatedDialog
                             dialogTrigger={
-                                <Button color="subtle" size="lg">
+                                <Button color="subtle" size="base">
                                     <div className="flex flex-row gap-1 items-center">
                                         <GoStarFill />
                                         <span>Login</span>
