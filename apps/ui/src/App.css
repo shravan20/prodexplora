@@ -135,6 +135,7 @@ html,body {
 }
 
 
+
 .text-display {
   text-align: center;
     margin: 24px 0px;
@@ -147,4 +148,20 @@ html,body {
     line-height: 1;
     letter-spacing: -0.02em;
     font-weight: 500;
+}
+
+.navigation-content {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+@media all and (max-width: 646px) {
+  .navigation-content {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 }
