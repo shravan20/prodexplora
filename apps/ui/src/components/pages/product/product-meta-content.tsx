@@ -5,6 +5,7 @@ import { Button } from '../../../packages/ui/components/buttons/Button';
 import UpvoteCountButton from '../../view/projects/upvote-count-button';
 
 type Props = {
+    productIcon: string,
     productName: string,
     productTagline: string,
     productSiteLink: string
@@ -17,6 +18,7 @@ const ProductMetaContent: React.FC = (props: Props) => {
                 <div className="mobile-only w-full">
                     <div className="flex flex-col gap-2 items-center justify-center w-full">
                         <div className="w-20 h-20 bg-primary-lighter rounded-md">
+                            <img src={props.productIcon} className="w-20 h-20 rounded-md" />
                         </div>
                         <div className="flex flex-col gap-2 align-items justify-centers">
                             <div className="flex flex-row gap-5 items-center justify-center">
@@ -34,6 +36,7 @@ const ProductMetaContent: React.FC = (props: Props) => {
                 <div className="desktop-only">
                     <div className="flex flex-row gap-5 items-center">
                         <div className="w-20 h-20 bg-primary-lighter rounded-md">
+                            <img src={props.productIcon} className="w-20 h-20 rounded-md" />
                         </div>
                         <div className="flex flex-col gap-2">
                             <div className="flex flex-row gap-5 items-center">

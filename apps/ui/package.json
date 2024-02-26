@@ -25,6 +25,7 @@
         "dotenv": "^16.4.1",
         "framer-motion": "^6.5.1",
         "react": "^18.2.0",
+        "react-countup": "^6.5.0",
         "react-dom": "^18.2.0",
         "react-github-login": "^1.0.3",
         "react-google-login": "^5.2.2",

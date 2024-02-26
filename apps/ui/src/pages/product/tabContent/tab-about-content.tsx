@@ -3,7 +3,7 @@ import ProductImageRow from '../../../components/pages/product/product-image-row
 import ProductTechContent from '../../../components/pages/product/product-tech-content';
 
 type Props = {
-    productDescription: string,
+    productData: [],
     productImages: []
 }
 
@@ -14,10 +14,10 @@ const TabAboutContainer: React.FC = (props: Props) => {
                 <ProductImageRow productImages={props.productImages} />
             </div>
             <div className="w-full leading-loose p-5">
-                {props.productDescription}
+                {props.productData[0].productDescription}
             </div>
             <div>
-                <ProductTechContent />
+                <ProductTechContent productName={props.productData[0].productName} />
             </div>
         </div>
     )
