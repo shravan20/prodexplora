@@ -4,10 +4,12 @@ import ProductTechContent from '../../../components/pages/product/product-tech-c
 
 type Props = {
     productData: [],
-    productImages: []
+    productImages: [],
+    productId: string
 }
 
 const TabAboutContainer: React.FC = (props: Props) => {
+    const [productId, setProductId] = React.useState("");
     return (
         <div className="w-full pt-5 pb-5">
             <div className="pl-5 pr-5">

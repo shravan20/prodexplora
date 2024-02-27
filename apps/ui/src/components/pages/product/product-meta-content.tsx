@@ -2,16 +2,21 @@ import * as React from 'react';
 import { FaAsterisk } from 'react-icons/fa';
 import { GoShare } from 'react-icons/go';
 import { Button } from '../../../packages/ui/components/buttons/Button';
+import AnimatedDialog from '../../../packages/ui/components/dialog/AnimatedDialog';
+import ShareProductModal from '../../modals/product/share-product-modal';
 import UpvoteCountButton from '../../view/projects/upvote-count-button';
 
 type Props = {
     productIcon: string,
     productName: string,
     productTagline: string,
-    productSiteLink: string
+    productSiteLink: string,
+    productId: string
 }
 
 const ProductMetaContent: React.FC = (props: Props) => {
+    const [productLink, setProductLink] = React.useState("https://www.prodexplora.com/" + props.productId);
+
     return (
         <div className="w-full pt-5 pb-5 fade-up-anim">
             <div className="navigation-content">
@@ -25,7 +30,10 @@ const ProductMetaContent: React.FC = (props: Props) => {
                                 <div className="text-3xl font-semibold text-white">
                                     {props.productName}
                                 </div>
-                                <GoShare size={25} className="text-info hover:text-white cursor-pointer" />
+                                <AnimatedDialog
+                                    dialogTrigger={<GoShare size={25} className="text-info hover:text-white cursor-pointer" />}
+                                    dialogContent={<ShareProductModal productName={props.productName} productLink={productLink} />}
+                                />
                             </div>
                             <div className="text-m font-regular text-info">
                                 {props.productTagline}
@@ -43,7 +51,10 @@ const ProductMetaContent: React.FC = (props: Props) => {
                                 <div className="text-3xl font-semibold text-white">
                                     {props.productName}
                                 </div>
-                                <GoShare size={25} className="text-info hover:text-white cursor-pointer" />
+                                <AnimatedDialog
+                                    dialogTrigger={<GoShare size={25} className="text-info hover:text-white cursor-pointer" />}
+                                    dialogContent={<ShareProductModal productName={props.productName} productLink={productLink} />}
+                                />
                             </div>
                             <div className="text-m font-regular text-info">
                                 {props.productTagline}
