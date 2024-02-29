@@ -52,7 +52,7 @@ const AuthenticationModal: React.FC = () => {
 
     const handleUserSignIn = async (data: any) => {
         const response = await signIn(data);
-        authLogin(response.data.user._id, response.data.access_token, response.data.user.email);
+        authLogin(response.payload.user._id, response.payload.access_token, response.payload.user.email);
         window.location.reload();
     }
 
