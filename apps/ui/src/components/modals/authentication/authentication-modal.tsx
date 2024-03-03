@@ -7,6 +7,7 @@ import { useAuth } from '../../../context/AuthContext';
 
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Button } from '../../../packages/ui/components/buttons/Button';
+import { authResponse } from '../../../types/auth/auth-response.types';
 
 const AuthenticationModal: React.FC = () => {
     const [user, setUser] = React.useState([]);
@@ -50,8 +51,11 @@ const AuthenticationModal: React.FC = () => {
         onError: (error) => console.log('Login Failed:', error)
     });
 
-    const handleUserSignIn = async (data: any) => {
+    const handleUserSignIn = async (data: authResponse) => {
         const response = await signIn(data);
+        console.log(response);
+        authLogin(response.payload.user._id, response.payload.access_token, response.payload.user.email);
+        // window.location.reload();
         authLogin(response.payload.user._id, response.payload.access_token, response.payload.user.email);
         window.location.reload();
     }
@@ -60,11 +64,11 @@ const AuthenticationModal: React.FC = () => {
         window.location.href = "https://github.com/login/oauth/authorize?client_id=" + import.meta.env.VITE_GITHUB_CLIENT_ID + "&scope=read:user,user:email,user:follow,read:project,repo:public_repo";
     }
 
-    const getAccessToken = async (url) => {
+    const getAccessToken = async (url: string) => {
         return await axios.get(url);
     }
 
-    async function githubLogin(data) {
+    async function githubLogin(data: any) {
         let option = {
             headers: {
                 'Authorization': `token ${data.data.access_token}`

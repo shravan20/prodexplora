@@ -2,11 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+html,body {
+  width: 100%;
+  height: 100%;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
+}
+
+@media all and (max-width: 767px) {
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+}
+
 .gyan-container {
     width: 100%;
     height: 100%;
     color: #fff;
-    background-color: #161616;
+    background: radial-gradient(ellipse 80% 50% at 50% -20%,rgba(120, 119, 198, 0.3), transparent);
+    background-color: #151515;
 }
 
 .fade-up-anim {
@@ -108,4 +132,36 @@
   background-position-x: 100%;
   opacity: 1;
   animation: shimmer 1s running linear, close 1s ease-in-out 4s forwards;
+}
+
+
+
+.text-display {
+  text-align: center;
+    margin: 24px 0px;
+    background: linear-gradient(to right bottom, rgb(255, 255, 255) 30%, rgba(255, 255, 255, 0.38)) text;
+    -webkit-box-decoration-break: clone;
+    -webkit-text-fill-color: transparent;
+    color: unset;
+    padding-bottom: 0.13em;
+    font-size: 50px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+}
+
+.navigation-content {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+@media all and (max-width: 646px) {
+  .navigation-content {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 }
