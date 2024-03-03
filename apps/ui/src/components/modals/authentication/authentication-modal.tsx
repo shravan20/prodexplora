@@ -53,11 +53,7 @@ const AuthenticationModal: React.FC = () => {
 
     const handleUserSignIn = async (data: authResponse) => {
         const response = await signIn(data);
-        console.log(response);
         authLogin(response.payload.user._id, response.payload.access_token, response.payload.user.email);
-        // window.location.reload();
-        authLogin(response.payload.user._id, response.payload.access_token, response.payload.user.email);
-        window.location.reload();
     }
 
     const loginWithGithub = async () => {
