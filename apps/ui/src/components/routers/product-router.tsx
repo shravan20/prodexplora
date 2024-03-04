@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from '../../pages/home/home'
 import Product from '../../pages/product/product'
 
-const ProjectRouter: React.FC = () => {
+const ProductRouter: React.FC = () => {
     return (
         <BrowserRouter>
             <Routes>
@@ -16,4 +16,4 @@ const ProjectRouter: React.FC = () => {
     )
 }
 
-export default ProjectRouter;
+export default ProductRouter;
