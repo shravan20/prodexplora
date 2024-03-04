@@ -12,12 +12,17 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 const Navigation: React.FC = () => {
     const { token, fetchUserDetails, authLogout } = useAuth();
+    const [userDataLoading, setUserDataLoading] = React.useState(true);
     const [userData, setUserData] = React.useState([]);
+
+    const [hamburgerOpen, setHamburgerOpen] = React.useState(false);
 
 
     const handleFetchUserDetails = async (token: string) => {
+        setUserDataLoading(true);
         const response = await fetchUserDetails(token);
         setUserData(response['data']);
+        setUserDataLoading(false);
     }
 
     React.useEffect(() => {
@@ -79,8 +84,7 @@ const Navigation: React.FC = () => {
                                     sideOffset={5}
                                 >
                                     <div className="text-xl font-semibold p-3.5 pt-2.5 leading-tight">
-                                        Hey, <br />
-                                        {userData['firstName']} {userData['lastName']}
+                                        Hey
                                     </div>
                                     <DropdownMenu.Item className="group hover:bg-primary transition-all text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] p-3.5 relative select-none outline-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:bg-violet9 data-[highlighted]:text-violet1 cursor-pointer">
                                         <div className="flex flex-row gap-2 items-center-justify-center">

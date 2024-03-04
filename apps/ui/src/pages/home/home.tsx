@@ -1,6 +1,6 @@
 import React from 'react';
-import HomeBanner from '../../components/home/home-banner';
 import Navigation from '../../components/navigation';
+import HomeBanner from '../../components/pages/home/home-banner';
 import FilterSidebar from '../../components/view/filters/filter-sidebar';
 import ProjectItem from '../../components/view/projects/project-item';
 import Wrapper from '../../components/wrapper/wrapper';
