@@ -1,8 +1,8 @@
 import * as React from "react";
-import { InputProps } from "./type";
 import classNames from "../../../../../libs/classNames";
+import { InputProps } from "./type";
 
-import { GoSearch } from "react-icons/go";  
+import { GoSearch } from "react-icons/go";
 
 export const SearchInput = React.forwardRef<HTMLInputElement, InputProps>(function SearchInput(
   { isFullWidth = true, ...props },
