@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { FaReact } from 'react-icons/fa';
 import { Button } from '../../../packages/ui/components/buttons/Button';
+import Props from './props.type';
 
-const RepoSelectItem: React.FC = () => {
+const RepoSelectItem: React.FC<Props> = ({ data }) => {
+
     return (
         <div className="p-3 bg-darks-100 border-b-[1px] border-gray-500 hover:bg-darks-200 cursor-pointer transition-all flex flex-row items-center justify-between">
             <div className="flex flex-row gap-4 items-center">
@@ -10,7 +12,7 @@ const RepoSelectItem: React.FC = () => {
                     <FaReact color="#aaa" size="20" />
                 </div>
                 <div>
-                    Payeasy
+                    {data.name}
                 </div>
             </div>
             <div className="flex flex-row gap-1 items-center">

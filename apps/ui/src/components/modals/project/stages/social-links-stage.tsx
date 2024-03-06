@@ -13,6 +13,7 @@ const SocialLinksStage: React.FC = (props: Props) => {
     const [twitterLink, setTwitterLink] = React.useState("");
     const [instagramLink, setInstagramLink] = React.useState("");
     const [facebookLink, setFacebookLink] = React.useState("");
+
     return (
         <div className="fade-up-anim flex flex-col gap-3 w-full">
             <div className="flex flex-col items-center justify-center">
