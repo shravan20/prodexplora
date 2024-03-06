@@ -2,7 +2,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 import * as React from 'react';
 
 import axios from 'axios';
-import { signIn } from '../../../api/services/authentication/authentication.service';
+import { signIn } from '../../../api/services/authentication.service';
 import { useAuth } from '../../../context/AuthContext';
 
 import { FaGithub, FaGoogle } from 'react-icons/fa';
