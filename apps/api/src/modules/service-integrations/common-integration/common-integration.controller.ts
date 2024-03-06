@@ -12,10 +12,13 @@ import { CommonIntegrationFactory } from './common-integration.factory';
 @UseFilters(new HttpExceptionFilter())
 @ApiResponseEnvelope()
 export class CommonIntegrationController {
-    constructor(private readonly factory: CommonIntegrationFactory) { }
+    constructor(private readonly factory: CommonIntegrationFactory) {}
 
     @Get('/users/:id/services/:service/repos')
-    async getRepositoriesByUser(@Param('service') service: string, @Param() { id }: ObjectIdDto) {
+    async getRepositoriesByUser(
+        @Param('service') service: string,
+        @Param() { id }: ObjectIdDto
+    ) {
         const instance = this.factory.getService(service);
         return await instance.getRepositories();
     }

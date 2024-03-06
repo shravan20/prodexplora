@@ -8,11 +8,9 @@ export type UserRequestDto = {
     bio: string;
 };
 
-export type UpdateUserDto = {
-};
+export type UpdateUserDto = {};
 
-export type AuthRequestDto = UserRequestDto & {
-};
+export type AuthRequestDto = UserRequestDto & {};
 
 export type CategoryRequestDto = {
     name: string;
@@ -20,9 +18,7 @@ export type CategoryRequestDto = {
     slug: string;
 };
 
-export type UpdateProductCategoryDto = CategoryRequestDto & {
-
-};
+export type UpdateProductCategoryDto = CategoryRequestDto & {};
 
 export type ExternalLinkDto = {
     platform: string;
@@ -61,8 +57,7 @@ export type CreateProductRatingRequestDto = {
     rating: number;
 };
 
-export type UpdateProductRatingRequestDto = {
-};
+export type UpdateProductRatingRequestDto = {};
 
 export type CreateProductDiscussionDto = {
     userId: string;
@@ -71,5 +66,4 @@ export type CreateProductDiscussionDto = {
     replyTo: string;
 };
 
-export type UpdateProductDiscussionDto = {
-};
+export type UpdateProductDiscussionDto = {};

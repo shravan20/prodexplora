@@ -20,11 +20,11 @@ export class GitHubService implements IServiceIntegration {
         const data = await this.octokit.request('GET /users/sudodecoder/repos');
         return data.data.map(repository => {
             return {
-                "name": repository['name'],
-                "slug": repository['full_name'],
-                "totalIssues": repository['open_issues'],
-                "starGazersCount": repository['stargazers_count'],
-            }
+                name: repository['name'],
+                slug: repository['full_name'],
+                totalIssues: repository['open_issues'],
+                starGazersCount: repository['stargazers_count']
+            };
         });
     }
 }

@@ -26,7 +26,8 @@ export const ROUTES = {
     DELETE_PRODUCT_RATING: '/products/:productId/product-ratings/:id',
     CREATE_PRODUCT_DISCUSSION: '/products/:productId/product-discussions',
     GET_ALL_DISCUSSIONS_FOR_PRODUCT: '/products/:productId/product-discussions',
-    GET_DISCUSSION_BY_ID_FOR_PRODUCT: '/products/:productId/product-discussions/:id',
+    GET_DISCUSSION_BY_ID_FOR_PRODUCT:
+        '/products/:productId/product-discussions/:id',
     UPDATE_PRODUCT_DISCUSSION: '/products/:productId/product-discussions/:id',
     DELETE_PRODUCT_DISCUSSION: '/products/:productId/product-discussions/:id',
 
@@ -34,6 +35,4 @@ export const ROUTES = {
      * Integration APIs
      */
     GET_SERVICE_REPOSITORIES: '/users/:userId/services/:service/repos',
-}
-
-
+};
