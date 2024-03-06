@@ -1,5 +1,5 @@
-import { postDataMethod } from '../../api';
-import { API_HOST } from '../../api-host';
+import { postDataMethod } from '../api';
+import { API_HOST } from '../api-host';
 
 type Data = {
     authProvider: [identifier: string, provider: string];

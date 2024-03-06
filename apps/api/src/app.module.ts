@@ -1,6 +1,7 @@
 import { SecretManagerModule } from '@configs/secret-manager.module';
 import { LoggingInterceptor } from '@middlewares/api-logger.middleware';
 import { ProductCategoryModule } from '@modules/product-category/product-category.module';
+import { CommonIntegrationModule } from '@modules/service-integrations/common-integration/common-integration.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
@@ -28,6 +29,7 @@ const modules = [
     UserModule,
     ProductCategoryModule,
     ProductModule,
+    CommonIntegrationModule,
     SecretManagerModule,
     MongooseModule.forRoot(process.env.MONGODB_DB_URL)
 ];

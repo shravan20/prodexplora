@@ -2,11 +2,12 @@ import { useGoogleLogin } from '@react-oauth/google';
 import * as React from 'react';
 
 import axios from 'axios';
-import { signIn } from '../../../api/services/authentication/authentication.service';
+import { signIn } from '../../../api/services/authentication.service';
 import { useAuth } from '../../../context/AuthContext';
 
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Button } from '../../../packages/ui/components/buttons/Button';
+import { authResponse } from '../../../types/auth/auth-response.types';
 
 const AuthenticationModal: React.FC = () => {
     const [user, setUser] = React.useState([]);
@@ -44,27 +45,62 @@ const AuthenticationModal: React.FC = () => {
                     "lastName": lastName
                 }
                 console.log(`data`, data);
-                // handleUserSignIn(data);
+                handleUserSignIn(data);
             }
         },
         onError: (error) => console.log('Login Failed:', error)
     });
 
-    const handleUserSignIn = async (data: any) => {
+    const handleUserSignIn = async (data: authResponse) => {
         const response = await signIn(data);
-        authLogin(response.data.user._id, response.data.access_token, response.data.user.email);
-        window.location.reload();
+        authLogin(response.payload.user._id, response.payload.access_token, response.payload.user.email);
     }
 
     const loginWithGithub = async () => {
-        window.location.href = "https://github.com/login/oauth/authorize?client_id=" + import.meta.env.VITE_GITHUB_CLIENT_ID + "&scope=read:user, user:email, user:follow, read:project, repo:public_repo" + "&redirect_uri=localhost:5173";
+        window.location.href = "https://github.com/login/oauth/authorize?client_id=" + import.meta.env.VITE_GITHUB_CLIENT_ID + "&scope=read:user,user:email,user:follow,read:project,repo:public_repo";
+    }
+
+    const getAccessToken = async (url: string) => {
+        return await axios.get(url);
+    }
+
+    async function githubLogin(data: any) {
+        let option = {
+            headers: {
+                'Authorization': `token ${data.data.access_token}`
+            }
+        };
+
+        let userUrl = `https://api.github.com/user`;
+        let user = await axios.get(userUrl, option);
+        let emailUrl = 'https://api.github.com/user/email';
+
+        if (user) {
+            let emails = await axios.get(emailUrl, option);
+        }
+        // TODO: Backend API call for github-login
     }
 
     React.useEffect(() => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        const codeParams = urlParams.get('code');
-        console.log("====>>>>>>" + codeParams);
+        const githubCode = urlParams.get('code');
+
+        //1. Make an API call to get user access token
+        //2. https://github.com/login/oauth/access_token?client_id=clientId&client_secret=secret&code=tokens
+        //3. use access_token make user information get call https://api.github.com/user
+        //4. https://api.github.com/user/emails get emails with accesstoken
+
+        console.log("====>>>>>>", githubCode);
+
+        if (githubCode) {
+            let tokenUrl = `https://github.com/login/oauth/access_token?client_id=${import.meta.env.VITE_GITHUB_CLIENT_ID}&client_secret=${import.meta.env.VITE_GITHUB_CLIENT_SECRET}&code=${githubCode}`
+            getAccessToken(tokenUrl)
+                .then(async (data) => {
+                    await githubLogin(data);
+                });
+        }
+
     }, []);
 
 

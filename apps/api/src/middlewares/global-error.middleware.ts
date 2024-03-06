@@ -52,7 +52,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
             endpoint: request.url
         };
 
-        this.logger.warn(`${statusCode} ${message}`);
+        this.logger.warn(`${statusCode} ${request.url} ${message}`);
 
         response.status(statusCode).json(body);
     }

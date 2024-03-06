@@ -4,11 +4,24 @@ export default {
   theme: {
     colors: {
       primary: '#161616',
+      darks: {
+        100: '#151621',
+        200: '#000000',
+      },
+      gray: {
+        100: 'rgba(255, 255, 255, 0.08)', // transparent white
+        200: '#f7f8f8', // off white
+        300: '#b4bcd0', // primary text
+        400: '#858699', // gray
+        500: '#222326', // gray dark
+      },
       'primary-lighter': '#3D3D3D',
       secondary: '#7B61EF',
       white: '#fff',
       black: '#232325',
-      info: '#737373',
+      info: '#C4C4C4',
+      error: "#7676a7"
+      info: '#999',
     },
     backgroundImage: {
       'glass-gradient':
@@ -54,6 +67,9 @@ export default {
         to: { opacity: 1, transform: 'translateX(0)' },
       },
     },
+    boxShadow: {
+      primary: 'rgb(80 63 205 / 50%) 0px 1px 40px',
+    },
     animation: {
       overlayShow: 'overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
       contentShow: 'contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)',
@@ -61,6 +77,16 @@ export default {
       slideLeftAndFade: 'slideLeftAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
       slideUpAndFade: 'slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
       slideRightAndFade: 'slideRightAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+    },
+    screens: {
+      'tablet': '640px',
+      // => @media (min-width: 640px) { ... }
+
+      'laptop': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'desktop': '1280px',
+      // => @media (min-width: 1280px) { ... }
     },
     extend: {},
   },
