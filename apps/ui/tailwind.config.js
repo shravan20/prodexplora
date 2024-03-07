@@ -25,6 +25,7 @@ export default {
         'linear-gradient(92.88deg, rgb(69, 94, 181) 9.16%, rgb(86, 67, 204) 43.89%, rgb(103, 63, 215) 64.72%)',
       'radial-faded':
         'radial-gradient(circle at bottom center, var(--color), transparent 70%)',
+      'primary-light-gradient': 'linear-gradient(45deg, #8086e1, #af8cff)',
       'base-gradient':
         'url(./base-linear-gradient-bg.png)'
     },
