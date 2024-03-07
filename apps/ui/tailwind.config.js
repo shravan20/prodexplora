@@ -9,6 +9,7 @@ export default {
       white: '#fff',
       black: '#232325',
       info: '#999',
+      error: '#f06c6c'
     },
     backgroundImage: {
       'glass-gradient':
@@ -62,6 +63,9 @@ export default {
       slideLeftAndFade: 'slideLeftAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
       slideUpAndFade: 'slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
       slideRightAndFade: 'slideRightAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+    },
+    boxShadow: {
+      primary: 'rgb(80 63 205 / 50%) 0px 1px 40px',
     },
     screens: {
       'tablet': '640px',
