@@ -37,6 +37,85 @@ export type ButtonProps = ButtonBaseProps &
 
 
 export const buttonClasses = cva(
+    "whitespace-nowrap inline-flex items-center text-sm font-medium relative rounded-md transition disabled:cursor-not-allowed",
+    {
+        variants: {
+            variant: {
+                button: "",
+                icon: "flex justify-center",
+                fab: "rounded-full justify-center md:rounded-md radix-state-open:rotate-45 md:radix-state-open:rotate-0 radix-state-open:shadown-none radix-state-open:ring-0 !shadow-none",
+            },
+            color: {
+                primary:
+                    "bg-secondary hover:bg-brand-emphasis focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-brand-default text-brand disabled:bg-brand-subtle disabled:text-brand-subtle disabled:opacity-40 disabled:hover:bg-brand-subtle disabled:hover:text-brand-default disabled:hover:opacity-40",
+                secondary:
+                    "text-emphasis border border-default bg-default hover:bg-muted hover:border-emphasis focus-visible:bg-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-empthasis disabled:border-subtle disabled:bg-opacity-30 disabled:text-muted disabled:hover:bg-opacity-30 disabled:hover:text-muted disabled:hover:border-subtle disabled:hover:bg-default",
+                fun:
+                    "bg-primary-gradient hover:bg-brand-emphasis focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-brand-default text-brand disabled:bg-brand-subtle disabled:text-brand-subtle disabled:opacity-40 disabled:hover:bg-brand-subtle disabled:hover:text-brand-default disabled:hover:opacity-40",
+                subtle:
+                    "bg-primary-lighter text-white hover:bg-brand-emphasis focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-brand-default text-brand disabled:bg-brand-subtle disabled:text-brand-subtle disabled:opacity-40 disabled:hover:bg-brand-subtle disabled:hover:text-brand-default disabled:hover:opacity-40",
+                minimal:
+                    "text-emphasis bg-darks-100 hover:bg-darks-200 shadow-primary border-[1px] border-primary-lighter focus-visible:bg-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-empthasis",
+                destructive:
+                    "border border-default text-emphasis hover:text-red-700 dark:hover:text-red-100 focus-visible:text-red-700  hover:border-red-100 focus-visible:border-red-100 hover:bg-error  focus-visible:bg-error focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset focus-visible:ring-red-700 disabled:bg-red-100 disabled:border-red-200 disabled:text-red-700 disabled:hover:border-red-200 disabled:opacity-40",
+            },
+            size: {
+                sm: "px-3 py-2 leading-4" /** For backwards compatibility */,
+                base: "h-9 px-4 py-2.5 ",
+                lg: "h-[36px] px-4 py-2.5 ",
+            },
+            loading: {
+                true: "cursor-wait",
+            },
+        },
+        compoundVariants: [
+            // Primary variants
+            {
+                loading: true,
+                color: "primary",
+                className: "bg-brand-subtle text-brand-subtle",
+            },
+            // Secondary variants
+            {
+                loading: true,
+                color: "secondary",
+                className: "bg-subtle text-emphasis/80",
+            },
+            // Minimal variants
+            {
+                loading: true,
+                color: "minimal",
+                className: "bg-subtle text-emphasis/30",
+            },
+            // Destructive variants
+            {
+                loading: true,
+                color: "destructive",
+                className:
+                    "text-red-700/30 dark:text-red-700/30 hover:text-red-700/30  border border-default text-emphasis",
+            },
+            {
+                variant: "icon",
+                size: "base",
+                className: "min-h-[36px] min-w-[36px] !p-2 hover:border-default",
+            },
+            {
+                variant: "icon",
+                size: "sm",
+                className: "h-6 w-6 !p-1",
+            },
+            {
+                variant: "fab",
+                size: "base",
+                className: "h-14 md:h-9 md:w-auto md:px-4 md:py-2.5",
+            },
+        ],
+        defaultVariants: {
+            variant: "button",
+            color: "primary",
+            size: "base",
+        },
+    }
   "whitespace-nowrap inline-flex items-center text-sm font-medium relative rounded-md transition disabled:cursor-not-allowed",
   {
     variants: {
