@@ -22,6 +22,7 @@ export default {
       info: '#C4C4C4',
       error: "#7676a7"
       info: '#999',
+      error: '#f06c6c'
     },
     backgroundImage: {
       'glass-gradient':
@@ -38,6 +39,7 @@ export default {
         'linear-gradient(92.88deg, rgb(69, 94, 181) 9.16%, rgb(86, 67, 204) 43.89%, rgb(103, 63, 215) 64.72%)',
       'radial-faded':
         'radial-gradient(circle at bottom center, var(--color), transparent 70%)',
+      'primary-light-gradient': 'linear-gradient(45deg, #8086e1, #af8cff)',
       'base-gradient':
         'url(./base-linear-gradient-bg.png)'
     },
@@ -77,6 +79,9 @@ export default {
       slideLeftAndFade: 'slideLeftAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
       slideUpAndFade: 'slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
       slideRightAndFade: 'slideRightAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+    },
+    boxShadow: {
+      primary: 'rgb(80 63 205 / 50%) 0px 1px 40px',
     },
     screens: {
       'tablet': '640px',
