@@ -14,7 +14,7 @@ html,body {
 .desktop-only {
   display: block;
 }
-
+/* 
 @media all and (max-width: 767px) {
   .mobile-only {
     display: block;
@@ -23,7 +23,7 @@ html,body {
   .desktop-only {
     display: none;
   }
-}
+} */
 
 .gyan-container {
     width: 100%;

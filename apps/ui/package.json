@@ -26,7 +26,6 @@
         "dotenv": "^16.4.1",
         "formik": "^2.4.5",
         "framer-motion": "^6.5.1",
-        "postcss": "^8.4.35",
         "react": "^18.2.0",
         "react-copy-to-clipboard": "^5.1.0",
         "react-countup": "^6.5.0",
@@ -47,10 +46,12 @@
         "eslint-plugin-prettier": "^5.0.0",
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-refresh": "^0.4.5",
+        "postcss": "^8.4.35",
+        "postcss-nesting": "^12.1.0",
         "prettier": "^3.0.0",
         "react-router-dom": "^6.21.3",
         "tailwind-merge": "^2.2.1",
-        "tailwindcss": "^3.4.1",
+        "tailwindcss": "^3.1.4",
         "typescript": "^5.2.2",
         "vite": "^5.0.8"
     }
