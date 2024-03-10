@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 type Props = {
-    hamrbugerItemLabel: string
+    hamburgerItemLabel: string
 }
 
 const HamburgerItem: React.FC = (props: Props) => {
