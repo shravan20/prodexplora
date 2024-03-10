@@ -13,5 +13,7 @@
     },
     "editor.autoIndent": "full",
     "editor.formatOnPaste": true,
-    "files.insertFinalNewline": true
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
 }
