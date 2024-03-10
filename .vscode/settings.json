@@ -12,5 +12,6 @@
         "**/coverage": true
     },
     "editor.autoIndent": "full",
-    "editor.formatOnPaste": true
+    "editor.formatOnPaste": true,
+    "files.insertFinalNewline": true
 }
