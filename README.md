@@ -1,4 +1,4 @@
-<h1><p align="center"> WARNING: This is "Work-in-Progress"; <i>far</i> from "Done"! 🚧 </p></h1>
+<h2><p align="center"> WARNING: This is "Work-in-Progress"; <i>far</i> from "Done"! 🚧 </p></h2>
 <p align="center">We have made this repo <strong>public</strong> because we feel it keeps us <em>accountable</em> to each other, and keeps others "in the loop".</p>
 
 ---
