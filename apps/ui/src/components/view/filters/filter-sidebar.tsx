@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from 'react';
 import FilterItem from './filter-item';
 
 const FilterSidebar: React.FC = () => {
@@ -8,28 +8,30 @@ const FilterSidebar: React.FC = () => {
                 Filters
             </div>
             <div className="flex flex-col gap-3">
-                <div className="flex flex-col gap-2">
-                <div className="text-m font-semibold pt-2 pb-2 uppercas">
-                    Project Type
+                <div className="flex flex-col gap-2 ml-2">
+                    <div className="text-base font-semibold pt-2 pb-2 uppercase ml-2">
+                        Project Type
+                    </div>
+                    <div className="flex flex-col gap-2 ml-4 text-sm">
+                        <FilterItem />
+                        <FilterItem />
+                        <FilterItem />
+                    </div>
                 </div>
-                <div className="flex flex-col gap-2">
-                    <FilterItem />
-                    <FilterItem />
-                    <FilterItem />
+                <div className="flex flex-col gap-2 ml-2">
+                    <div className="text-base font-semibold pt-2 pb-2 uppercase ml-2">
+                        Languages
+                    </div>
+                    <div className="flex flex-col gap-2 ml-4 text-sm">
+                        <FilterItem />
+                        <FilterItem />
+                        <FilterItem />
+                    </div>
                 </div>
-            </div>
-            <div className="flex flex-col gap-2">
-                <div className="text-m font-semibold pt-2 pb-2 uppercas">
-                    Languages
-                </div>
-                <div className="flex flex-col gap-2">
-                    <FilterItem />
-                    <FilterItem />
-                    <FilterItem />
-                </div>
-            </div>
             </div>
         </div>
+
+
     )
 }
 
