@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { getRepositories } from '../../../api/services/integration.service';
+import Props from './props.type';
 import RepoSelectItem from './repo-select-item';
 
-const SelectRepoBox: React.FC = () => {
+const SelectRepoBox: React.FC = (props: Props) => {
 
     const [repos, setRepos] = useState<any[]>([]);
 

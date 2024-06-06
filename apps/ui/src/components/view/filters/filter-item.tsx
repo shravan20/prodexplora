@@ -1,8 +1,10 @@
-import * as React from 'react'
-import * as Checkbox from '@radix-ui/react-checkbox'
+import * as Checkbox from '@radix-ui/react-checkbox';
+import * as React from 'react';
+import { useState } from 'react';
 import { GoCheck } from 'react-icons/go';
 
 const FilterItem: React.FC = () => {
+    const [checked, setChecked] = useState(false);
     return (
         <div className="w-full pt-1 pb-1 flex flex-row items-center gap-2">
             <Checkbox.Root
@@ -13,7 +15,7 @@ const FilterItem: React.FC = () => {
                     <GoCheck />
                 </Checkbox.Indicator>
             </Checkbox.Root>
-            <span className="text-s font-medium">Boostrapped</span>
+            <span className="text-s font-medium">Bootstrapped</span>
         </div>
     )
 }
